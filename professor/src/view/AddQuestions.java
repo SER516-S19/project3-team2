@@ -44,7 +44,7 @@ public class AddQuestions extends JFrame {
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(43, 50, 1825, 900);
-		setLayout(null);
+		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Professor Window For Quiz Application");
 		setResizable(false);
@@ -89,7 +89,7 @@ public class AddQuestions extends JFrame {
 		contentPane.add(lblCorrectAnswer);
 		
 		questionField = new JTextField();
-		questionField.setBounds(712, 276, 544, 26);
+		questionField.setBounds(712, 276, 391, 35);
 		contentPane.add(questionField);
 		questionField.setColumns(10);
 		
@@ -118,11 +118,11 @@ public class AddQuestions extends JFrame {
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 		
-		JButton btnAddMoreQuestions = new JButton("Add More Questions");
+		JButton btnAddMoreQuestions = new JButton("Add Question");
 		btnAddMoreQuestions.setBounds(555, 614, 177, 29);
 		contentPane.add(btnAddMoreQuestions);
 		
-		JButton btnDeleteQuestions = new JButton("Delete Questions");
+		JButton btnDeleteQuestions = new JButton("Delete Question");
 		btnDeleteQuestions.setBounds(763, 614, 182, 29);
 		contentPane.add(btnDeleteQuestions);
 		
