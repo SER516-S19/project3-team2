@@ -6,10 +6,17 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import src.controller.Question;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ActionEvent;
 
 public class AddQuestions extends JFrame {
 
@@ -119,12 +126,73 @@ public class AddQuestions extends JFrame {
 		answerField.setColumns(10);
 		
 		JButton btnAddMoreQuestions = new JButton("Add Question");
+		btnAddMoreQuestions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO: actions to be performed on add button clicked..
+			}
+		});
 		btnAddMoreQuestions.setBounds(555, 614, 177, 29);
 		contentPane.add(btnAddMoreQuestions);
 		
 		JButton btnDeleteQuestions = new JButton("Delete Question");
+		btnDeleteQuestions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO: actions to be performed on delete button clicked..
+				
+				// creating temp list of questions.
+				System.out.println("Creating temp list for delete functionality");
+				
+				List<String> tempQ1Options = new ArrayList<String>();
+				tempQ1Options.add("OptionQ1 1");
+				tempQ1Options.add("OptionQ1 2");
+				tempQ1Options.add("OptionQ1 3");
+				tempQ1Options.add("OptionQ1 4");
+				
+				List<String> tempQ2Options = new ArrayList<String>();
+				tempQ2Options.add("OptionQ2 1");
+				tempQ2Options.add("OptionQ2 2");
+				tempQ2Options.add("OptionQ2 3");
+				tempQ2Options.add("OptionQ2 4");
+
+				List<String> tempQ3Options = new ArrayList<String>();
+				tempQ2Options.add("OptionQ3 1");
+				tempQ2Options.add("OptionQ3 2");
+				tempQ2Options.add("OptionQ3 3");
+				tempQ2Options.add("OptionQ3 4");
+				
+				
+				Question q1 = new Question("Ques 1", tempQ1Options, "OptionQ1 2");
+				Question q2 = new Question("Ques 2", tempQ2Options, "OptionQ2 4");
+				Question q3 = new Question("Ques 3", tempQ3Options, "OptionQ3 3");
+				ArrayList<Question> tempList  = new ArrayList<Question>();
+				
+				tempList.add(q1);
+				tempList.add(q2);
+				tempList.add(q3);
+				
+				for (Question q : tempList) {
+					System.out.println(q.getTitle());
+				}
+				System.out.println("After Deleting the selected question.....");
+				System.out.println("Assuming to delete ques2 from the list");
+				
+				// get quest2
+				
+				// when delete button is clicked.. delete the question from this templist list
+				
+				tempList.remove(q2);
+				for (Question q : tempList) {
+					System.out.println(q.getTitle());
+				}
+				
+			}
+		});
 		btnDeleteQuestions.setBounds(763, 614, 182, 29);
 		contentPane.add(btnDeleteQuestions);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(509, 704, 46, 14);
+		contentPane.add(label);
 		
 		}
 }
