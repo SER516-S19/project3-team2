@@ -1,30 +1,54 @@
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.Scanner;
+
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import com.google.gson.JsonParser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
 
+/*
+ * PLEASE DO NOT MODIFY THIS FILE UNLESS YOU ASK MENG-ZE FIRST !!!!!!!!!!
+ *
+ * @author: Meng-Ze Chen
+ * @description: 
+ * This file contains 4 static function which facilitates quiz/questions creating process.
+ * 
+ * getStrFromFile(String absoluteFilepath):             READ String from file.
+ * getQuestionsFromJsonString(String jsonString):       TRANSFER String into usable datastructure.
+ * getQuestionsJsonString(List<Question> questions):    TRANSFER datastructure into Json formatted String.
+ * writeStringToFile(String absoluteFilepath, String content): SAVE string to file.
+ * 
+ * 
+ *  Sample Run: Replace the string in the first and second variable
+ *
+ *  String readFilepath = "";
+ *  String writeFilepath = "";
+ *
+ *  String jsonString = JsonUtils.getStrFromFile(readFilepath);
+ *  List<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
+ *  String jsonStringResult = JsonUtils.getQuestionsJsonString(questions);
+ *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
+*/
 
 public class JsonUtils {
-    public static String getStrFromFile(String absoluteFilename) {
+    public static String getStrFromFile(String absoluteFilepath) {
         String content = "";
 
         try {
-            Scanner inputStream = new Scanner(new File(absoluteFilename));
+            Scanner inputStream = new Scanner(new File(absoluteFilepath));
             while (inputStream.hasNextLine()) {
                 content = content + inputStream.nextLine();
             }
-        } catch (FileNotFoundException fe) {
-            System.out.println(fe);
-        }
+        } catch (FileNotFoundException fe) {}
 
         return content;
     }
@@ -67,7 +91,7 @@ public class JsonUtils {
     }
 
     public static String getQuestionsJsonString(List<Question> questions) {
-        JsonObject resultObject = new JsonObject();
+        JsonObject quizJsonObject = new JsonObject();
         JsonArray allQuestions = new JsonArray();
 
         for (Question question: questions) {
@@ -82,17 +106,19 @@ public class JsonUtils {
             allQuestions.add(questionJsonObj);
         }
 
-        resultObject.add(ConstantTable.QUIZ_IDENTIFIER, allQuestions);
+        quizJsonObject.add(ConstantTable.QUIZ_IDENTIFIER, allQuestions);
 
-        return resultObject.toString();
+        Gson jsonBuilder = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = jsonBuilder.toJson(quizJsonObject);
+        return jsonString;
     }
 
-    public static void main(String[] args) {
-        String jsonString = getStrFromFile("/Users/meng/test.json");
-        System.out.println(jsonString);
-        List<Question> questions = getQuestionsFromJsonString(jsonString);
-        String jsonStringResult = getQuestionsJsonString(questions);
-
-        System.out.println(jsonStringResult);
+    public static void writeStringToFile(String absoluteFilepath, String content) {
+        FileWriter fileWriter;
+        try {
+            fileWriter = new FileWriter(absoluteFilepath);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (IOException e) {}
     }
 }
