@@ -1,3 +1,5 @@
+package utils;
+
 public class ConstantTable {
     public static String QUIZ_IDENTIFIER = "questions";
     public static String QUESTION_TITLE = "title";

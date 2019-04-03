@@ -1,3 +1,5 @@
+package utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -33,14 +35,14 @@ import com.google.gson.Gson;
  *  String readFilepath = "";
  *  String writeFilepath = "";
  *
- *  String jsonString = JsonUtils.getStrFromFile(readFilepath);
+ *  String jsonString = JsonUtils.getStringFromFile(readFilepath);
  *  List<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
- *  String jsonStringResult = JsonUtils.getQuestionsJsonString(questions);
+ *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
  *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
 */
 
 public class JsonUtils {
-    public static String getStrFromFile(String absoluteFilepath) {
+    public static String getStringFromFile(String absoluteFilepath) {
         String content = "";
 
         try {
@@ -90,7 +92,7 @@ public class JsonUtils {
         return null;
     }
 
-    public static String getQuestionsJsonString(List<Question> questions) {
+    public static String getJsonStringFromQuestions(List<Question> questions) {
         JsonObject quizJsonObject = new JsonObject();
         JsonArray allQuestions = new JsonArray();
 
