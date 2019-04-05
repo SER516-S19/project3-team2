@@ -1,5 +1,4 @@
-package src.controller;
-
+package utils;
 import java.util.List;
 
 /**
@@ -8,6 +7,7 @@ import java.util.List;
  * @author leharbhatt
  *
  */
+
 public class Question {
 	private String title;
 	private List<String> options;
@@ -18,6 +18,8 @@ public class Question {
 		this.options = options;
 		this.correctAnswer = correctAnswer;
 	}
+
+	public Question() {}
 	
 	public String getTitle() {
 		return title;
