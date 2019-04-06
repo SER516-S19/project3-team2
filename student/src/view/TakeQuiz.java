@@ -1,6 +1,6 @@
 package src.view;
 
-import src.controller.Question;
+//import src.controller.Question;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 public class TakeQuiz extends JFrame {
     private JPanel contentPane;
@@ -17,6 +18,12 @@ public class TakeQuiz extends JFrame {
     private JRadioButton option2Field;
     private JRadioButton option3Field;
     private JRadioButton option4Field;
+    private String currQstnTxt;
+    private ArrayList<String> currQstnAns;
+    
+    Queue<Question> questionList = new LinkedList<Question>(); 
+    Question currQuestion = new Question(currQstnTxt, currQstnAns);
+    
     public TakeQuiz() {
         getContentPane().setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,9 +105,8 @@ public class TakeQuiz extends JFrame {
         JButton btnNext = new JButton("Next");
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                // TODO: actions to be performed on delete button clicked..
-
-
+                
+            	currQuestion = questionList.peek();
 
             }
         });
