@@ -17,9 +17,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.border.BevelBorder;
 
 public class AddQuestions extends JFrame {
 
+	protected static final String MouseEvent = null;
 	private JPanel contentPane;
 	private JTextField questionField;
 	private JTextField answerField;
@@ -29,6 +34,7 @@ public class AddQuestions extends JFrame {
 	private JTextField option4Field;
 	
 	// this is the list which has questions..
+	ProfMainWindow mwobject = new ProfMainWindow();
 	private ArrayList<Question> questionsList = new ArrayList<Question>();
 
 	/**
@@ -52,83 +58,68 @@ public class AddQuestions extends JFrame {
 	 */
 	public AddQuestions() {
 		getContentPane().setLayout(null);
+		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(43, 50, 1825, 900);
+		setBounds(450, 50, 900, 950);
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Professor Window For Quiz Application");
 		setResizable(false);
 		setVisible(true);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(70, 130, 180));
+		contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(5, 5, 1, 834);
-		contentPane.add(layeredPane);
+		contentPane.setLayout(null);
 		
 		JLabel lblAddQuestionDetails = new JLabel("Add Question Details Here");
 		lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, 40));
-		lblAddQuestionDetails.setBounds(560, 130, 900, 80);
-		lblAddQuestionDetails.setForeground(Color.BLACK);
+		lblAddQuestionDetails.setBounds(144, 137, 607, 80);
+		lblAddQuestionDetails.setForeground(new Color(255, 255, 255));
 		contentPane.add(lblAddQuestionDetails);
 		
-		JLabel lblQuestion = new JLabel("Question");
-		lblQuestion.setBounds(555, 279, 69, 20);
-		contentPane.add(lblQuestion);
-		
 		JLabel lblOption_1 = new JLabel("Option1");
-		lblOption_1.setBounds(555, 338, 69, 20);
+		lblOption_1.setForeground(new Color(255, 255, 255));
+		lblOption_1.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblOption_1.setBounds(144, 342, 125, 38);
 		contentPane.add(lblOption_1);
 		
-		JLabel lblOption_2 = new JLabel("Option2");
-		lblOption_2.setBounds(555, 392, 69, 20);
-		contentPane.add(lblOption_2);
-		
-		JLabel lblOption_3 = new JLabel("Option3");
-		lblOption_3.setBounds(555, 443, 69, 20);
-		contentPane.add(lblOption_3);
-		
-		JLabel lblOption_4 = new JLabel("Option4");
-		lblOption_4.setBounds(555, 496, 69, 20);
-		contentPane.add(lblOption_4);
-		
-		JLabel lblCorrectAnswer = new JLabel("Correct Answer");
-		lblCorrectAnswer.setBounds(555, 546, 125, 20);
-		contentPane.add(lblCorrectAnswer);
-		
 		questionField = new JTextField();
-		questionField.setBounds(712, 276, 391, 35);
+		questionField.setBounds(393, 262, 358, 35);
 		contentPane.add(questionField);
 		questionField.setColumns(10);
 		
 		option1Field = new JTextField();
-		option1Field.setBounds(711, 335, 146, 26);
+		option1Field.setBounds(393, 345, 358, 38);
 		contentPane.add(option1Field);
 		option1Field.setColumns(10);
 		
 		option2Field = new JTextField();
-		option2Field.setBounds(711, 389, 146, 26);
+		option2Field.setBounds(393, 428, 358, 38);
 		contentPane.add(option2Field);
 		option2Field.setColumns(10);
 		
 		option3Field = new JTextField();
-		option3Field.setBounds(711, 440, 146, 26);
+		option3Field.setBounds(393, 513, 358, 38);
 		contentPane.add(option3Field);
 		option3Field.setColumns(10);
 		
 		option4Field = new JTextField();
-		option4Field.setBounds(711, 493, 146, 26);
+		option4Field.setBounds(393, 598, 358, 38);
 		contentPane.add(option4Field);
 		option4Field.setColumns(10);
 		
 		answerField = new JTextField();
-		answerField.setBounds(711, 543, 146, 26);
+		answerField.setBounds(393, 680, 358, 38);
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 		
 		JButton btnAddMoreQuestions = new JButton("Add Question");
+		btnAddMoreQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnAddMoreQuestions.setFont(new Font("Monospaced", Font.BOLD, 24));
+		btnAddMoreQuestions.setForeground(new Color(255, 255, 255));
+		btnAddMoreQuestions.setBackground(new Color(51, 204, 204));
 		btnAddMoreQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO: actions to be performed on add button clicked..
@@ -154,10 +145,14 @@ public class AddQuestions extends JFrame {
 				
 			}
 		});
-		btnAddMoreQuestions.setBounds(555, 614, 177, 29);
+		btnAddMoreQuestions.setBounds(144, 777, 305, 49);
 		contentPane.add(btnAddMoreQuestions);
 		
 		JButton btnDeleteQuestions = new JButton("Delete Question");
+		btnDeleteQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnDeleteQuestions.setFont(new Font("Monospaced", Font.BOLD, 24));
+		btnDeleteQuestions.setBackground(new Color(51, 204, 204));
+		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
 		btnDeleteQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO: actions to be performed on delete button clicked..
@@ -185,8 +180,7 @@ public class AddQuestions extends JFrame {
 				}else {
 					System.out.print("You cannot delete as there are no questions left to delete");
 				}
-				
-				
+							
 				// creating temp list of questions.
 				//System.out.println("Creating temp list for delete functionality");
 				
@@ -235,12 +229,55 @@ public class AddQuestions extends JFrame {
 				
 			}
 		});
-		btnDeleteQuestions.setBounds(763, 614, 182, 29);
+		btnDeleteQuestions.setBounds(459, 777, 292, 49);
 		contentPane.add(btnDeleteQuestions);
 		
 		JLabel label = new JLabel("");
 		label.setBounds(509, 704, 46, 14);
 		contentPane.add(label);
+		
+		JLabel lblOption = new JLabel("Option2");
+		lblOption.setForeground(new Color(255, 255, 255));
+		lblOption.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblOption.setBounds(144, 425, 125, 38);
+		contentPane.add(lblOption);
+		
+		JLabel lblQuestion = new JLabel("Question");
+		lblQuestion.setForeground(new Color(255, 255, 255));
+		lblQuestion.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblQuestion.setBounds(144, 257, 125, 38);
+		contentPane.add(lblQuestion);
+		
+		JLabel lblOption_2 = new JLabel("Option3");
+		lblOption_2.setForeground(new Color(255, 255, 255));
+		lblOption_2.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblOption_2.setBounds(144, 510, 125, 38);
+		contentPane.add(lblOption_2);
+		
+		JLabel lblOption_3 = new JLabel("Option4");
+		lblOption_3.setForeground(new Color(255, 255, 255));
+		lblOption_3.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblOption_3.setBounds(144, 595, 125, 38);
+		contentPane.add(lblOption_3);
+		
+		JLabel lblCorrectAnswer = new JLabel("Correct Answer");
+		lblCorrectAnswer.setForeground(new Color(255, 255, 255));
+		lblCorrectAnswer.setFont(new Font("Monospaced", Font.BOLD, 25));
+		lblCorrectAnswer.setBounds(144, 677, 210, 38);
+		contentPane.add(lblCorrectAnswer);
+		
+		JLabel lblNewLabel = new JLabel("X");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(816, 0, 84, 80);
+		contentPane.add(lblNewLabel);
 		
 		}
 }
