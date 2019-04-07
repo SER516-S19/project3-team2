@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import src.controller.Question;
+import utils.Question;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -27,6 +27,9 @@ public class AddQuestions extends JFrame {
 	private JTextField option2Field;
 	private JTextField option3Field;
 	private JTextField option4Field;
+	
+	// this is the list which has questions..
+	private ArrayList<Question> questions = new ArrayList<Question>();
 
 	/**
 	 * Launch the application.
@@ -138,9 +141,11 @@ public class AddQuestions extends JFrame {
 		btnDeleteQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO: actions to be performed on delete button clicked..
+				String s = option4Field.getText();
+				System.out.println(s);
 				
 				// creating temp list of questions.
-				System.out.println("Creating temp list for delete functionality");
+				//System.out.println("Creating temp list for delete functionality");
 				
 				List<String> tempQ1Options = new ArrayList<String>();
 				tempQ1Options.add("OptionQ1 1");
@@ -171,10 +176,10 @@ public class AddQuestions extends JFrame {
 				tempList.add(q3);
 				
 				for (Question q : tempList) {
-					System.out.println(q.getTitle());
+					//System.out.println(q.getTitle());
 				}
-				System.out.println("After Deleting the selected question.....");
-				System.out.println("Assuming to delete ques2 from the list");
+				//System.out.println("After Deleting the selected question.....");
+				//System.out.println("Assuming to delete ques2 from the list");
 				
 				// get quest2
 				
@@ -182,7 +187,7 @@ public class AddQuestions extends JFrame {
 				
 				tempList.remove(q2);
 				for (Question q : tempList) {
-					System.out.println(q.getTitle());
+					//System.out.println(q.getTitle());
 				}
 				
 			}

@@ -1,6 +1,6 @@
 package src.view;
 
-import src.controller.Question;
+import src.model.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
