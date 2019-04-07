@@ -161,8 +161,31 @@ public class AddQuestions extends JFrame {
 		btnDeleteQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO: actions to be performed on delete button clicked..
-				String s = option4Field.getText();
-				System.out.println(s);
+				
+				// building the current question to be deleted..
+				String strQuestionField = questionField.getText();
+				String strOption1Field = option1Field.getText();
+				String strOption2Field = option1Field.getText();
+				String strOption3Field = option1Field.getText();
+				String strOption4Field = option1Field.getText();
+				String strAnswerField = answerField.getText();
+				
+				List<String> optionsList = new ArrayList<String>();
+				optionsList.add(strOption1Field);
+				optionsList.add(strOption2Field);
+				optionsList.add(strOption3Field);
+				optionsList.add(strOption4Field);
+			
+				// creating a new question object to be deleted..
+				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
+				
+				// removing the question object to arraylist of questions whenever add button is clicked
+				if (questionsList != null) {
+					questionsList.remove(q1);
+				}else {
+					System.out.print("You cannot delete as there are no questions left to delete");
+				}
+				
 				
 				// creating temp list of questions.
 				//System.out.println("Creating temp list for delete functionality");
@@ -186,12 +209,12 @@ public class AddQuestions extends JFrame {
 				tempQ2Options.add("OptionQ3 4");
 				
 				
-				Question q1 = new Question("Ques 1", tempQ1Options, "OptionQ1 2");
+				//Question q1 = new Question("Ques 1", tempQ1Options, "OptionQ1 2");
 				Question q2 = new Question("Ques 2", tempQ2Options, "OptionQ2 4");
 				Question q3 = new Question("Ques 3", tempQ3Options, "OptionQ3 3");
 				ArrayList<Question> tempList  = new ArrayList<Question>();
 				
-				tempList.add(q1);
+				//tempList.add(q1);
 				tempList.add(q2);
 				tempList.add(q3);
 				
