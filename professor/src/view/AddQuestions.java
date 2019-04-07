@@ -29,7 +29,7 @@ public class AddQuestions extends JFrame {
 	private JTextField option4Field;
 	
 	// this is the list which has questions..
-	private ArrayList<Question> questions = new ArrayList<Question>();
+	private ArrayList<Question> questionsList = new ArrayList<Question>();
 
 	/**
 	 * Launch the application.
@@ -132,6 +132,26 @@ public class AddQuestions extends JFrame {
 		btnAddMoreQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO: actions to be performed on add button clicked..
+				
+				String strQuestionField = questionField.getText();
+				String strOption1Field = option1Field.getText();
+				String strOption2Field = option1Field.getText();
+				String strOption3Field = option1Field.getText();
+				String strOption4Field = option1Field.getText();
+				String strAnswerField = answerField.getText();
+				
+				List<String> optionsList = new ArrayList<String>();
+				optionsList.add(strOption1Field);
+				optionsList.add(strOption2Field);
+				optionsList.add(strOption3Field);
+				optionsList.add(strOption4Field);
+			
+				// creating a new question object
+				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
+				
+				// adding question object to arraylist of questions whenever add button is clicked
+				questionsList.add(q1);
+				
 			}
 		});
 		btnAddMoreQuestions.setBounds(555, 614, 177, 29);
