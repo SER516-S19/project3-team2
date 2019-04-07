@@ -20,9 +20,13 @@ public class TakeQuiz extends JFrame {
     private JRadioButton option4Field;
     private String currQstnTxt;
     private ArrayList<String> currQstnAns;
+    private String correctAns;
     
-    Queue<Question> questionList = new LinkedList<Question>(); 
-    Question currQuestion = new Question(currQstnTxt, currQstnAns);
+    
+    
+    ArrayList<Question> questionList = new ArrayList<Question>(); 
+    Question currQuestion = new Question(currQstnTxt, currQstnAns, correctAns);
+    
     
     public TakeQuiz() {
         getContentPane().setLayout(null);
@@ -106,7 +110,7 @@ public class TakeQuiz extends JFrame {
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 
-            	currQuestion = questionList.peek();
+            	currQuestion = questionList.get(0);
 
             }
         });
