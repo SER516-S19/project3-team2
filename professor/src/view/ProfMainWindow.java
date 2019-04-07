@@ -4,21 +4,14 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -52,7 +45,7 @@ public class ProfMainWindow extends JFrame {
 	public ProfMainWindow() {	
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 50, 900, 950);
+		setBounds(490, 50, 900, 950);
 		setTitle("Professor Window For Quiz Application");
 		setResizable(false);
 		contentPane = new JPanel();
@@ -94,6 +87,12 @@ public class ProfMainWindow extends JFrame {
 		lblX.setForeground(new Color(255, 255, 255));
 		lblX.setBounds(816, 0, 84, 80);
 		contentPane.add(lblX);
+		
+		JLabel lblNewLabel = new JLabel("Quiz Window For Professor");
+		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(27, 0, 816, 61);
+		contentPane.add(lblNewLabel);
 		
 	}	
 }

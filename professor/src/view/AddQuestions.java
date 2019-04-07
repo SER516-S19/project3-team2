@@ -5,12 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import utils.Question;
-
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -60,7 +56,7 @@ public class AddQuestions extends JFrame {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 50, 900, 950);
+		setBounds(490, 50, 900, 950);
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Professor Window For Quiz Application");
@@ -279,5 +275,10 @@ public class AddQuestions extends JFrame {
 		lblNewLabel.setBounds(816, 0, 84, 80);
 		contentPane.add(lblNewLabel);
 		
+		JLabel lblNewLabel_1 = new JLabel("Quiz Window For Professor");
+		lblNewLabel_1.setFont(new Font("Monospaced", Font.BOLD, 20));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(27, 0, 816, 61);
+		contentPane.add(lblNewLabel_1);
 		}
 }
