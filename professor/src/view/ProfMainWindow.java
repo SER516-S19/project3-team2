@@ -15,6 +15,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.EmptyBorder;
+import java.awt.SystemColor;
 
 public class ProfMainWindow extends JFrame {
 
@@ -29,9 +31,7 @@ public class ProfMainWindow extends JFrame {
 			public void run() {
 				try {
 					ProfMainWindow frame = new ProfMainWindow();
-					frame.setVisible(true);
-					
-					
+					frame.setVisible(true);								
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,12 +49,14 @@ public class ProfMainWindow extends JFrame {
 		setTitle("Professor Window For Quiz Application");
 		setResizable(false);
 		contentPane = new JPanel();
+		contentPane.setEnabled(false);
 		contentPane.setBackground(new Color(70, 130, 180));
 		contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));		
 		setContentPane(contentPane);		
 		setUndecorated(true);
 		
 		JButton createQuiz = new JButton(" Create Quiz");
+		createQuiz.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("C:\\Users\\desai\\Desktop\\SER516\\project3-team2\\image\\teacher.gif"));
 		createQuiz.setBounds(238, 436, 434, 216);
@@ -66,7 +68,7 @@ public class ProfMainWindow extends JFrame {
 		contentPane.setLayout(null);
 		createQuiz.setFont(new Font("Monospaced", Font.BOLD, 30));
 	    createQuiz.setForeground(new Color(255, 255, 255));
-	    createQuiz.setBackground(new Color(51, 204, 204));
+	    createQuiz.setBackground(new Color(129, 207, 224));
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
@@ -75,24 +77,31 @@ public class ProfMainWindow extends JFrame {
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
 		
-		JLabel lblX = new JLabel("X");
-		lblX.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {				
+		JButton btnNewButton = new JButton("  Quiz Desktop Application - Professor Window");
+		btnNewButton.setHorizontalAlignment(SwingConstants.LEADING);
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 20));
+		btnNewButton.setBackground(new Color(89, 171, 227));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(0, 0, 823, 41);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("X");
+		btnNewButton_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(255, 102, 102));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-		lblX.setBackground(new Color(255, 192, 203));
-		lblX.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblX.setForeground(new Color(255, 255, 255));
-		lblX.setBounds(816, 0, 84, 80);
-		contentPane.add(lblX);
-		
-		JLabel lblNewLabel = new JLabel("Quiz Window For Professor");
-		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 20));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(27, 0, 816, 61);
-		contentPane.add(lblNewLabel);
+		btnNewButton_1.setBounds(822, 0, 78, 41);
+		contentPane.add(btnNewButton_1);
 		
 	}	
 }
