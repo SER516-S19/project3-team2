@@ -120,6 +120,11 @@ public class AddQuestions extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO: actions to be performed on add button clicked..
 				
+				/*if(e.getSource()==btnAddMoreQuestions)
+				{
+					btnAddMoreQuestions.setText("I am Clicked");
+				}*/
+				
 				String strQuestionField = questionField.getText();
 				String strOption1Field = option1Field.getText();
 				String strOption2Field = option1Field.getText();
@@ -138,7 +143,11 @@ public class AddQuestions extends JFrame {
 				
 				// adding question object to arraylist of questions whenever add button is clicked
 				questionsList.add(q1);
-				
+				dispose();
+				/*for (Question q : questionsList) {
+					System.out.println(q.getTitle());
+				}*/
+				new AddQuestions().setVisible(true);
 			}
 		});
 		btnAddMoreQuestions.setBounds(144, 745, 305, 49);
