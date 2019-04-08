@@ -58,7 +58,7 @@ public class ProfMainWindow extends JFrame {
 		JButton createQuiz = new JButton(" Create Quiz");
 		createQuiz.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		createQuiz.setToolTipText("Click Me");
-		createQuiz.setIcon(new ImageIcon("C:\\Users\\desai\\Desktop\\SER516\\project3-team2\\image\\teacher.gif"));
+		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
 		createQuiz.setBounds(238, 436, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
