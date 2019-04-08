@@ -1,7 +1,8 @@
 package src.view;
 
 import src.model.*;
-
+import utils.Question;
+import utils.JsonUtils;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -13,17 +14,20 @@ import java.util.List;
 public class TakeQuiz extends JFrame {
     private JPanel contentPane;
     private JTextField questionField;
-    private JRadioButton option1Field;
-    private JRadioButton option2Field;
-    private JRadioButton option3Field;
-    private JRadioButton option4Field;
-    public TakeQuiz() {
+    private JRadioButton [] optionField = new JRadioButton[4];
+    String quizName;
+    List<Question> Questions;
+    public TakeQuiz(String quizName) {
+    	this.quizName = quizName;
+    	Questions = new ArrayList<Question>();
+    	JsonUtils utils = new JsonUtils();
+    	Questions = utils.getQuestionsFromJsonString(quizName);
         getContentPane().setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(43, 50, 1825, 900);
         getContentPane().setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Quiz 1");
+        setTitle(quizName);
         setResizable(false);
         setVisible(true);
 
@@ -36,7 +40,7 @@ public class TakeQuiz extends JFrame {
         layeredPane.setBounds(5, 5, 1, 834);
         contentPane.add(layeredPane);
 
-        JLabel lblAddQuestionDetails = new JLabel("Quiz 1");
+        JLabel lblAddQuestionDetails = new JLabel(quizName);
         lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, 40));
         lblAddQuestionDetails.setBounds(660, 130, 900, 80);
         lblAddQuestionDetails.setForeground(Color.BLACK);
@@ -50,22 +54,13 @@ public class TakeQuiz extends JFrame {
         questionField.setBounds(700, 276, 391, 35);
         contentPane.add(questionField);
         questionField.setColumns(10);
+        
+        for(int i = 0; i < 4; i++) {
+        	optionField[i] = new JRadioButton("Option " + i);
+            optionField[i].setBounds(711, 335, 146, 26);
+            contentPane.add(optionField[i]);
+        }
 
-        option1Field = new JRadioButton("Option A");
-        option1Field.setBounds(711, 335, 146, 26);
-        contentPane.add(option1Field);
-
-        option2Field = new JRadioButton("Option B");
-        option2Field.setBounds(711, 389, 146, 26);
-        contentPane.add(option2Field);
-
-        option3Field = new JRadioButton("Option C");
-        option3Field.setBounds(711, 440, 146, 26);
-        contentPane.add(option3Field);
-
-        option4Field = new JRadioButton("Option D");
-        option4Field.setBounds(711, 493, 146, 26);
-        contentPane.add(option4Field);
 
         JButton btnPrevious = new JButton("Previous");
         btnPrevious.addActionListener(new ActionListener() {
@@ -99,13 +94,38 @@ public class TakeQuiz extends JFrame {
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 // TODO: actions to be performed on delete button clicked..
-
-
-
+                if(Questions.size()==0) {
+                	
+                }
+                
+            	String ans = "";
+                for(int i = 0; i < 4; i++) {
+                	if(optionField[i].isSelected()) {
+                		ans = optionField[i].getText();
+                	}
+                }
+            	checkQuiz(ans, Questions.get(0).getCorrectAnswer());
+                
             }
         });
         btnNext.setBounds(1150, 614, 140, 29);
         contentPane.add(btnNext);
 
+    }
+    
+    void checkQuiz(String selectedAnswer, String CorrectAnswer) {
+    	if(selectedAnswer == "") {
+    		Question firstQuestion = Questions.get(0);
+    		Questions.add(firstQuestion);
+    		
+    	}
+    	if(selectedAnswer == CorrectAnswer) {
+    		Questions.remove(0);
+    		
+    	}
+    	else {
+    		Question firstQuestion = Questions.get(0);
+    		Questions.add(firstQuestion);
+    	}
     }
 }

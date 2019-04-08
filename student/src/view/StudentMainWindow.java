@@ -56,7 +56,7 @@ public class StudentMainWindow extends JFrame {
         } );
         btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TakeQuiz().setVisible(true);
+                new TakeQuiz(choices[cb.getSelectedIndex()]).setVisible(true);
             }
         });
         cb.setFont(new Font("Courier", Font.BOLD, 25));
