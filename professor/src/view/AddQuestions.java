@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import utils.Question;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -159,63 +160,9 @@ public class AddQuestions extends JFrame {
 		btnDeleteQuestions.setBackground(new Color(0, 181, 204));
 		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
 		btnDeleteQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO: actions to be performed on delete button clicked..
-				
-				// creating temp list of questions.
-				//System.out.println("Creating temp list for delete functionality");
-				
-				List<String> tempQ1Options = new ArrayList<String>();
-				tempQ1Options.add("OptionQ1 1");
-				tempQ1Options.add("OptionQ1 2");
-				tempQ1Options.add("OptionQ1 3");
-				tempQ1Options.add("OptionQ1 4");
-				
-				List<String> tempQ2Options = new ArrayList<String>();
-				tempQ2Options.add("OptionQ2 1");
-				tempQ2Options.add("OptionQ2 2");
-				tempQ2Options.add("OptionQ2 3");
-				tempQ2Options.add("OptionQ2 4");
-
-				List<String> tempQ3Options = new ArrayList<String>();
-				tempQ2Options.add("OptionQ3 1");
-				tempQ2Options.add("OptionQ3 2");
-				tempQ2Options.add("OptionQ3 3");
-				tempQ2Options.add("OptionQ3 4");
-				
-				
-				Question q1 = new Question("Ques 1", tempQ1Options, "OptionQ1 2");
-				Question q2 = new Question("Ques 2", tempQ2Options, "OptionQ2 4");
-				Question q3 = new Question("Ques 3", tempQ3Options, "OptionQ3 3");
-				
-				
-				questionsList.add(q1);
-				questionsList.add(q2);
-				questionsList.add(q3);
-				
-				for (Question q : questionsList) {
-					System.out.println(q.getTitle());
-				}
-				
-				// building the current question to be deleted..
+			public void actionPerformed(ActionEvent arg0) {	
 				String strQuestionField = questionField.getText();
-				String strOption1Field = option1Field.getText();
-				String strOption2Field = option1Field.getText();
-				String strOption3Field = option1Field.getText();
-				String strOption4Field = option1Field.getText();
-				String strAnswerField = answerField.getText();
 				
-				
-				List<String> optionsList = new ArrayList<String>();
-				optionsList.add(strOption1Field);
-				optionsList.add(strOption2Field);
-				optionsList.add(strOption3Field);
-				optionsList.add(strOption4Field);
-			
-				// creating a new question object to be deleted..
-				//Question ques1 =  new Question(strQuestionField, optionsList, strAnswerField);
-				
-				// removing the question object to arraylist of questions whenever add button is clicked
 				if (questionsList != null) {	
 					Iterator<Question> iter = questionsList.iterator();
 
@@ -227,44 +174,7 @@ public class AddQuestions extends JFrame {
 					}
 					
 				}else {
-					System.out.print("You cannot delete as there are no questions left to delete");
-				}
-				
-				// when delete button is clicked.. delete the question from this templist list
-				System.out.println("\nAfter Delete:");
-				for (Question q : questionsList) {
-					System.out.println(q.getTitle());
-				}
-						
-				
-				List<String> optionsList1 = new ArrayList<String>();
-				optionsList1.add(strOption1Field);
-				optionsList1.add(strOption2Field);
-				optionsList1.add(strOption3Field);
-				optionsList1.add(strOption4Field);
-			
-				// creating a new question object to be deleted..
-				//Question ques1 =  new Question(strQuestionField, optionsList, strAnswerField);
-				
-				// removing the question object to arraylist of questions whenever add button is clicked
-				if (questionsList != null) {	
-					Iterator<Question> iter = questionsList.iterator();
-
-					while (iter.hasNext()) {
-						Question q = iter.next();
-					    if (q.getTitle().equalsIgnoreCase(strQuestionField)) {
-					    	iter.remove();
-					    }
-					}
-					
-				}else {
-					System.out.print("You cannot delete as there are no questions left to delete");
-				}
-				
-				// when delete button is clicked.. delete the question from this templist list
-				System.out.println("\nAfter Delete:");
-				for (Question q : questionsList) {
-					System.out.println(q.getTitle());
+					JOptionPane.showMessageDialog(null,"You cannot delete as there are no questions left to delete","Delete Message", JOptionPane.INFORMATION_MESSAGE);
 				}
 		
 			}
