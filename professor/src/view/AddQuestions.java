@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import utils.Question;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -31,7 +32,7 @@ public class AddQuestions extends JFrame {
 	
 	// this is the list which has questions..
 	ProfMainWindow mwobject = new ProfMainWindow();
-	private ArrayList<Question> questionsList = new ArrayList<Question>();
+	private static ArrayList<Question> questionsList = new ArrayList<Question>();
 
 	/**
 	 * Launch the application.
@@ -118,12 +119,6 @@ public class AddQuestions extends JFrame {
 		btnAddMoreQuestions.setBackground(new Color(129, 207, 224));
 		btnAddMoreQuestions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// TODO: actions to be performed on add button clicked..
-				
-				/*if(e.getSource()==btnAddMoreQuestions)
-				{
-					btnAddMoreQuestions.setText("I am Clicked");
-				}*/
 				
 				String strQuestionField = questionField.getText();
 				String strOption1Field = option1Field.getText();
@@ -138,16 +133,12 @@ public class AddQuestions extends JFrame {
 				optionsList.add(strOption3Field);
 				optionsList.add(strOption4Field);
 			
-				// creating a new question object
 				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
 				
-				// adding question object to arraylist of questions whenever add button is clicked
 				questionsList.add(q1);
 				dispose();
-				/*for (Question q : questionsList) {
-					System.out.println(q.getTitle());
-				}*/
-				new AddQuestions().setVisible(true);
+			    new AddQuestions().setVisible(true);
+				JOptionPane.showMessageDialog(null,"Question has been successfully Added!","Message", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnAddMoreQuestions.setBounds(144, 745, 305, 49);
@@ -300,6 +291,25 @@ public class AddQuestions extends JFrame {
 		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
 		btnCreateQuizAnd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String strQuestionField = questionField.getText();
+				String strOption1Field = option1Field.getText();
+				String strOption2Field = option1Field.getText();
+				String strOption3Field = option1Field.getText();
+				String strOption4Field = option1Field.getText();
+				String strAnswerField = answerField.getText();
+				
+				List<String> optionsList = new ArrayList<String>();
+				optionsList.add(strOption1Field);
+				optionsList.add(strOption2Field);
+				optionsList.add(strOption3Field);
+				optionsList.add(strOption4Field);
+			
+				
+				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
+				questionsList.add(q1);
+				JOptionPane.showMessageDialog(null,"Quiz has been successfully Created!","Message", JOptionPane.INFORMATION_MESSAGE);
+				dispose();	
 			}
 		});
 		btnCreateQuizAnd.setForeground(Color.WHITE);
