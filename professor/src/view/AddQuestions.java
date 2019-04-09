@@ -305,11 +305,10 @@ public class AddQuestions extends JFrame {
 				optionsList.add(strOption3Field);
 				optionsList.add(strOption4Field);
 			
-				
 				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
 				questionsList.add(q1);
 				JOptionPane.showMessageDialog(null,"Quiz has been successfully Created!","Message", JOptionPane.INFORMATION_MESSAGE);
-				dispose();	
+				dispose();
 			}
 		});
 		btnCreateQuizAnd.setForeground(Color.WHITE);
