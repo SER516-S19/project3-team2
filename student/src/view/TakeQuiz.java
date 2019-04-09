@@ -7,26 +7,27 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
-public class TakeQuiz extends JFrame {
-    private JPanel contentPane;
-    private JTextField questionField;
-    private JRadioButton option1Field;
-    private JRadioButton option2Field;
-    private JRadioButton option3Field;
-    private JRadioButton option4Field;
+
+public class TakeQuiz extends JFrame {	
+	
+	private JLabel lblQuizName = new JLabel();
+    private JLabel questionField = new JLabel();;
+    private JRadioButton option1Field = new JRadioButton();
+    private JRadioButton option2Field = new JRadioButton();
+    private JRadioButton option3Field = new JRadioButton();
+    private JRadioButton option4Field = new JRadioButton();
+    JButton btnNext = new JButton("Next");
+
     public TakeQuiz() {
+    	
+    	JPanel contentPane;
         getContentPane().setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(43, 50, 1825, 900);
-        getContentPane().setLayout(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Quiz 1");
+        setBounds(25, 25, 1025, 500);
+        
         setResizable(false);
-        setVisible(true);
-
+	        	
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -36,76 +37,69 @@ public class TakeQuiz extends JFrame {
         layeredPane.setBounds(5, 5, 1, 834);
         contentPane.add(layeredPane);
 
-        JLabel lblAddQuestionDetails = new JLabel("Quiz 1");
-        lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, 40));
-        lblAddQuestionDetails.setBounds(660, 130, 900, 80);
-        lblAddQuestionDetails.setForeground(Color.BLACK);
-        contentPane.add(lblAddQuestionDetails);
+        lblQuizName.setFont(new Font("Courier", Font.BOLD, 40));
+        lblQuizName.setBounds(310, 50, 600, 80);
+        lblQuizName.setForeground(Color.BLACK);
+        contentPane.add(lblQuizName);
 
-        JLabel lblQuestion = new JLabel("Question");
-        lblQuestion.setBounds(600, 279, 69, 20);
-        contentPane.add(lblQuestion);
-
-        questionField = new JTextField();
-        questionField.setBounds(700, 276, 391, 35);
+        questionField.setBounds(320, 186, 300, 50);
+        questionField.setForeground(Color.BLACK);
         contentPane.add(questionField);
-        questionField.setColumns(10);
-
-        option1Field = new JRadioButton("Option A");
-        option1Field.setBounds(711, 335, 146, 26);
+        
+        option1Field.setBounds(320, 230, 146, 26);
+        option2Field.setBounds(320, 265, 146, 26);
+        option3Field.setBounds(320, 295, 146, 26);
+        option4Field.setBounds(320, 325, 146, 26);
         contentPane.add(option1Field);
-
-        option2Field = new JRadioButton("Option B");
-        option2Field.setBounds(711, 389, 146, 26);
         contentPane.add(option2Field);
-
-        option3Field = new JRadioButton("Option C");
-        option3Field.setBounds(711, 440, 146, 26);
         contentPane.add(option3Field);
-
-        option4Field = new JRadioButton("Option D");
-        option4Field.setBounds(711, 493, 146, 26);
         contentPane.add(option4Field);
-
-        JButton btnPrevious = new JButton("Previous");
-        btnPrevious.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // TODO: actions to be performed on add button clicked..
-            }
-        });
-        btnPrevious.setBounds(400, 614, 140, 29);
-        contentPane.add(btnPrevious);
-
+        
         JButton btnGiveUp = new JButton("GiveUp");
         btnGiveUp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: actions to be performed on add button clicked..
+            	JComponent comp = (JComponent) e.getSource();
+            	Window win = SwingUtilities.getWindowAncestor(comp);
+            	win.dispose();
             }
         });
-        btnGiveUp.setBounds(650, 614, 140, 29);
+        btnGiveUp.setBounds(300, 414, 140, 29);
         contentPane.add(btnGiveUp);
 
-        JButton btnSubmit = new JButton("Submit");
-        btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // TODO: actions to be performed on add button clicked..
-            }
-        });
-        btnSubmit.setBounds(900, 614, 140, 29);
-        contentPane.add(btnSubmit);
-
         questionField.setEnabled(false);
-        JButton btnNext = new JButton("Next");
-        btnNext.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                // TODO: actions to be performed on delete button clicked..
-
-
-
-            }
-        });
-        btnNext.setBounds(1150, 614, 140, 29);
+        
+        btnNext.setBounds(500, 414, 140, 29);
         contentPane.add(btnNext);
-
+    }
+    
+    public void setQuizLabel(String quizName) {
+    	this.lblQuizName.setText(quizName);
+    }
+    
+    public void setQuestionField(String questionText) {
+    	this.questionField.setText(questionText);
+    }
+    public void setRadioOption1(String ansOptionText) {
+    	option1Field.setText(ansOptionText);
+    }
+    public void setRadioOption2(String ansOptionText) {
+    	option2Field.setText(ansOptionText);
+    }
+    public void setRadioOption3(String ansOptionText) {
+    	option3Field.setText(ansOptionText);
+    }
+    public void setRadioOption4(String ansOptionText) {
+    	option4Field.setText(ansOptionText);
+    }
+    
+    public void nextQuestionListener(ActionListener listenForNextButton){
+    	btnNext.addActionListener(listenForNextButton);
+    }
+    
+    public void displayCompletionMessage(String completionMsg, String title){
+    	JOptionPane.showMessageDialog(null,completionMsg,title, JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void displayErrorMessage(String errorMessage){
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
 }

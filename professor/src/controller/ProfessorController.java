@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import utils.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -19,7 +19,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ProfessorController implements ActionListener {
 
-	String classpath = ProfessorController.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*String classpath = ProfessorController.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 	final String JSONEXTENSION = ".json";
 	private List<Question> questions = new ArrayList<Question>();
 	private String quizName;
@@ -44,7 +50,7 @@ public class ProfessorController implements ActionListener {
 
 			questionsList.add(q1);
 			questionsList.add(q2);
-			ObjectMapper mapper = new ObjectMapper();
+			//ObjectMapper mapper = new ObjectMapper();
 			mapper.writerWithDefaultPrettyPrinter()
 					.writeValue(new File(classpath + File.separator + quizName + JSONEXTENSION), questionsList);
 		} catch (IOException e1) {
@@ -54,7 +60,7 @@ public class ProfessorController implements ActionListener {
 	/**
 	 * This is a test method. Delete after the UI integration is complete
 	 */
-	public void testMethod() {
+	/*public void testMethod() {
 		// File oneMoreDirectory = new File(classpath + File.separator + "file1.json");
 		List<Question> questionsList = new ArrayList<Question>();
 		List<String> options1 = Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4");
@@ -80,5 +86,5 @@ public class ProfessorController implements ActionListener {
 	public static void main(String args[]) {
 		ProfessorController con = new ProfessorController();
 		con.testMethod();
-	}
+	}*/
 }
