@@ -1,6 +1,7 @@
 package src.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JFrame;
@@ -18,7 +19,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-
+import java.awt.Toolkit;
 import javax.swing.border.BevelBorder;
 
 public class AddQuestions extends JFrame {
@@ -47,6 +48,10 @@ public class AddQuestions extends JFrame {
 				try {
 					AddQuestions frame = new AddQuestions();
 					frame.setVisible(true);
+					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+					int screenHeight = screenSize.height;
+					int screenWidth = screenSize.width;
+					frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
