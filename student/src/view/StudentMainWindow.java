@@ -23,7 +23,7 @@ public class StudentMainWindow extends JFrame {
 
 	//private String[] choices = { "Select Quiz","Quiz1","Quiz2", "Quiz3","Quiz4","Quiz 5","Quiz 6"};
 	private String[] choices = new String[100];
-    private JComboBox<String> cb = new JComboBox<String>();
+    private JComboBox<String> quizList = new JComboBox<String>();
 	private JButton okBtn = new JButton("OK");
 
     public StudentMainWindow() {
@@ -39,24 +39,24 @@ public class StudentMainWindow extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        cb.setVisible(true);
-        contentPane.add(cb);
+        quizList.setVisible(true);
+        contentPane.add(quizList);
         
         okBtn.setEnabled(false);
         contentPane.add(okBtn);
         
-        cb.setFont(new Font("Courier", Font.BOLD, 25));
-        cb.setBounds(250, 200, 420, 50);
-        cb.setForeground(Color.BLACK);
-        cb.setBackground(new Color(51, 204, 204));
-        cb.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+        quizList.setFont(new Font("Courier", Font.BOLD, 25));
+        quizList.setBounds(250, 200, 420, 50);
+        quizList.setForeground(Color.BLACK);
+        quizList.setBackground(new Color(51, 204, 204));
+        quizList.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         okBtn.setFont(new Font("Courier", Font.BOLD, 25));
         okBtn.setBounds(250, 320, 420, 50);
         okBtn.setForeground(Color.BLACK);
         okBtn.setBackground(new Color(51, 204, 204));
         okBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
         okBtn.setEnabled(true);
-        contentPane.add(cb);
+        contentPane.add(quizList);
 
         JLabel welcomeLabel = new JLabel("Hello Student!");
         welcomeLabel.setFont(new Font("Courier", Font.BOLD, 50));
@@ -74,13 +74,13 @@ public class StudentMainWindow extends JFrame {
     }
     
     public void setQuizField(String[] choices){
-        this.cb.removeAll();
+        this.quizList.removeAll();
         for (int i = 0; i<choices.length; i++)
-        	this.cb.addItem(choices[i]);
+        	this.quizList.addItem(choices[i]);
     }
     
     public String getQuizName(){
-        return cb.getSelectedItem().toString();
+        return quizList.getSelectedItem().toString();
     }
 
     public void selectQuizListener(ActionListener listenForOkButton){

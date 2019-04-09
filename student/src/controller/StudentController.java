@@ -43,10 +43,9 @@ public class StudentController {
             	questionList = studentModel.getQuestionList(quizName);
             	takeQuiz.setQuizLabel(studentMainWin.getQuizName());
             	takeQuiz.setQuestionField(questionList.get(0).getTitle());
-            	takeQuiz.setRadioOption1(questionList.get(0).getOptions().get(0));
-            	takeQuiz.setRadioOption2(questionList.get(0).getOptions().get(1));
-            	takeQuiz.setRadioOption3(questionList.get(0).getOptions().get(2));
-            	takeQuiz.setRadioOption4(questionList.get(0).getOptions().get(3));
+            	for(int i = 0; i < 4; i++) {
+            		takeQuiz.setRadioOption(questionList.get(0).getOptions().get(i), i);
+            	}
             	takeQuiz.setVisible(true);
             }
             catch(NumberFormatException ex){
@@ -60,15 +59,21 @@ public class StudentController {
         public void actionPerformed(ActionEvent e) {
             //String questionText;
             try{
-            	questionList.remove(0);
             	
+               	String ans = "";
+                for(int i = 0; i < 4; i++) {
+                	if(takeQuiz.getSelected(i)) {
+                		ans = takeQuiz.getRadioOption(i);
+                		break;
+                	}
+                }
+            	checkQuiz(ans, questionList.get(0).getCorrectAnswer());  	
             	if (!questionList.isEmpty()) {
 	            	takeQuiz.setQuizLabel(studentMainWin.getQuizName());
 	            	takeQuiz.setQuestionField(questionList.get(0).getTitle());
-	            	takeQuiz.setRadioOption1(questionList.get(0).getOptions().get(0));
-	            	takeQuiz.setRadioOption2(questionList.get(0).getOptions().get(1));
-	            	takeQuiz.setRadioOption3(questionList.get(0).getOptions().get(2));
-	            	takeQuiz.setRadioOption4(questionList.get(0).getOptions().get(3));
+	            	for(int i = 0; i < 4; i++) {
+	            		takeQuiz.setRadioOption(questionList.get(0).getOptions().get(i), i);
+	            	}
             	}
             	else {
             		takeQuiz.displayCompletionMessage("You have successfully completed the quiz","Congrats!!");
@@ -79,5 +84,24 @@ public class StudentController {
                 takeQuiz.displayErrorMessage("The quiz cannot be opened");
             }
         }
+        
+        void checkQuiz(String selectedAnswer, String CorrectAnswer) {
+        	System.out.println(selectedAnswer+" "+CorrectAnswer);
+        	if(selectedAnswer == "") {
+        		Question firstQuestion = questionList.get(0);
+        		questionList.add(firstQuestion);
+        		
+        	}
+        	if(selectedAnswer.equals(CorrectAnswer)) {
+        		questionList.remove(0);
+        		
+        	}
+        	else {
+        		Question firstQuestion = questionList.get(0);
+        		questionList.remove(0);
+        		questionList.add(firstQuestion);
+        	}
+        }
+        
     }
 }

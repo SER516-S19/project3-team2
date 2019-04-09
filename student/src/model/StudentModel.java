@@ -15,7 +15,7 @@ public class StudentModel {
 	private ArrayList<Question> questionList;
 	
 	public ArrayList<Question> getQuestionList(String str) {
-		String filePath = "C:/Users/subhr/Desktop/Desktop_Folders/SER516/QuizCreation/";
+		String filePath = "C:/masters/json/";
 		String jsonStrAllQst =  JsonUtils.getStringFromFile(filePath+str+".json");
 		
 		this.questionList = new ArrayList<Question>(JsonUtils.getQuestionsFromJsonString(jsonStrAllQst));
@@ -27,7 +27,7 @@ public class StudentModel {
 		String currFileName;
 		int dotIndex;
 		
-		File folder = new File("C:/Users/subhr/Desktop/Desktop_Folders/SER516/QuizCreation/");
+		File folder = new File("C:/masters/json/");
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {

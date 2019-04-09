@@ -12,11 +12,8 @@ import java.awt.event.ActionListener;
 public class TakeQuiz extends JFrame {	
 	
 	private JLabel lblQuizName = new JLabel();
-    private JLabel questionField = new JLabel();;
-    private JRadioButton option1Field = new JRadioButton();
-    private JRadioButton option2Field = new JRadioButton();
-    private JRadioButton option3Field = new JRadioButton();
-    private JRadioButton option4Field = new JRadioButton();
+    private JLabel questionField = new JLabel();
+    private JRadioButton [] optionField = new JRadioButton[4];
     JButton btnNext = new JButton("Next");
 
     public TakeQuiz() {
@@ -46,14 +43,11 @@ public class TakeQuiz extends JFrame {
         questionField.setForeground(Color.BLACK);
         contentPane.add(questionField);
         
-        option1Field.setBounds(320, 230, 146, 26);
-        option2Field.setBounds(320, 265, 146, 26);
-        option3Field.setBounds(320, 295, 146, 26);
-        option4Field.setBounds(320, 325, 146, 26);
-        contentPane.add(option1Field);
-        contentPane.add(option2Field);
-        contentPane.add(option3Field);
-        contentPane.add(option4Field);
+        for(int i = 0; i < 4; i++) {
+        	optionField[i] = new JRadioButton();
+        	optionField[i].setBounds(320, 230 + i*30, 146, 26);
+        	contentPane.add(optionField[i]);
+        }
         
         JButton btnGiveUp = new JButton("GiveUp");
         btnGiveUp.addActionListener(new ActionListener() {
@@ -79,19 +73,17 @@ public class TakeQuiz extends JFrame {
     public void setQuestionField(String questionText) {
     	this.questionField.setText(questionText);
     }
-    public void setRadioOption1(String ansOptionText) {
-    	option1Field.setText(ansOptionText);
-    }
-    public void setRadioOption2(String ansOptionText) {
-    	option2Field.setText(ansOptionText);
-    }
-    public void setRadioOption3(String ansOptionText) {
-    	option3Field.setText(ansOptionText);
-    }
-    public void setRadioOption4(String ansOptionText) {
-    	option4Field.setText(ansOptionText);
-    }
     
+    public void setRadioOption(String ansOptionText, int index) {
+    	optionField[index].setText(ansOptionText);
+    }
+
+    public String getRadioOption(int index) {
+    	return optionField[index].getText();
+    }
+    public boolean getSelected(int index) {
+    	return optionField[index].isSelected();
+    }
     public void nextQuestionListener(ActionListener listenForNextButton){
     	btnNext.addActionListener(listenForNextButton);
     }
