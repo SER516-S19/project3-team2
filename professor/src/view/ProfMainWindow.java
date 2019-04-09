@@ -17,11 +17,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.EmptyBorder;
 import java.awt.SystemColor;
+import javax.swing.JTextField;
+import java.awt.event.MouseMotionAdapter;
+import javax.swing.border.CompoundBorder;
 
 public class ProfMainWindow extends JFrame {
-
-	private JPanel contentPane;
 	private Image image;
+	private JPanel contentPane;
+	int x, y;
 
 	/**
 	 * Launch the application.
@@ -56,19 +59,20 @@ public class ProfMainWindow extends JFrame {
 		setUndecorated(true);
 		
 		JButton createQuiz = new JButton(" Create Quiz");
-		createQuiz.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
 		createQuiz.setBounds(238, 436, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddQuestions().setVisible(true);
+				dispose();			
 			}
 		});
 		contentPane.setLayout(null);
 		createQuiz.setFont(new Font("Monospaced", Font.BOLD, 30));
 	    createQuiz.setForeground(new Color(255, 255, 255));
-	    createQuiz.setBackground(new Color(129, 207, 224));
+	    createQuiz.setBackground(new Color(0, 181, 204));
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
@@ -77,31 +81,51 @@ public class ProfMainWindow extends JFrame {
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
 		
-		JButton btnNewButton = new JButton("  Quiz Desktop Application - Professor Window");
-		btnNewButton.setHorizontalAlignment(SwingConstants.LEADING);
-		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 20));
-		btnNewButton.setBackground(new Color(89, 171, 227));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBackground(new Color(37, 116, 169));
+		
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
 			}
 		});
-		btnNewButton.setBounds(0, 0, 823, 41);
-		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("X");
-		btnNewButton_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(255, 102, 102));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		panel.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen();
+				setLocation(xx-x, yy-y);
+			}
+		});
+	
+		panel.setBounds(0, 0, 900, 43);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("X");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 			}
 		});
-		btnNewButton_1.setBounds(822, 0, 78, 41);
-		contentPane.add(btnNewButton_1);
+		
+		
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(846, 0, 54, 43);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("  Quiz Desktop Application - Professor Window");
+		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(0, 0, 525, 43);
+		panel.add(lblNewLabel);
 		
 	}	
 }
