@@ -30,14 +30,11 @@ public class AddQuestions extends JFrame {
 	private JTextField questionField;
 	private JTextField questionField_1;
 	private JTextField answerField;
-	private JTextField option1Field;
-	private JTextField option2Field;
-	private JTextField option3Field;
-	private JTextField option4Field;
+	private JTextField[] optionField;
 	int x1, y1;
 	
 	// this is the list which has questions..
-	ProfMainWindow mwobject = new ProfMainWindow();
+	//ProfMainWindow professorWindow = new ProfMainWindow();
 	private static ArrayList<Question> questionsList = new ArrayList<Question>();
 
 	/**
@@ -100,25 +97,14 @@ public class AddQuestions extends JFrame {
 		contentPane.add(questionField_1);
 		questionField_1.setColumns(10);
 		
-		option1Field = new JTextField();
-		option1Field.setBounds(393, 330, 358, 38);
-		contentPane.add(option1Field);
-		option1Field.setColumns(10);
+		optionField = new JTextField[4];
 		
-		option2Field = new JTextField();
-		option2Field.setBounds(393, 411, 358, 38);
-		contentPane.add(option2Field);
-		option2Field.setColumns(10);
-		
-		option3Field = new JTextField();
-		option3Field.setBounds(393, 489, 358, 38);
-		contentPane.add(option3Field);
-		option3Field.setColumns(10);
-		
-		option4Field = new JTextField();
-		option4Field.setBounds(393, 569, 358, 38);
-		contentPane.add(option4Field);
-		option4Field.setColumns(10);
+		for(int i =0;i<4;i++) {
+			optionField[i] = new JTextField();
+			optionField[i].setBounds(393, 330+(i*81), 358, 38);
+			contentPane.add(optionField[i]);
+			optionField[i].setColumns(10);
+		}
 		
 		answerField = new JTextField();
 		answerField.setBounds(393, 650, 358, 38);
@@ -135,17 +121,12 @@ public class AddQuestions extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String strQuestionField = questionField.getText();
-				String strOption1Field = option1Field.getText();
-				String strOption2Field = option1Field.getText();
-				String strOption3Field = option1Field.getText();
-				String strOption4Field = option1Field.getText();
-				String strAnswerField = answerField.getText();
-				
 				List<String> optionsList = new ArrayList<String>();
-				optionsList.add(strOption1Field);
-				optionsList.add(strOption2Field);
-				optionsList.add(strOption3Field);
-				optionsList.add(strOption4Field);
+				
+				for(int i =0;i<4;i++) {
+					optionsList.add(optionField[i].getText());
+				}
+				String strAnswerField = answerField.getText();
 			
 				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
 				
@@ -225,17 +206,11 @@ public class AddQuestions extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String strQuestionField = questionField.getText();
-				String strOption1Field = option1Field.getText();
-				String strOption2Field = option1Field.getText();
-				String strOption3Field = option1Field.getText();
-				String strOption4Field = option1Field.getText();
-				String strAnswerField = answerField.getText();
-				
 				List<String> optionsList = new ArrayList<String>();
-				optionsList.add(strOption1Field);
-				optionsList.add(strOption2Field);
-				optionsList.add(strOption3Field);
-				optionsList.add(strOption4Field);
+				String strAnswerField = answerField.getText();
+				for(int i =0;i<4;i++) {
+					optionsList.add(optionField[i].getText());
+				}
 			
 				Question q1 =  new Question(strQuestionField, optionsList, strAnswerField);
 				questionsList.add(q1);
