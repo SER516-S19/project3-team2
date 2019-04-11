@@ -75,15 +75,6 @@ public class TakeQuiz extends JFrame {
 		});
 		btnDashboard.setBounds(700, 414, 140, 29);
 		contentPane.add(btnDashboard);
-		
-		JButton btnExit = new JButton("Exit");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
-		btnExit.setBounds(300, 414, 140, 29);
-		contentPane.add(btnExit);
     }
     
     public void setQuizLabel(String quizName) {
