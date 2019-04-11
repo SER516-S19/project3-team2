@@ -1,32 +1,19 @@
-package src.view;
+package professor.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import utils.Question;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.Toolkit;
+
 import javax.swing.border.BevelBorder;
 
-import src.controller.ProfessorController;
-import src.model.Constants;
+import professor.controller.ProfessorController;
+import utils.*;
 
-public class AddQuestions extends JFrame {
+public class AddQuestionView extends JFrame {
 
 	protected static final String MouseEvent = null;
 	private JPanel contentPane;
@@ -47,7 +34,7 @@ public class AddQuestions extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddQuestions frame = new AddQuestions();
+					AddQuestionView frame = new AddQuestionView();
 					frame.setVisible(true);
 					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 					int screenHeight = screenSize.height;
@@ -63,7 +50,7 @@ public class AddQuestions extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddQuestions() {
+	public AddQuestionView() {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,7 +122,7 @@ public class AddQuestions extends JFrame {
 
 				questionsList.add(q1);
 				dispose();
-				new AddQuestions().setVisible(true);
+				new AddQuestionView().setVisible(true);
 				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", "Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -207,24 +194,8 @@ public class AddQuestions extends JFrame {
 
 		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
 		btnCreateQuizAnd.setBounds(144, 807, 607, 49);
-//		btnCreateQuizAnd.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//
-//				String strQuestionField = questionField.getText();
-//				List<String> optionsList = new ArrayList<String>();
-//				String strAnswerField = answerField.getText();
-//				for (int i = 0; i < 4; i++) {
-//					optionsList.add(optionField[i].getText());
-//				}
-//
-//				Question q1 = new Question(strQuestionField, optionsList, strAnswerField);
-//				questionsList.add(q1);
-//				JOptionPane.showMessageDialog(null, "Quiz has been successfully Created!", "Message",
-//						JOptionPane.INFORMATION_MESSAGE);
-//				dispose();
-//			}
-//		});
-		btnCreateQuizAnd.addActionListener(new ProfessorController(Constants.CREATE_QUIZ, questionsList));
+
+		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList));
 		btnCreateQuizAnd.setForeground(Color.WHITE);
 		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnCreateQuizAnd.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));

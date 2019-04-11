@@ -1,4 +1,4 @@
-package src.view;
+package professor.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,35 +20,15 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.border.CompoundBorder;
 import java.awt.Toolkit;
 
-public class ProfMainWindow extends JFrame {
+public class ProfessorMainWindow extends JFrame {
 	private Image image;
 	private JPanel contentPane;
 	int x, y;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProfMainWindow frame = new ProfMainWindow();
-					frame.setVisible(true);			
-					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-					int screenHeight = screenSize.height;
-					int screenWidth = screenSize.width;
-					frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public ProfMainWindow() {	
+	public ProfessorMainWindow() {	
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(490, 50, 900, 950);
@@ -68,7 +48,7 @@ public class ProfMainWindow extends JFrame {
 		createQuiz.setBounds(238, 436, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddQuestions().setVisible(true);
+				new AddQuestionView().setVisible(true);
 				dispose();			
 			}
 		});

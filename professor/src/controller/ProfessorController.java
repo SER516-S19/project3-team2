@@ -1,10 +1,9 @@
-package src.controller;
+package professor.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import src.model.Constants;
 import utils.*;
 
 /**
@@ -26,10 +25,11 @@ public class ProfessorController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		if(Constants.CREATE_QUIZ.equals(this.actionType)) {
+		if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ)) {
+			System.out.println(this.actionType);
+
 			String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
 			JsonUtils.writeStringToFile(absolutePath, questionListString);
 		}
-		
 	}
 }
