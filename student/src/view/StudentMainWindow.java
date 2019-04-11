@@ -1,68 +1,107 @@
-/** 
-Student's quiz selection view
-@author Sakshi/Subhradeep 
-@version 1.2
-@date 04/09/2019
-*/
-
-
 package src.view;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+/**
+ Student's quiz selection view
+ @author Sakshi/Subhradeep
+ @version 1.2
+ @date 04/09/2019
+ */
 
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import java.awt.*;
+import java.awt.event.*;
 import src.model.StudentModel;
-import src.view.TakeQuiz;
 import src.controller.StudentController;
 
 public class StudentMainWindow extends JFrame {
-
-	//private String[] choices = { "Select Quiz","Quiz1","Quiz2", "Quiz3","Quiz4","Quiz 5","Quiz 6"};
 	private String[] choices = new String[100];
     private JComboBox<String> quizList = new JComboBox<String>();
 	private JButton okBtn = new JButton("OK");
+    int x, y;
 
     public StudentMainWindow() {
-    	
     	JPanel contentPane = new JPanel();
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(25, 25, 1020, 500);
+        setBounds(490, 50, 900, 950);
         setTitle("Student Window For Quiz Application");
         setResizable(false);
-
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setEnabled(false);
+        contentPane.setBackground(new Color(70, 130, 180));
+        contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         setContentPane(contentPane);
         contentPane.setLayout(null);
+        setUndecorated(true);
 
         quizList.setVisible(true);
         contentPane.add(quizList);
         
         okBtn.setEnabled(false);
         contentPane.add(okBtn);
-        
-        quizList.setFont(new Font("Courier", Font.BOLD, 25));
-        quizList.setBounds(250, 200, 420, 50);
-        quizList.setForeground(Color.BLACK);
-        quizList.setBackground(new Color(51, 204, 204));
-        quizList.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-        okBtn.setFont(new Font("Courier", Font.BOLD, 25));
-        okBtn.setBounds(250, 320, 420, 50);
-        okBtn.setForeground(Color.BLACK);
-        okBtn.setBackground(new Color(51, 204, 204));
-        okBtn.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+
+        quizList.setFont(new Font("Monospaced", Font.BOLD, 30));
+        quizList.setBounds(238, 436, 305, 49);
+        quizList.setForeground(new Color(255, 255, 255));
+        quizList.setBackground(new Color(0, 181, 204));
+        quizList.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
+        okBtn.setFont(new Font("Monospaced", Font.BOLD, 24));
+        okBtn.setForeground(Color.WHITE);
+        okBtn.setBackground(new Color(0, 181, 204));
+        okBtn.setBounds(238, 550, 305, 49);
         okBtn.setEnabled(true);
         contentPane.add(quizList);
 
         JLabel welcomeLabel = new JLabel("Hello Student!");
-        welcomeLabel.setFont(new Font("Courier", Font.BOLD, 50));
-        welcomeLabel.setBounds(250, 80, 900, 80);
-        welcomeLabel.setForeground(Color.BLACK);
+        welcomeLabel.setBounds(150, 239, 672, 80);
+        welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
+        welcomeLabel.setForeground(new Color(240, 248, 255));
         contentPane.add(welcomeLabel);
+
+        JPanel panel = new JPanel();
+        panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        panel.setBackground(new Color(37, 116, 169));
+
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                x = e.getX();
+                y = e.getY();
+            }
+        });
+
+        panel.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int xx = e.getXOnScreen();
+                int yy = e.getYOnScreen();
+                setLocation(xx-x, yy-y);
+            }
+        });
+
+        panel.setBounds(0, 0, 900, 43);
+        contentPane.add(panel);
+        panel.setLayout(null);
+
+        JLabel closeBtn = new JLabel("X");
+        closeBtn.setForeground(Color.WHITE);
+        closeBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                dispose();
+            }
+        });
+        closeBtn.setFont(new Font("Tahoma", Font.BOLD, 30));
+        closeBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        closeBtn.setBounds(846, 0, 54, 43);
+        panel.add(closeBtn);
+
+        JLabel header = new JLabel("  Quiz Desktop Application - Student Window");
+        header.setFont(new Font("Monospaced", Font.BOLD, 16));
+        header.setForeground(Color.WHITE);
+        header.setBounds(0, 0, 525, 43);
+        panel.add(header);
     }
     
     public void setQuizNames(String[] quizNames){
@@ -97,7 +136,10 @@ public class StudentMainWindow extends JFrame {
                 try {
                     StudentMainWindow frame = new StudentMainWindow();
                     frame.setVisible(true);
-                    frame.getContentPane().setBackground(new Color(255, 255, 204));
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    int screenHeight = screenSize.height;
+                    int screenWidth = screenSize.width;
+                    frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
                     TakeQuiz theView = new TakeQuiz();
                     StudentModel theModel = new StudentModel();
                     StudentController theController = new StudentController(theModel, frame, theView);
