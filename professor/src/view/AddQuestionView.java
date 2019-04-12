@@ -96,6 +96,7 @@ public class AddQuestionView extends JFrame {
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JTextField();
 			optionField[i].setBounds((2*frameWidth/5), 330 + (i * 81), 372, 38);
+			optionField[i].setFont(new Font("Monospaced", Font.PLAIN, 22));
 			contentPane.add(optionField[i]);
 			optionField[i].setColumns(10);
 		}
