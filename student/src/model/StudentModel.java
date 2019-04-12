@@ -13,31 +13,32 @@ import java.io.*;
 
 public class StudentModel {
 	private ArrayList<Question> questionList;
-	
+	private static String folderPath = System.getProperty("user.home") + "/quiz/";
 	public ArrayList<Question> getQuestionList(String str) {
-		String filePath = "C:/masters/json/";
-		String jsonStrAllQst =  JsonUtils.getStringFromFile(filePath+str+".json");
-		
+		String jsonStrAllQst = JsonUtils.getStringFromFile(folderPath + str + ".json");
+
 		this.questionList = new ArrayList<Question>(JsonUtils.getQuestionsFromJsonString(jsonStrAllQst));
 		return this.questionList;
 	}
-	
+
 	public String[] getQuizNames() {
 		String[] quizNames = new String[100];
 		String currFileName;
 		int dotIndex;
-		
-		File folder = new File("C:/masters/json/");
-		File[] listOfFiles = folder.listFiles();
+		String folderPath = System.getProperty("user.home") + "/quiz/";
+		File folder = new File(folderPath);
+		if (folder.exists()) {
+			File[] listOfFiles = folder.listFiles();
 
-		for (int i = 0; i < listOfFiles.length; i++) {
-		  if (listOfFiles[i].isFile()) {
-			  currFileName = listOfFiles[i].getName();
-			  dotIndex = currFileName.indexOf(".");
-			  quizNames[i] = currFileName.substring(0, dotIndex);
-		  } else if (listOfFiles[i].isDirectory()) {
-			  System.out.println(listOfFiles[i].getName()+" is not a file.");
-		  }
+			for (int i = 0; i < listOfFiles.length; i++) {
+				if (listOfFiles[i].isFile()) {
+					currFileName = listOfFiles[i].getName();
+					dotIndex = currFileName.indexOf(".");
+					quizNames[i] = currFileName.substring(0, dotIndex);
+				} else if (listOfFiles[i].isDirectory()) {
+					System.out.println(listOfFiles[i].getName() + " is not a file.");
+				}
+			}
 		}
 		return quizNames;
 	}
