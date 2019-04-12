@@ -9,10 +9,14 @@ and populate TakeQuizView window.
 package src.controller;
 
 import src.model.StudentModel;
+import src.view.CompletionMessage;
 import src.view.StudentMainWindow;
 import src.view.TakeQuizView;
 import src.*;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,13 +25,14 @@ public class StudentController {
 	private StudentModel studentModel;
 	private StudentMainWindow studentMainWin;
 	private TakeQuizView takeQuiz;
+	private CompletionMessage message;
 	private ArrayList<Question> questionList;
-	
-	public StudentController(StudentModel theModel, StudentMainWindow mainWinView, TakeQuizView takeQuizView) {
+	public JButton completionButton = new JButton("Ok");
+	public StudentController(StudentModel theModel, StudentMainWindow mainWinView, TakeQuizView takeQuizView, CompletionMessage theMessage) {
 		this.studentModel = theModel;
 		this.studentMainWin = mainWinView;
 		this.takeQuiz = takeQuizView;
-		
+		this.message = theMessage; 
 		mainWinView.setQuizNames(theModel.getQuizNames());
 		String[] quizChoices = mainWinView.getQuizChoices();
 		mainWinView.setQuizField(quizChoices);
@@ -76,7 +81,18 @@ public class StudentController {
 	            	}
             	}
             	else {
-            		takeQuiz.displayCompletionMessage("You have successfully completed the quiz","Congrats!!");
+
+            		message.MessageDisplay(completionButton);
+            		message.setVisible(true);
+            		completionButton.addActionListener(new ActionListener() {
+            			public void actionPerformed(ActionEvent e) {
+            				StudentMainWindow DashBoard=new StudentMainWindow();
+            				message.dispose();
+            				takeQuiz.dispose();
+            			}
+            		});
+            		
+            		//takeQuiz.displayCompletionMessage("You have successfully completed the quiz","Congrats!!");
             	}
             	takeQuiz.buttonGroup.clearSelection();
             }
@@ -104,6 +120,7 @@ public class StudentController {
         		questionList.add(firstQuestion);
         	}
         }
+        
         
     }
 }

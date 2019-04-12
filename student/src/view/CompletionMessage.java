@@ -15,24 +15,11 @@ public class CompletionMessage extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CompletionMessage frame = new CompletionMessage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the Message frame.
+	 * @return 
 	 */
 	public CompletionMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,21 +28,16 @@ public class CompletionMessage extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+	}
+	public void MessageDisplay(JButton completionButton) {
+		System.out.println("yo2");
+		contentPane.setVisible(true);
 		JLabel messageLabel = new JLabel("Congratulations your Quiz is completed");
 		messageLabel.setBounds(149, 86, 207, 52);
-		contentPane.add(lblNewLabel);
+		contentPane.add(messageLabel);
 		
-		JButton btnDashboard = new JButton("Ok");
-		btnDashboard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				StudentMainWindow DashBoard=new StudentMainWindow();
-				setVisible(false);
-				DashBoard.setVisible(true);
-			}
-		});
-		btnDashboard.setBounds(165, 176, 121, 23);
-		contentPane.add(btnDashboard);
+		completionButton.setBounds(165, 176, 121, 23);
+		contentPane.add(completionButton);
 	}
 
 }

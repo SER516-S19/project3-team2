@@ -99,7 +99,8 @@ public class StudentMainWindow extends JFrame {
                     frame.getContentPane().setBackground(new Color(255, 255, 204));
                     TakeQuizView theView = new TakeQuizView();
                     StudentModel theModel = new StudentModel();
-                    StudentController theController = new StudentController(theModel, frame, theView);
+                    CompletionMessage theMessage = new CompletionMessage();
+                    StudentController theController = new StudentController(theModel, frame, theView, theMessage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
