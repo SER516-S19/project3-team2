@@ -1,4 +1,4 @@
-package professor.view;
+package src.view;
 
 import java.awt.Color;
 import java.awt.Dimension;

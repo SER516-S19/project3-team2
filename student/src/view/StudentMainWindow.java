@@ -5,7 +5,7 @@ Student's quiz selection view
 @date 04/09/2019
 */
 
-package student.view;
+package src.view;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,9 +14,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import student.model.StudentModel;
-import student.view.TakeQuizView;
-import student.controller.StudentController;
+import src.model.StudentModel;
+import src.view.TakeQuizView;
+import src.controller.StudentController;
 
 public class StudentMainWindow extends JFrame {
 

@@ -1,4 +1,4 @@
-package professor.view;
+package src.view;
 
 import java.awt.*;
 import javax.swing.*;
@@ -10,8 +10,8 @@ import java.util.Iterator;
 
 import javax.swing.border.BevelBorder;
 
-import professor.controller.ProfessorController;
-import utils.*;
+import src.controller.ProfessorController;
+import src.*;
 
 public class AddQuestionView extends JFrame {
 

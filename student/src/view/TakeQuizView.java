@@ -1,6 +1,6 @@
-package student.view;
+package src.view;
 
-import student.model.*;
+import src.model.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +15,7 @@ public class TakeQuizView extends JFrame {
     private JLabel questionField = new JLabel();
     private JRadioButton [] optionField = new JRadioButton[4];
     JButton btnNext = new JButton("Next");
-
+    public ButtonGroup buttonGroup = new ButtonGroup();
     public TakeQuizView() {
     	
     	JPanel contentPane;
@@ -46,6 +46,7 @@ public class TakeQuizView extends JFrame {
         for(int i = 0; i < 4; i++) {
         	optionField[i] = new JRadioButton();
         	optionField[i].setBounds(320, 230 + i*30, 146, 26);
+        	buttonGroup.add(optionField[i]);
         	contentPane.add(optionField[i]);
         }
         

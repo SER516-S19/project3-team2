@@ -6,12 +6,12 @@ and populate TakeQuizView window.
 @date 04/09/2019
 */
 
-package student.controller;
+package src.controller;
 
-import student.model.StudentModel;
-import student.view.StudentMainWindow;
-import student.view.TakeQuizView;
-import utils.*;
+import src.model.StudentModel;
+import src.view.StudentMainWindow;
+import src.view.TakeQuizView;
+import src.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -78,6 +78,7 @@ public class StudentController {
             	else {
             		takeQuiz.displayCompletionMessage("You have successfully completed the quiz","Congrats!!");
             	}
+            	takeQuiz.buttonGroup.clearSelection();
             }
             catch(NumberFormatException ex){
                 System.out.println(ex);
@@ -89,6 +90,7 @@ public class StudentController {
         	System.out.println(selectedAnswer+" "+CorrectAnswer);
         	if(selectedAnswer == "") {
         		Question firstQuestion = questionList.get(0);
+        		questionList.remove(0);
         		questionList.add(firstQuestion);
         		
         	}
