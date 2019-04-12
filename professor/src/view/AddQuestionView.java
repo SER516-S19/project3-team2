@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.border.BevelBorder;
 
@@ -203,7 +202,7 @@ public class AddQuestionView extends JFrame {
 		panel2.add(pquizTitleLabel);
 	}
 
-	private Question fetchQuestionDetails() {
+	public Question fetchQuestionDetails() {
 		// fetching the question details
 		String strQuestionField = questionField.getText();		
 		String strAnswerField = answerField.getText();

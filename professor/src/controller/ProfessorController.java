@@ -66,29 +66,24 @@ public class ProfessorController implements ActionListener {
 		}else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)){
 			
 			boolean deleteElementFound = false;
-			// for testing
-			for(Question q : questionList) {
-				System.out.println(q.getTitle());
-			}
 			
-			if (questionList != null) {
+			if (questionList != null && questionList.size()>0) {
 				Iterator<Question> iter = questionList.iterator();
 
 				while (iter.hasNext()) {
 					Question question = iter.next();
-					if (question.getTitle().equalsIgnoreCase(quesTitle)) {
+					if (question.getTitle().equalsIgnoreCase(addView.getQuesTitle())) {
 						iter.remove();
 						deleteElementFound = true;
-					}else {
-						// if quesTitle not in list..
-						JOptionPane.showMessageDialog(null, "You are deleting a question which does not exist",
-								"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-
 					}
+				}	
+				if(!deleteElementFound) {
+					JOptionPane.showMessageDialog(null, "You are deleting a question which does not exist",
+							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(null, "You cannot delete as there are no questions left to delete",
+				JOptionPane.showMessageDialog(null, "There are no questions to delete.",
 						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
@@ -108,10 +103,14 @@ public class ProfessorController implements ActionListener {
 			
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
 			
+			newQues = addView.fetchQuestionDetails();
+			
 			// need to check validation here..
 			boolean emptyTitleFound = false;
 			boolean emptyAnswerFound = false;
 			boolean allDetailsFound = true;
+			
+			
 			if (newQues.getTitle().isEmpty()) {
 	            emptyTitleFound = true;
 	            allDetailsFound = false;

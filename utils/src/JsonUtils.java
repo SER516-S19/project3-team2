@@ -98,12 +98,12 @@ public class JsonUtils {
         for (Question question: questions) {
             JsonObject questionJsonObj = new JsonObject();
             questionJsonObj.add(ConstantTable.QUESTION_TITLE, new JsonPrimitive(question.getTitle()));
-            questionJsonObj.add(ConstantTable.QUESTION_CORRECT_ANSWER, new JsonPrimitive(question.getCorrectAnswer()));
             JsonArray optionsArray = new JsonArray();
             for (String optionStatement: question.getOptions()) {
                 optionsArray.add(new JsonPrimitive(optionStatement));
             }
             questionJsonObj.add(ConstantTable.QUESTION_OPTIONS, optionsArray);
+            questionJsonObj.add(ConstantTable.QUESTION_CORRECT_ANSWER, new JsonPrimitive(question.getCorrectAnswer()));
             allQuestions.add(questionJsonObj);
         }
 
