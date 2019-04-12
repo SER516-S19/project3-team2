@@ -9,4 +9,6 @@ public class ConstantTable {
 	public static String CONTROLER_IDENTIFIER_CREATE_QUIZ = "Create";
 	public static String CONTROLER_IDENTIFIER_DELETE_QUESTION = "Delete";
 	public static String CONTROLER_IDENTIFIER_ADD_QUESTION = "Add";
+	
+	public static String JSON_EXTENSION = ".json";
 }

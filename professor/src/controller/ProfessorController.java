@@ -16,12 +16,14 @@ import src.*;
 public class ProfessorController implements ActionListener {
 	private String actionType;
 	private ArrayList<Question> questionList;
-	private static final String quizPath = System.getProperty("user.home")+"/quizabc/";
+	private static final String quizPath = System.getProperty("user.home")+"/quiz/";
+	private static String quizName;
 	
-	public ProfessorController(String actionType, ArrayList<Question> questionList){
+	public ProfessorController(String actionType, ArrayList<Question> questionList, String quizName){
 		super();
 		this.actionType = actionType;
 		this.questionList = questionList;
+		ProfessorController.quizName = quizName;
 	}
 
 	@Override
@@ -33,8 +35,7 @@ public class ProfessorController implements ActionListener {
 	    	boolean file = new File(quizPath).mkdir();
 	    }
 	    
-	    absolutePath = quizPath + "/BJP.json";
-	    
+	    absolutePath = quizPath + quizName + ConstantTable.JSON_EXTENSION;
 	    
 		if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ)) {
 			String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);

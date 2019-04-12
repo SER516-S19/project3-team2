@@ -16,12 +16,18 @@ import src.*;
 @SuppressWarnings("serial")
 public class AddQuestionView extends JFrame {
 
+	public AddQuestionView(String quizName) throws HeadlessException {
+		this();
+		AddQuestionView.quizName = quizName;
+	}
+
 	protected static final String MouseEvent = null;
 	private JPanel contentPane;
 	private JTextField questionField;
 	private JTextField answerField;
 	private JTextField[] optionField;
-	int x1, y1;
+	private static String quizName;
+	private int x1, y1;
 
 	// This is the list which has questions..
 	private static ArrayList<Question> questionsList = new ArrayList<Question>();
@@ -78,7 +84,6 @@ public class AddQuestionView extends JFrame {
 		questionField.setColumns(10);
 
 		optionField = new JTextField[4];
-		//optionField.setFont(new Font("Monospaced", Font.PLAIN, 22));
 
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JTextField();
@@ -110,9 +115,8 @@ public class AddQuestionView extends JFrame {
 				}
 				String strAnswerField = answerField.getText();
 
-				Question q1 = new Question(strQuestionField, optionsList, strAnswerField);
-
-				questionsList.add(q1);
+				Question question = new Question(strQuestionField, optionsList, strAnswerField);
+				questionsList.add(question);
 				dispose();
 				new AddQuestionView().setVisible(true);
 				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
@@ -134,8 +138,8 @@ public class AddQuestionView extends JFrame {
 					Iterator<Question> iter = questionsList.iterator();
 
 					while (iter.hasNext()) {
-						Question q = iter.next();
-						if (q.getTitle().equalsIgnoreCase(strQuestionField)) {
+						Question question = iter.next();
+						if (question.getTitle().equalsIgnoreCase(strQuestionField)) {
 							iter.remove();
 							JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!",
 									"Delete Message", JOptionPane.INFORMATION_MESSAGE);
@@ -161,8 +165,8 @@ public class AddQuestionView extends JFrame {
 		label.setBounds(509, 704, 46, 14);
 		contentPane.add(label);
 		JLabel[] answerChoice = new JLabel[4];
-		for(int i=0; i<4;i ++) {
-			answerChoice[i] = new JLabel("Option"+i+1);
+		for(int i=0; i<4;i++) {
+			answerChoice[i] = new JLabel("Option"+(i+1));
 			answerChoice[i].setBounds(144, 327+(81*i), 125, 38);
 			answerChoice[i].setForeground(new Color(255, 255, 255));
 			answerChoice[i].setFont(new Font("Monospaced", Font.BOLD, 25));
@@ -178,7 +182,7 @@ public class AddQuestionView extends JFrame {
 		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
 		btnCreateQuizAnd.setBounds(144, 807, 607, 49);
 
-		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList));
+		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList,quizName));
 		btnCreateQuizAnd.setForeground(Color.WHITE);
 		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnCreateQuizAnd.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -216,7 +220,7 @@ public class AddQuestionView extends JFrame {
 				dispose();
 			}
 		});
-
+		
 		closeLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		closeLabel.setBounds(846, 0, 54, 43);
