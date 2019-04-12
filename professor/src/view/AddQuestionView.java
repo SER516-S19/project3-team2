@@ -23,8 +23,7 @@ public class AddQuestionView extends JFrame {
 	private JTextField[] optionField;
 	int x1, y1;
 
-	// this is the list which has questions..
-	// ProfMainWindow professorWindow = new ProfMainWindow();
+	// This is the list which has questions..
 	private static ArrayList<Question> questionsList = new ArrayList<Question>();
 
 	/**
@@ -71,12 +70,6 @@ public class AddQuestionView extends JFrame {
 		lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, 40));
 		lblAddQuestionDetails.setForeground(new Color(255, 255, 255));
 		contentPane.add(lblAddQuestionDetails);
-
-		JLabel lblOption_1 = new JLabel("Option1");
-		lblOption_1.setBounds(144, 327, 125, 38);
-		lblOption_1.setForeground(new Color(255, 255, 255));
-		lblOption_1.setFont(new Font("Monospaced", Font.BOLD, 25));
-		contentPane.add(lblOption_1);
 
 		questionField = new JTextField();
 		questionField.setFont(new Font("Monospaced", Font.PLAIN, 22));
@@ -158,34 +151,24 @@ public class AddQuestionView extends JFrame {
 		});
 		contentPane.add(btnDeleteQuestions);
 
-		JLabel label = new JLabel("");
-		label.setBounds(509, 704, 46, 14);
-		contentPane.add(label);
-
-		JLabel lblOption = new JLabel("Option2");
-		lblOption.setBounds(144, 408, 125, 38);
-		lblOption.setForeground(new Color(255, 255, 255));
-		lblOption.setFont(new Font("Monospaced", Font.BOLD, 25));
-		contentPane.add(lblOption);
-
 		JLabel lblQuestion = new JLabel("Question");
 		lblQuestion.setBounds(144, 247, 125, 38);
 		lblQuestion.setForeground(new Color(255, 255, 255));
 		lblQuestion.setFont(new Font("Monospaced", Font.BOLD, 25));
 		contentPane.add(lblQuestion);
 
-		JLabel lblOption_2 = new JLabel("Option3");
-		lblOption_2.setBounds(144, 486, 125, 38);
-		lblOption_2.setForeground(new Color(255, 255, 255));
-		lblOption_2.setFont(new Font("Monospaced", Font.BOLD, 25));
-		contentPane.add(lblOption_2);
-
-		JLabel lblOption_3 = new JLabel("Option4");
-		lblOption_3.setBounds(144, 569, 125, 38);
-		lblOption_3.setForeground(new Color(255, 255, 255));
-		lblOption_3.setFont(new Font("Monospaced", Font.BOLD, 25));
-		contentPane.add(lblOption_3);
-
+		JLabel label = new JLabel("");
+		label.setBounds(509, 704, 46, 14);
+		contentPane.add(label);
+		JLabel[] answerChoice = new JLabel[4];
+		for(int i=0; i<4;i ++) {
+			answerChoice[i] = new JLabel("Option"+i+1);
+			answerChoice[i].setBounds(144, 327+(81*i), 125, 38);
+			answerChoice[i].setForeground(new Color(255, 255, 255));
+			answerChoice[i].setFont(new Font("Monospaced", Font.BOLD, 25));
+			contentPane.add(answerChoice[i]);
+		}
+		
 		JLabel lblCorrectAnswer = new JLabel("Correct Answer");
 		lblCorrectAnswer.setBounds(144, 649, 210, 38);
 		lblCorrectAnswer.setForeground(new Color(255, 255, 255));
@@ -225,24 +208,24 @@ public class AddQuestionView extends JFrame {
 		contentPane.add(panel2);
 		panel2.setLayout(null);
 
-		JLabel lblNewLabel_2 = new JLabel("X");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		JLabel closeLabel = new JLabel("X");
+		closeLabel.setForeground(Color.WHITE);
+		closeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 			}
 		});
 
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(846, 0, 54, 43);
-		panel2.add(lblNewLabel_2);
+		closeLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		closeLabel.setBounds(846, 0, 54, 43);
+		panel2.add(closeLabel);
 
-		JLabel lblNewLabel2 = new JLabel("  Quiz Desktop Application - Professor Window");
-		lblNewLabel2.setFont(new Font("Monospaced", Font.BOLD, 16));
-		lblNewLabel2.setForeground(Color.WHITE);
-		lblNewLabel2.setBounds(0, 0, 525, 43);
-		panel2.add(lblNewLabel2);
+		JLabel pquizTitleLabel = new JLabel("  Quiz Desktop Application - Professor Window");
+		pquizTitleLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+		pquizTitleLabel.setForeground(Color.WHITE);
+		pquizTitleLabel.setBounds(0, 0, 525, 43);
+		panel2.add(pquizTitleLabel);
 	}
 }
