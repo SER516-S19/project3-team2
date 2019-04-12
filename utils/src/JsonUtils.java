@@ -9,7 +9,7 @@ package utils;
  * 
  * getStrFromFile(String absoluteFilepath):             READ String from file.
  * getQuestionsFromJsonString(String jsonString):       TRANSFER String into usable datastructure.
- * getQuestionsJsonString(List<Question> questions):    TRANSFER datastructure into Json formatted String.
+ * getQuestionsJsonString(ArrayList<Question> questions):    TRANSFER datastructure into Json formatted String.
  * writeStringToFile(String absoluteFilepath, String content): SAVE string to file.
  * 
  * 
@@ -19,13 +19,12 @@ package utils;
  *  String writeFilepath = "";
  *
  *  String jsonString = JsonUtils.getStringFromFile(readFilepath);
- *  List<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
+ *  ArrayList<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
  *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
  *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
 */
 
 import java.util.ArrayList;
-import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -55,7 +54,7 @@ public class JsonUtils {
         return content;
     }
 
-    public static List<Question> getQuestionsFromJsonString(String jsonString) {
+    public static ArrayList<Question> getQuestionsFromJsonString(String jsonString) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonContentObject = new JsonObject();
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -92,7 +91,7 @@ public class JsonUtils {
         return null;
     }
 
-    public static String getJsonStringFromQuestions(List<Question> questions) {
+    public static String getJsonStringFromQuestions(ArrayList<Question> questions) {
         JsonObject quizJsonObject = new JsonObject();
         JsonArray allQuestions = new JsonArray();
 

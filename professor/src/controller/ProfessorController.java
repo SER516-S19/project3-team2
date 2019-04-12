@@ -2,7 +2,7 @@ package professor.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.ArrayList;
 
 import utils.*;
 
@@ -14,10 +14,10 @@ import utils.*;
 
 public class ProfessorController implements ActionListener {
 	private String actionType;
-	private List<Question> questionList;
+	private ArrayList<Question> questionList;
 	private static final String absolutePath = System.getProperty("user.dir")+"/quiz/quiz1.txt";
 	
-	public ProfessorController(String actionType, List<Question> questionList){
+	public ProfessorController(String actionType, ArrayList<Question> questionList){
 		super();
 		this.actionType = actionType;
 		this.questionList = questionList;
