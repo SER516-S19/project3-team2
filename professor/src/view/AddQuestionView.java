@@ -83,11 +83,13 @@ public class AddQuestionView extends JFrame {
 		contentPane.add(lblOption_1);
 
 		questionField_1 = new JTextField();
+		questionField_1.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		questionField_1.setBounds(393, 250, 358, 35);
 		contentPane.add(questionField_1);
 		questionField_1.setColumns(10);
 
 		optionField = new JTextField[4];
+		//optionField.setFont(new Font("Monospaced", Font.PLAIN, 22));
 
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JTextField();
@@ -98,6 +100,7 @@ public class AddQuestionView extends JFrame {
 
 		answerField = new JTextField();
 		answerField.setBounds(393, 650, 358, 38);
+		answerField.setFont(new Font("Monospaced", Font.PLAIN, 22));
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 

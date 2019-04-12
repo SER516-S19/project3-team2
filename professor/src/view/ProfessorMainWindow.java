@@ -19,11 +19,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.border.CompoundBorder;
 import java.awt.Toolkit;
+import javax.swing.JTextField;
 
 public class ProfessorMainWindow extends JFrame {
 	private Image image;
 	private JPanel contentPane;
 	int x, y;
+	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -45,7 +47,7 @@ public class ProfessorMainWindow extends JFrame {
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
-		createQuiz.setBounds(238, 436, 434, 216);
+		createQuiz.setBounds(236, 510, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddQuestionView().setVisible(true);
@@ -59,7 +61,7 @@ public class ProfessorMainWindow extends JFrame {
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
-		welcomeLabel.setBounds(119, 239, 672, 80);
+		welcomeLabel.setBounds(126, 212, 672, 80);
 		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
@@ -109,6 +111,18 @@ public class ProfessorMainWindow extends JFrame {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(0, 0, 525, 43);
 		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_2 = new JLabel("To Create Quiz Enter Quiz Title");
+		lblNewLabel_2.setFont(new Font("Monospaced", Font.BOLD, 30));
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setBounds(165, 355, 563, 36);
+		contentPane.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Monospaced", Font.PLAIN, 24));
+		textField.setBounds(236, 420, 434, 43);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
 	}	
 }
