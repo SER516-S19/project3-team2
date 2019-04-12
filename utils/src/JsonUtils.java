@@ -1,22 +1,5 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Scanner;
-
-import java.io.IOException;
-import java.io.FileNotFoundException;
-
-import com.google.gson.JsonParser;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.GsonBuilder;
-import com.google.gson.Gson;
-
 /*
  * PLEASE DO NOT MODIFY THIS FILE UNLESS YOU ASK MENG-ZE FIRST !!!!!!!!!!
  *
@@ -40,6 +23,23 @@ import com.google.gson.Gson;
  *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
  *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
 */
+
+import java.util.ArrayList;
+import java.util.List;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
+
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+import com.google.gson.JsonParser;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
 
 public class JsonUtils {
     public static String getStringFromFile(String absoluteFilepath) {
