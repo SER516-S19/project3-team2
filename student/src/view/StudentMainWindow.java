@@ -13,6 +13,7 @@ import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.event.*;
 import src.model.StudentModel;
+import src.view.TakeQuizView;
 import src.controller.StudentController;
 
 public class StudentMainWindow extends JFrame {
@@ -141,8 +142,11 @@ public class StudentMainWindow extends JFrame {
                     int screenWidth = screenSize.width;
                     frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
                     TakeQuiz theView = new TakeQuiz();
+                    frame.getContentPane().setBackground(new Color(255, 255, 204));
+                    TakeQuizView theView = new TakeQuizView();
                     StudentModel theModel = new StudentModel();
-                    StudentController theController = new StudentController(theModel, frame, theView);
+                    CompletionMessage theMessage = new CompletionMessage();
+                    StudentController theController = new StudentController(theModel, frame, theView, theMessage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

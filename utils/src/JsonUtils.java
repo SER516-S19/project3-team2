@@ -1,7 +1,30 @@
-package utils;
+package src;
+
+/*
+ * PLEASE DO NOT MODIFY THIS FILE UNLESS YOU ASK MENG-ZE FIRST !!!!!!!!!!
+ *
+ * @author: Meng-Ze Chen
+ * @description: 
+ * This file contains 4 static function which facilitates quiz/questions creating process.
+ * 
+ * getStrFromFile(String absoluteFilepath):             READ String from file.
+ * getQuestionsFromJsonString(String jsonString):       TRANSFER String into usable datastructure.
+ * getQuestionsJsonString(ArrayList<Question> questions):    TRANSFER datastructure into Json formatted String.
+ * writeStringToFile(String absoluteFilepath, String content): SAVE string to file.
+ * 
+ * 
+ *  Sample Run: Replace the string in the first and second variable
+ *
+ *  String readFilepath = "";
+ *  String writeFilepath = "";
+ *
+ *  String jsonString = JsonUtils.getStringFromFile(readFilepath);
+ *  ArrayList<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
+ *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
+ *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
+*/
 
 import java.util.ArrayList;
-import java.util.List;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -17,30 +40,6 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 
-/*
- * PLEASE DO NOT MODIFY THIS FILE UNLESS YOU ASK MENG-ZE FIRST !!!!!!!!!!
- *
- * @author: Meng-Ze Chen
- * @description: 
- * This file contains 4 static function which facilitates quiz/questions creating process.
- * 
- * getStrFromFile(String absoluteFilepath):             READ String from file.
- * getQuestionsFromJsonString(String jsonString):       TRANSFER String into usable datastructure.
- * getQuestionsJsonString(List<Question> questions):    TRANSFER datastructure into Json formatted String.
- * writeStringToFile(String absoluteFilepath, String content): SAVE string to file.
- * 
- * 
- *  Sample Run: Replace the string in the first and second variable
- *
- *  String readFilepath = "";
- *  String writeFilepath = "";
- *
- *  String jsonString = JsonUtils.getStringFromFile(readFilepath);
- *  List<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
- *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
- *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
-*/
-
 public class JsonUtils {
     public static String getStringFromFile(String absoluteFilepath) {
         String content = "";
@@ -55,7 +54,7 @@ public class JsonUtils {
         return content;
     }
 
-    public static List<Question> getQuestionsFromJsonString(String jsonString) {
+    public static ArrayList<Question> getQuestionsFromJsonString(String jsonString) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonContentObject = new JsonObject();
         ArrayList<Question> questions = new ArrayList<Question>();
@@ -92,7 +91,7 @@ public class JsonUtils {
         return null;
     }
 
-    public static String getJsonStringFromQuestions(List<Question> questions) {
+    public static String getJsonStringFromQuestions(ArrayList<Question> questions) {
         JsonObject quizJsonObject = new JsonObject();
         JsonArray allQuestions = new JsonArray();
 

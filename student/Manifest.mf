@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Bundle
+Class-Path: ../utils/lib/gson-2.8.5.jar
+Main-Class: StudentMain

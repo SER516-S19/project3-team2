@@ -1,8 +1,6 @@
 package src.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JFrame;
@@ -18,37 +16,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.border.CompoundBorder;
-import java.awt.Toolkit;
+import javax.swing.JTextField;
 
-public class ProfMainWindow extends JFrame {
+public class ProfessorMainWindow extends JFrame {
 	private Image image;
 	private JPanel contentPane;
 	int x, y;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ProfMainWindow frame = new ProfMainWindow();
-					frame.setVisible(true);			
-					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-					int screenHeight = screenSize.height;
-					int screenWidth = screenSize.width;
-					frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JTextField quizName;
 
 	/**
 	 * Create the frame.
 	 */
-	public ProfMainWindow() {	
+	public ProfessorMainWindow() {	
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(490, 50, 900, 950);
@@ -65,10 +44,10 @@ public class ProfMainWindow extends JFrame {
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
-		createQuiz.setBounds(238, 436, 434, 216);
+		createQuiz.setBounds(236, 510, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddQuestions().setVisible(true);
+				new AddQuestionView(quizName.getText()).setVisible(true);
 				dispose();			
 			}
 		});
@@ -79,7 +58,7 @@ public class ProfMainWindow extends JFrame {
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
-		welcomeLabel.setBounds(119, 239, 672, 80);
+		welcomeLabel.setBounds(126, 212, 672, 80);
 		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
@@ -109,9 +88,9 @@ public class ProfMainWindow extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("X");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+		JLabel closeLabel = new JLabel("X");
+		closeLabel.setForeground(Color.WHITE);
+		closeLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -119,16 +98,28 @@ public class ProfMainWindow extends JFrame {
 		});
 		
 		
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(846, 0, 54, 43);
-		panel.add(lblNewLabel_1);
+		closeLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		closeLabel.setBounds(846, 0, 54, 43);
+		panel.add(closeLabel);
 		
-		JLabel lblNewLabel = new JLabel("  Quiz Desktop Application - Professor Window");
-		lblNewLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(0, 0, 525, 43);
-		panel.add(lblNewLabel);
+		JLabel windowLabel = new JLabel("  Quiz Desktop Application - Professor Window");
+		windowLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+		windowLabel.setForeground(Color.WHITE);
+		windowLabel.setBounds(0, 0, 525, 43);
+		panel.add(windowLabel);
+		
+		JLabel quizNameLabel = new JLabel("To Create Quiz Enter Quiz Title");
+		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
+		quizNameLabel.setForeground(Color.WHITE);
+		quizNameLabel.setBounds(165, 355, 563, 36);
+		contentPane.add(quizNameLabel);
+		
+		quizName = new JTextField();
+		quizName.setFont(new Font("Monospaced", Font.PLAIN, 24));
+		quizName.setBounds(236, 420, 434, 43);
+		contentPane.add(quizName);
+		quizName.setColumns(10);
 		
 	}	
 }

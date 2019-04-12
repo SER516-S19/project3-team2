@@ -7,7 +7,7 @@ Student model to read the .json file and create question list
 
 package src.model;
 
-import utils.*;
+import src.*;
 import java.util.ArrayList;
 import java.io.*;
 

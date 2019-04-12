@@ -14,7 +14,7 @@ import java.awt.event.*;
 
 public class TakeQuiz extends JFrame {	
 	int x1,y1;
-	private JLabel lblQuizName = new JLabel();
+    private JLabel lblQuizName = new JLabel();
     private JLabel questionField = new JLabel();
     private JRadioButton [] optionField = new JRadioButton[4];
     JButton btnNext = new JButton("Next");
@@ -36,6 +36,9 @@ public class TakeQuiz extends JFrame {
         });
     }
     public TakeQuiz() {
+    public ButtonGroup buttonGroup = new ButtonGroup();
+    public TakeQuizView() {
+    	
     	JPanel contentPane;
         getContentPane().setLayout(null);
         setUndecorated(true);
@@ -67,6 +70,7 @@ public class TakeQuiz extends JFrame {
         for(int i = 0; i < 4; i++) {
         	optionField[i] = new JRadioButton();
         	optionField[i].setBounds(275, 380 + i*30, 146, 26);
+        	buttonGroup.add(optionField[i]);
         	contentPane.add(optionField[i]);
         }
         
@@ -135,6 +139,7 @@ public class TakeQuiz extends JFrame {
         header.setForeground(Color.WHITE);
         header.setBounds(0, 0, 525, 43);
         panel2.add(header);
+		
     }
     
     public void setQuizLabel(String quizName) {
