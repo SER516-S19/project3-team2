@@ -109,39 +109,52 @@ public class ProfessorController implements ActionListener {
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
 			
 			// need to check validation here..
-			
+			boolean emptyTitleFound = false;
+			boolean emptyAnswerFound = false;
+			boolean allDetailsFound = true;
 			if (newQues.getTitle().isEmpty()) {
-	            JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
-	                    "Validation", JOptionPane.ERROR_MESSAGE);
-	            addView.dispose();
-	            new AddQuestionView();
+	            emptyTitleFound = true;
+	            allDetailsFound = false;
 	        }else if (newQues.getCorrectAnswer().isEmpty()) {
-	        	 JOptionPane.showMessageDialog(null, "You need to fill out the correct answer to add a question",
-		                    "Validation", JOptionPane.ERROR_MESSAGE);
-		            addView.dispose();
-		            new AddQuestionView();
+	        	emptyAnswerFound = true;
+	        	allDetailsFound = false;
 	        }
 			
 			boolean emptyOptionFound = false; 
 			for (String option : newQues.getOptions()) {
 				if (option.isEmpty()) {
 	                emptyOptionFound = true;
+	                allDetailsFound = false;
 	            }     
 			}
 			
 			if (emptyOptionFound) {
-				JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
+				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
+                        "Validation", JOptionPane.ERROR_MESSAGE);
+                addView.dispose();
+                new AddQuestionView();
+			}else if (emptyTitleFound) {
+				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
+                        "Validation", JOptionPane.ERROR_MESSAGE);
+                addView.dispose();
+                new AddQuestionView();
+			}else if (emptyAnswerFound) {
+				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
                         "Validation", JOptionPane.ERROR_MESSAGE);
                 addView.dispose();
                 new AddQuestionView();
 			}
 			
 			
-			questionList.add(newQues);
-			addView.dispose();
-			new AddQuestionView().setVisible(true);
-			JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
-					JOptionPane.INFORMATION_MESSAGE);
+			if (allDetailsFound) {
+				questionList.add(newQues);
+				addView.dispose();
+				new AddQuestionView().setVisible(true);
+				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
+						JOptionPane.INFORMATION_MESSAGE);
+		
+			}
+
 			
 		}
 	}
