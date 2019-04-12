@@ -65,7 +65,7 @@ public class ProfessorController implements ActionListener {
 			JsonUtils.writeStringToFile(absolutePath, questionListString);
 		}else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)){
 			
-			boolean flag = false;
+			boolean deleteElementFound = false;
 			// for testing
 			for(Question q : questionList) {
 				System.out.println(q.getTitle());
@@ -78,7 +78,7 @@ public class ProfessorController implements ActionListener {
 					Question question = iter.next();
 					if (question.getTitle().equalsIgnoreCase(quesTitle)) {
 						iter.remove();
-						flag = true;
+						deleteElementFound = true;
 					}else {
 						// if quesTitle not in list..
 						JOptionPane.showMessageDialog(null, "You are deleting a question which does not exist",
@@ -100,7 +100,7 @@ public class ProfessorController implements ActionListener {
 			addView.dispose();
 			new AddQuestionView().setVisible(true);
 			
-			if(flag) {
+			if(deleteElementFound) {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!",
 						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 	
