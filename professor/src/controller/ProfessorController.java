@@ -37,8 +37,6 @@ public class ProfessorController implements ActionListener {
 	    
 	    
 		if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ)) {
-			System.out.println(this.actionType);
-
 			String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
 			JsonUtils.writeStringToFile(absolutePath, questionListString);
 		}
