@@ -1,16 +1,16 @@
 /** 
 Student controller to get questions from studentModel 
-and populate TakeQuiz window.
+and populate TakeQuizView window.
 @author Subhradeep/Manikanta
 @version 1.1
 @date 04/09/2019
 */
 
-package src.controller;
+package student.controller;
 
-import src.model.StudentModel;
-import src.view.StudentMainWindow;
-import src.view.TakeQuiz;
+import student.model.StudentModel;
+import student.view.StudentMainWindow;
+import student.view.TakeQuizView;
 import utils.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -20,10 +20,10 @@ public class StudentController {
 	
 	private StudentModel studentModel;
 	private StudentMainWindow studentMainWin;
-	private TakeQuiz takeQuiz;
+	private TakeQuizView takeQuiz;
 	private ArrayList<Question> questionList;
 	
-	public StudentController(StudentModel theModel, StudentMainWindow mainWinView, TakeQuiz takeQuizView) {
+	public StudentController(StudentModel theModel, StudentMainWindow mainWinView, TakeQuizView takeQuizView) {
 		this.studentModel = theModel;
 		this.studentMainWin = mainWinView;
 		this.takeQuiz = takeQuizView;

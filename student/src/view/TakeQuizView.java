@@ -1,6 +1,6 @@
-package src.view;
+package student.view;
 
-import src.model.*;
+import student.model.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,14 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class TakeQuiz extends JFrame {	
+public class TakeQuizView extends JFrame {	
 	
 	private JLabel lblQuizName = new JLabel();
     private JLabel questionField = new JLabel();
     private JRadioButton [] optionField = new JRadioButton[4];
     JButton btnNext = new JButton("Next");
 
-    public TakeQuiz() {
+    public TakeQuizView() {
     	
     	JPanel contentPane;
         getContentPane().setLayout(null);
