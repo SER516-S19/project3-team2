@@ -22,7 +22,8 @@ public class StudentMain {
                     mainWindow.getContentPane().setBackground(new Color(255, 255, 204));
                     TakeQuizView theView = new TakeQuizView();
                     StudentModel theModel = new StudentModel();
-                    StudentController theController = new StudentController(theModel, mainWindow, theView);
+            		CompletionMessage theMessage = new CompletionMessage();
+                    StudentController theController = new StudentController(theModel, mainWindow, theView, theMessage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

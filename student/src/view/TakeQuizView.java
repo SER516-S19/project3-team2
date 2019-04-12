@@ -66,16 +66,6 @@ public class TakeQuizView extends JFrame {
         btnNext.setBounds(500, 414, 140, 29);
         contentPane.add(btnNext);
 		
-		JButton btnDashboard = new JButton("DashBoard");
-		btnDashboard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				StudentMainWindow DashBoard=new StudentMainWindow();
-				setVisible(false);
-				DashBoard.setVisible(true);
-			}
-		});
-		btnDashboard.setBounds(700, 414, 140, 29);
-		contentPane.add(btnDashboard);
     }
     
     public void setQuizLabel(String quizName) {
