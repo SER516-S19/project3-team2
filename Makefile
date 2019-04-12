@@ -11,6 +11,7 @@ PROFESSOR_JAR_NAME=Professor.jar
 
 PROFESSOR_MAIN_FILE=professor/src/ProfessorMain.java
 PROFESSOR_CONTROLLER_FILES=professor/src/controller/*.java
+PROFESSOR_MODEL_FILES=professor/src/model/*.java
 PROFESSOR_VIEW_FILES=professor/src/view/*.java
 
 PROFESSOR_JAR_CONFIG_FILE=professor/Manifest.mf
@@ -30,7 +31,7 @@ all:
 
 # Professor section
 .PHONY: professor-obj
-professor-obj: $(JSON_LIB) $(CROSS_APPLICATION_SRC) $(PROFESSOR_MAIN_FILE) $(PROFESSOR_VIEW_FILES) $(PROFESSOR_CONTROLLER_FILES)
+professor-obj: $(JSON_LIB) $(CROSS_APPLICATION_SRC) $(PROFESSOR_MAIN_FILE) $(PROFESSOR_MODEL_FILES) $(PROFESSOR_VIEW_FILES) $(PROFESSOR_CONTROLLER_FILES)
 	$(JAVAC) -d $(BUILD_DIR) -cp $^	
 
 .PHONY: pack-professor
