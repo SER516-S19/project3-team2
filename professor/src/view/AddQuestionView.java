@@ -205,43 +205,16 @@ public class AddQuestionView extends JFrame {
 
 	private Question fetchQuestionDetails() {
 		// fetching the question details
-		String strQuestionField = null;
-		if (questionField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
-					"Validation", JOptionPane.ERROR_MESSAGE);
-			dispose();
-			new AddQuestionView();
-		}else {
-			strQuestionField = questionField.getText();
-		}
-		
-		
-		String strAnswerField = null;
-		if (answerField.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "You need to fill out the correct answer to add a question",
-					"Validation", JOptionPane.ERROR_MESSAGE);
-			dispose();
-			new AddQuestionView();
-		}else {
-			strQuestionField = questionField.getText();
-		}
-		
+		String strQuestionField = questionField.getText();		
+		String strAnswerField = answerField.getText();
 		setQuesTitle(strQuestionField);
 		
 		List<String> optionsList = new ArrayList<String>();
-
-		for (int i = 0; i < 4; i++) {
-			if (optionField[i].getText().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
-						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-				dispose();
-				new AddQuestionView();
-			}else {
-				optionsList.add(optionField[i].getText());
-			}
-			
-		}
 		
+		for (int i = 0; i < 4; i++) {
+			optionsList.add(optionField[i].getText());
+		}
+
 		Question newQues = new Question(strQuestionField, optionsList, strAnswerField);
 		return newQues;
 		

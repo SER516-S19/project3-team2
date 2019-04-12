@@ -107,6 +107,36 @@ public class ProfessorController implements ActionListener {
 			}
 			
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
+			
+			// need to check validation here..
+			
+			if (newQues.getTitle().isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
+	                    "Validation", JOptionPane.ERROR_MESSAGE);
+	            addView.dispose();
+	            new AddQuestionView();
+	        }else if (newQues.getCorrectAnswer().isEmpty()) {
+	        	 JOptionPane.showMessageDialog(null, "You need to fill out the correct answer to add a question",
+		                    "Validation", JOptionPane.ERROR_MESSAGE);
+		            addView.dispose();
+		            new AddQuestionView();
+	        }
+			
+			boolean emptyOptionFound = false; 
+			for (String option : newQues.getOptions()) {
+				if (option.isEmpty()) {
+	                emptyOptionFound = true;
+	            }     
+			}
+			
+			if (emptyOptionFound) {
+				JOptionPane.showMessageDialog(null, "You need to fill out all the options to add a question",
+                        "Validation", JOptionPane.ERROR_MESSAGE);
+                addView.dispose();
+                new AddQuestionView();
+			}
+			
+			
 			questionList.add(newQues);
 			addView.dispose();
 			new AddQuestionView().setVisible(true);
