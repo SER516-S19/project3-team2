@@ -18,7 +18,6 @@ public class AddQuestionView extends JFrame {
 	protected static final String MouseEvent = null;
 	private JPanel contentPane;
 	private JTextField questionField;
-	private JTextField questionField_1;
 	private JTextField answerField;
 	private JTextField[] optionField;
 	int x1, y1;
@@ -79,14 +78,10 @@ public class AddQuestionView extends JFrame {
 		contentPane.add(lblOption_1);
 
 		questionField = new JTextField();
-		questionField.setBounds(393, 252, 358, 35);
-		contentPane.add(lblOption_1);
-
-		questionField_1 = new JTextField();
-		questionField_1.setFont(new Font("Monospaced", Font.PLAIN, 22));
-		questionField_1.setBounds(393, 250, 358, 35);
-		contentPane.add(questionField_1);
-		questionField_1.setColumns(10);
+		questionField.setFont(new Font("Monospaced", Font.PLAIN, 22));
+		questionField.setBounds(393, 250, 358, 35);
+		contentPane.add(questionField);
+		questionField.setColumns(10);
 
 		optionField = new JTextField[4];
 		//optionField.setFont(new Font("Monospaced", Font.PLAIN, 22));
@@ -114,6 +109,7 @@ public class AddQuestionView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String strQuestionField = questionField.getText();
+				System.out.println(strQuestionField);
 				List<String> optionsList = new ArrayList<String>();
 
 				for (int i = 0; i < 4; i++) {
