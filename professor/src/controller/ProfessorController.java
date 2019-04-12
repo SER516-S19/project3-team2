@@ -61,8 +61,17 @@ public class ProfessorController implements ActionListener {
 	    absolutePath = quizPath + quizName + ConstantTable.JSON_EXTENSION;
 	    
 		if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ)) {
-			String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
-			JsonUtils.writeStringToFile(absolutePath, questionListString);
+			
+			if (questionList != null && questionList.size() > 0) {
+				String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
+				JsonUtils.writeStringToFile(absolutePath, questionListString);
+			}else {
+				JOptionPane.showMessageDialog(null, "There is no questions added to quiz. Please add some question before creating a quiz",
+						"Validation", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			
+			
 		}else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)){
 			
 			boolean deleteElementFound = false;
@@ -124,8 +133,16 @@ public class ProfessorController implements ActionListener {
 				if (option.isEmpty()) {
 	                emptyOptionFound = true;
 	                allDetailsFound = false;
-	            }     
+	            }
 			}
+			
+			boolean correctAnsMatched = false;
+			for(String option : newQues.getOptions()) {
+				if (newQues.getCorrectAnswer().equalsIgnoreCase(option)) {
+					correctAnsMatched = true;
+				}
+			}
+			
 			
 			if (emptyOptionFound) {
 				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
@@ -139,6 +156,11 @@ public class ProfessorController implements ActionListener {
                 new AddQuestionView();
 			}else if (emptyAnswerFound) {
 				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
+                        "Validation", JOptionPane.ERROR_MESSAGE);
+                addView.dispose();
+                new AddQuestionView();
+			}else if (!correctAnsMatched) {
+				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options",
                         "Validation", JOptionPane.ERROR_MESSAGE);
                 addView.dispose();
                 new AddQuestionView();
