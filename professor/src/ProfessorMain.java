@@ -12,11 +12,7 @@ public class ProfessorMain {
 			public void run() {
 				try {
 					ProfessorMainWindow mainWindow = new ProfessorMainWindow();
-					mainWindow.setVisible(true);			
-					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-					int screenHeight = screenSize.height;
-					int screenWidth = screenSize.width;
-					mainWindow.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
+					mainWindow.setVisible(true);								
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

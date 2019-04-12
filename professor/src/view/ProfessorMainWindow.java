@@ -1,8 +1,11 @@
 package src.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
@@ -22,6 +25,8 @@ public class ProfessorMainWindow extends JFrame {
 	private Image image;
 	private JPanel contentPane;
 	int x, y;
+	int screenHeight, screenWidth;
+	int frameHeight, frameWidth;
 	private JTextField quizName;
 
 	/**
@@ -29,10 +34,15 @@ public class ProfessorMainWindow extends JFrame {
 	 */
 	public ProfessorMainWindow() {	
 		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(490, 50, 900, 950);
-		setTitle("Professor Window For Quiz Application");
-		setResizable(false);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		screenHeight = screenSize.height;
+		screenWidth = screenSize.width;
+		System.out.println(screenHeight +","+screenWidth);
+		frameHeight = (7 * screenWidth) / 15;		
+		frameWidth = (8 * screenHeight) / 9;
+		setSize(frameHeight, frameWidth);
+		System.out.println(frameHeight +","+frameWidth);
+		setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setEnabled(false);
 		contentPane.setBackground(new Color(70, 130, 180));
@@ -44,7 +54,7 @@ public class ProfessorMainWindow extends JFrame {
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
-		createQuiz.setBounds(236, 510, 434, 216);
+		createQuiz.setBounds(frameWidth/4, 510, 434, 216);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddQuestionView(quizName.getText()).setVisible(true);
@@ -58,7 +68,7 @@ public class ProfessorMainWindow extends JFrame {
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
-		welcomeLabel.setBounds(126, 212, 672, 80);
+		welcomeLabel.setBounds(frameWidth/8, 212, 672, 80);
 		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
@@ -112,12 +122,12 @@ public class ProfessorMainWindow extends JFrame {
 		JLabel quizNameLabel = new JLabel("To Create Quiz Enter Quiz Title");
 		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
 		quizNameLabel.setForeground(Color.WHITE);
-		quizNameLabel.setBounds(165, 355, 563, 36);
+		quizNameLabel.setBounds(frameWidth/6, 355, 563, 36);
 		contentPane.add(quizNameLabel);
 		
 		quizName = new JTextField();
 		quizName.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		quizName.setBounds(236, 420, 434, 43);
+		quizName.setBounds(frameWidth/4, 420, 434, 43);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
 		
