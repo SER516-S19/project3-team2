@@ -26,7 +26,10 @@ public class AddQuestionView extends JFrame {
 	private JTextField questionField;
 	private JTextField answerField;
 	private JTextField[] optionField;
+	
+
 	private static String quizName;
+	private String quesTitle;
 	private int x1, y1;
 
 	// This is the list which has questions..
@@ -104,24 +107,12 @@ public class AddQuestionView extends JFrame {
 		btnAddMoreQuestions.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnAddMoreQuestions.setForeground(new Color(255, 255, 255));
 		btnAddMoreQuestions.setBackground(new Color(0, 181, 204));
-		btnAddMoreQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				String strQuestionField = questionField.getText();
-				List<String> optionsList = new ArrayList<String>();
-
-				for (int i = 0; i < 4; i++) {
-					optionsList.add(optionField[i].getText());
-				}
-				String strAnswerField = answerField.getText();
-
-				Question question = new Question(strQuestionField, optionsList, strAnswerField);
-				questionsList.add(question);
-				dispose();
-				new AddQuestionView().setVisible(true);
-				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
-						JOptionPane.INFORMATION_MESSAGE);
-		}});
+		
+		// this will fetch the question details and check for validations
+		Question newQuestion = fetchQuestionDetails();
+		
+		btnAddMoreQuestions.addActionListener(new ProfessorController(this, newQuestion , ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION, questionsList));
+	
 		contentPane.add(btnAddMoreQuestions);
 
 		JButton btnDeleteQuestions = new JButton("Delete Question");
@@ -130,29 +121,8 @@ public class AddQuestionView extends JFrame {
 		btnDeleteQuestions.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnDeleteQuestions.setBackground(new Color(0, 181, 204));
 		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
-		btnDeleteQuestions.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String strQuestionField = questionField.getText();
 
-				if (questionsList != null) {
-					Iterator<Question> iter = questionsList.iterator();
-
-					while (iter.hasNext()) {
-						Question question = iter.next();
-						if (question.getTitle().equalsIgnoreCase(strQuestionField)) {
-							iter.remove();
-							JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!",
-									"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-						}
-					}
-
-				} else {
-					JOptionPane.showMessageDialog(null, "You cannot delete as there are no questions left to delete",
-							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-				}
-
-			}
-		});
+		btnDeleteQuestions.addActionListener(new ProfessorController(this, getQuesTitle(), ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
 		contentPane.add(btnDeleteQuestions);
 
 		JLabel lblQuestion = new JLabel("Question");
@@ -232,4 +202,31 @@ public class AddQuestionView extends JFrame {
 		pquizTitleLabel.setBounds(0, 0, 525, 43);
 		panel2.add(pquizTitleLabel);
 	}
+
+	private Question fetchQuestionDetails() {
+		// fetching the question details
+		String strQuestionField = questionField.getText();		
+		String strAnswerField = answerField.getText();
+		setQuesTitle(strQuestionField);
+		
+		List<String> optionsList = new ArrayList<String>();
+		
+		for (int i = 0; i < 4; i++) {
+			optionsList.add(optionField[i].getText());
+		}
+
+		Question newQues = new Question(strQuestionField, optionsList, strAnswerField);
+		return newQues;
+		
+	}
+	
+	public String getQuesTitle() {
+		return quesTitle;
+	}
+
+	public void setQuesTitle(String quesTitle) {
+		this.quesTitle = quesTitle;
+	}
+
+	
 }
