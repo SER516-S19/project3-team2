@@ -1,32 +1,52 @@
 package src.view;
 
-import src.model.*;
+/**
+ Student's quiz selection view
+ @author Sakshi/Subhradeep
+ @version 1.2
+ @date 04/09/2019
+ */
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 
 public class TakeQuiz extends JFrame {	
-	
+	int x1,y1;
 	private JLabel lblQuizName = new JLabel();
     private JLabel questionField = new JLabel();
     private JRadioButton [] optionField = new JRadioButton[4];
     JButton btnNext = new JButton("Next");
 
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    TakeQuiz frame = new TakeQuiz();
+                    frame.setVisible(true);
+                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                    int screenHeight = screenSize.height;
+                    int screenWidth = screenSize.width;
+                    frame.setSize((7*screenWidth) / 15, (8*screenHeight) / 9);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
     public TakeQuiz() {
-    	
     	JPanel contentPane;
         getContentPane().setLayout(null);
+        setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(25, 25, 1025, 500);
-        
+        setBounds(490, 50, 900, 950);
+        setTitle("Student Window For Quiz Application");
         setResizable(false);
-	        	
+        setVisible(true);
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBackground(new Color(70, 130, 180));
+        contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
@@ -34,18 +54,19 @@ public class TakeQuiz extends JFrame {
         layeredPane.setBounds(5, 5, 1, 834);
         contentPane.add(layeredPane);
 
-        lblQuizName.setFont(new Font("Courier", Font.BOLD, 40));
-        lblQuizName.setBounds(310, 50, 600, 80);
-        lblQuizName.setForeground(Color.BLACK);
+        lblQuizName.setFont(new Font("Courier", Font.BOLD, 50));
+        lblQuizName.setBounds(325, 150, 600, 80);
+        lblQuizName.setForeground(Color.WHITE);
         contentPane.add(lblQuizName);
 
-        questionField.setBounds(320, 186, 300, 50);
-        questionField.setForeground(Color.BLACK);
+        questionField.setFont(new Font("Courier", Font.BOLD, 30));
+        questionField.setBounds(250, 315, 300, 50);
+        questionField.setForeground(new Color(255, 255, 255));
         contentPane.add(questionField);
         
         for(int i = 0; i < 4; i++) {
         	optionField[i] = new JRadioButton();
-        	optionField[i].setBounds(320, 230 + i*30, 146, 26);
+        	optionField[i].setBounds(275, 380 + i*30, 146, 26);
         	contentPane.add(optionField[i]);
         }
         
@@ -57,24 +78,63 @@ public class TakeQuiz extends JFrame {
             	win.dispose();
             }
         });
-        btnGiveUp.setBounds(300, 414, 140, 29);
+        btnGiveUp.setBounds(225, 600, 200, 49);
+        btnGiveUp.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        btnGiveUp.setFont(new Font("Monospaced", Font.BOLD, 24));
+        btnGiveUp.setForeground(new Color(255, 255, 255));
+        btnGiveUp.setBackground(new Color(0, 181, 204));
         contentPane.add(btnGiveUp);
-
         questionField.setEnabled(false);
-        
-        btnNext.setBounds(500, 414, 140, 29);
+
+        btnNext.setBounds(500, 600, 200, 49);
+        btnNext.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        btnNext.setFont(new Font("Monospaced", Font.BOLD, 24));
+        btnNext.setForeground(new Color(255, 255, 255));
+        btnNext.setBackground(new Color(0, 181, 204));
         contentPane.add(btnNext);
-		
-		JButton btnDashboard = new JButton("DashBoard");
-		btnDashboard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				StudentMainWindow DashBoard=new StudentMainWindow();
-				setVisible(false);
-				DashBoard.setVisible(true);
-			}
-		});
-		btnDashboard.setBounds(700, 414, 140, 29);
-		contentPane.add(btnDashboard);
+
+        JPanel panel2 = new JPanel();
+        panel2.setBounds(0, 0, 900, 43);
+        panel2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        panel2.setBackground(new Color(37, 116, 169));
+        panel2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                x1 = e.getX();
+                y1 = e.getY();
+            }
+        });
+
+        panel2.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int xx1 = e.getXOnScreen();
+                int yy1 = e.getYOnScreen();
+                setLocation(xx1-x1, yy1-y1);
+            }
+        });
+        contentPane.add(panel2);
+        panel2.setLayout(null);
+
+        JLabel closeBtn = new JLabel("X");
+        closeBtn.setForeground(Color.WHITE);
+        closeBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                dispose();
+            }
+        });
+
+        closeBtn.setFont(new Font("Tahoma", Font.BOLD, 30));
+        closeBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        closeBtn.setBounds(846, 0, 54, 43);
+        panel2.add(closeBtn);
+
+        JLabel header = new JLabel("  Quiz Desktop Application - Student Window");
+        header.setFont(new Font("Monospaced", Font.BOLD, 16));
+        header.setForeground(Color.WHITE);
+        header.setBounds(0, 0, 525, 43);
+        panel2.add(header);
     }
     
     public void setQuizLabel(String quizName) {
