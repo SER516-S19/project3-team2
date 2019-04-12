@@ -13,6 +13,7 @@ import javax.swing.border.BevelBorder;
 import src.controller.ProfessorController;
 import src.*;
 
+@SuppressWarnings("serial")
 public class AddQuestionView extends JFrame {
 
 	protected static final String MouseEvent = null;
@@ -109,7 +110,6 @@ public class AddQuestionView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				String strQuestionField = questionField.getText();
-				System.out.println(strQuestionField);
 				List<String> optionsList = new ArrayList<String>();
 
 				for (int i = 0; i < 4; i++) {
@@ -122,10 +122,9 @@ public class AddQuestionView extends JFrame {
 				questionsList.add(q1);
 				dispose();
 				new AddQuestionView().setVisible(true);
-				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", "Message",
+				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
 						JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
+		}});
 		contentPane.add(btnAddMoreQuestions);
 
 		JButton btnDeleteQuestions = new JButton("Delete Question");
@@ -145,6 +144,8 @@ public class AddQuestionView extends JFrame {
 						Question q = iter.next();
 						if (q.getTitle().equalsIgnoreCase(strQuestionField)) {
 							iter.remove();
+							JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!",
+									"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 
