@@ -26,10 +26,13 @@ Our Project has two separate Java Desktop Applications -
  
 2. The Quiz files created are store in the home directory of your system. There will be one "quiz" folder created inside the homedirectory. All the Quiz files will be stored here. 
 
-### For Windows / Mac commands to run our project
+3. To execute the Java project preferably use command line.
 
-1. java -jar Student.jar
-2. java -jar Professor.jar
+### For Windows / Mac commands to run our applications
+
+1. Go to application-jars folder and execute:
+2. java -jar Student.jar
+3. java -jar Professor.jar
 
 
 
