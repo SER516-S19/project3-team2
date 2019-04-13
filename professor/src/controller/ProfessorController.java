@@ -10,25 +10,28 @@ import javax.swing.JOptionPane;
 
 import src.*;
 import src.model.ProfessorModel;
-import src.view.AddQuestionView;
+import src.view.ProfessorQuestionView;
 
 /**
+ * Professor Controller listens to the actions performed by the user at
+ * ProfessorQuestionView for a quiz. It passes the control to ProfessorModel to
+ * add a question, delete a question and create a quiz in JSON format.
  * 
- * @author leharbhatt
- *
+ * @author Lehar Bhatt,Aneesh Dalvi
+ * @version (1.0)
+ * @param (Question)
  */
-
 public class ProfessorController implements ActionListener {
 	private String actionType;
 	private ArrayList<Question> questionList;
 	private static final String quizPath = System.getProperty("user.home") + "/quiz/";
 	private static String quizName;
 	private String quesTitle;
-	private AddQuestionView addView;
-	private Question newQues;
+	private ProfessorQuestionView addView;
+	private Question ques;
 
 	public ProfessorController(String actionType, ArrayList<Question> questionList, String quizName,
-			AddQuestionView addView) {
+			ProfessorQuestionView addView) {
 		super();
 		this.actionType = actionType;
 		this.questionList = questionList;
@@ -36,15 +39,21 @@ public class ProfessorController implements ActionListener {
 		ProfessorController.quizName = quizName;
 	}
 
-	public ProfessorController(AddQuestionView addView, Question toBeAdded, String actionType,
+	public ProfessorController(ProfessorQuestionView addView, Question toBeAdded, String actionType,
 			ArrayList<Question> questionList) {
 		super();
 		this.actionType = actionType;
 		this.questionList = questionList;
-		this.newQues = toBeAdded;
+		this.ques = toBeAdded;
 		this.addView = addView;
 	}
 
+	/**
+	 * This method listens to the action performed by the components on UI. like
+	 * create quiz, add and delete questions
+	 * 
+	 * @param event 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		ProfessorModel model = new ProfessorModel();
@@ -78,22 +87,21 @@ public class ProfessorController implements ActionListener {
 			} else if (ConstantTable.EMPTY.equals(deleteStatus)) {
 				JOptionPane.showMessageDialog(null, "There are no questions to delete.", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
-			}else if(ConstantTable.BLANK.equals(deleteStatus)) {
-				JOptionPane.showMessageDialog(null, "The question title cannot be blank",
-						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-			} 
-			else {
+			} else if (ConstantTable.BLANK.equals(deleteStatus)) {
+				JOptionPane.showMessageDialog(null, "The question title cannot be blank", "Delete Message",
+						JOptionPane.INFORMATION_MESSAGE);
+			} else {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
 			addView.dispose();
-			new AddQuestionView().setVisible(true);
+			new ProfessorQuestionView().setVisible(true);
 
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
 
-			newQues = addView.fetchQuestionDetails();
-			String addStatus = model.addQuestion(newQues);
+			ques = addView.fetchQuestionDetails();
+			String addStatus = model.addQuestion(ques);
 			if (ConstantTable.BLANK.equals(addStatus)) {
 				JOptionPane.showMessageDialog(null, "Please fill all the details to add a question.", "Validation",
 						JOptionPane.ERROR_MESSAGE);
@@ -101,12 +109,11 @@ public class ProfessorController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options", "Validation",
 						JOptionPane.ERROR_MESSAGE);
 			} else {
-				questionList.add(newQues);
+				questionList.add(ques);
 				addView.dispose();
-				new AddQuestionView().setVisible(true);
+				new ProfessorQuestionView().setVisible(true);
 				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
 						JOptionPane.INFORMATION_MESSAGE);
-
 			}
 		}
 	}

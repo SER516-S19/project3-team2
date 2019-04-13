@@ -1,5 +1,15 @@
 package src;
 
+
+/**
+ * 
+ * @description: This class stores and uses all static strings which are common throughout 
+ * student and professor application.
+ * 
+ * @author Lehar Bhatt, Aneesh Dalvi, Meng-Ze Chen
+ * @version (1.0)
+ * @param (Question)
+ */
 public class ConstantTable {
 	public static String QUIZ_IDENTIFIER = "questions";
     public static String QUESTION_TITLE = "title";

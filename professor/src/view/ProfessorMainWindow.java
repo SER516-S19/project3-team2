@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
@@ -21,83 +22,93 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JTextField;
 
+/**
+ * ProfessorMainview displays the components of the first page of the
+ * application.It captures the quiz title entered by the professor and passes
+ * the control to ProfessorController for further action.
+ * 
+ * @author Palak Chugh,Yuti Desai
+ * @version (1.0)
+ * @param (Question)
+ */
 public class ProfessorMainWindow extends JFrame {
 	private Image image;
 	private JPanel contentPane;
-	int x, y;
+	int positionX, positionY;
 	int screenHeight, screenWidth;
-	int frameHeight, frameWidth;
+	int frameHeight, frameWidth;	
 	private JTextField quizName;
 
-	/**
-	 * Create the frame.
-	 */
-	public ProfessorMainWindow() {	
+	public ProfessorMainWindow() {
 		getContentPane().setLayout(null);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		screenHeight = screenSize.height;
 		screenWidth = screenSize.width;
-		System.out.println(screenHeight +","+screenWidth);
-		frameHeight = (7 * screenWidth) / 15;		
+		frameHeight = (7 * screenWidth) / 15;
 		frameWidth = (8 * screenHeight) / 9;
 		setSize(frameHeight, frameWidth);
-		System.out.println(frameHeight +","+frameWidth);
 		setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setEnabled(false);
 		contentPane.setBackground(new Color(70, 130, 180));
-		contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));		
-		setContentPane(contentPane);		
+		contentPane.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		setContentPane(contentPane);
 		setUndecorated(true);
-		
+
 		JButton createQuiz = new JButton(" Create Quiz");
-		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
+		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
+				new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
-		createQuiz.setBounds(frameWidth/4, (8*frameHeight)/14, (8*frameWidth/18), frameHeight/4);
+		createQuiz.setBounds(frameWidth / 4, (8 * frameHeight) / 14, (8 * frameWidth / 18), frameHeight / 4);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddQuestionView(quizName.getText()).setVisible(true);
-				dispose();			
+				String quizNameText = quizName.getText();
+				if (!quizNameText.isEmpty()) {
+					new ProfessorQuestionView(quizNameText).setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Please provide a Quiz Title", "Validation",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		contentPane.setLayout(null);
-		createQuiz.setFont(new Font("Monospaced", Font.BOLD, 30));
-	    createQuiz.setForeground(new Color(255, 255, 255));
-	    createQuiz.setBackground(new Color(0, 181, 204));
+		createQuiz.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 30));
+		createQuiz.setForeground(new Color(255, 255, 255));
+		createQuiz.setBackground(new Color(0, 181, 204));
 		contentPane.add(createQuiz);
-		
+
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
-		welcomeLabel.setBounds(frameWidth/8, frameHeight/5, 672, 80);
-		welcomeLabel.setFont(new Font("Courier", Font.BOLD, frameWidth/14));
-	    welcomeLabel.setForeground(new Color(240, 248, 255));
+		welcomeLabel.setBounds(frameWidth / 8, frameHeight / 5, 672, 80);
+		welcomeLabel.setFont(new Font("Courier", Font.BOLD, frameWidth / 14));
+		welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBackground(new Color(37, 116, 169));
-		
+
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				x = e.getX();
-				y = e.getY();
+				positionX = e.getX();
+				positionY = e.getY();
 			}
 		});
-		
+
 		panel.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				int xx = e.getXOnScreen();
-				int yy = e.getYOnScreen();
-				setLocation(xx-x, yy-y);
+				int dragPositionX = e.getXOnScreen();
+				int dragPositionY = e.getYOnScreen();
+				setLocation(dragPositionX - positionX, dragPositionY - positionY);
 			}
 		});
-	
 		panel.setBounds(0, 0, 900, 43);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel closeLabel = new JLabel("X");
 		closeLabel.setForeground(Color.WHITE);
 		closeLabel.addMouseListener(new MouseAdapter() {
@@ -106,30 +117,27 @@ public class ProfessorMainWindow extends JFrame {
 				dispose();
 			}
 		});
-		
-		
-		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth/24));
+		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth / 24));
 		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		closeLabel.setBounds(90*frameWidth/102, 0, 54, 43);
+		closeLabel.setBounds(90 * frameWidth / 102, 0, 54, 43);
 		panel.add(closeLabel);
-		
+
 		JLabel windowLabel = new JLabel("  Quiz Desktop Application - Professor Window");
-		windowLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth/50));
+		windowLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 50));
 		windowLabel.setForeground(Color.WHITE);
-		windowLabel.setBounds(0, 0,(2*frameWidth)/3, frameHeight/20);
+		windowLabel.setBounds(0, 0, (2 * frameWidth) / 3, frameHeight / 20);
 		panel.add(windowLabel);
-		
+
 		JLabel quizNameLabel = new JLabel("To Create Quiz Enter Quiz Title");
-		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth/31));
+		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 31));
 		quizNameLabel.setForeground(Color.WHITE);
-		quizNameLabel.setBounds(frameWidth/6, (11*frameHeight)/27, 563, 36);
+		quizNameLabel.setBounds(frameWidth / 6, (11 * frameHeight) / 27, 563, 36);
 		contentPane.add(quizNameLabel);
-		
+
 		quizName = new JTextField();
 		quizName.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		quizName.setBounds(frameWidth/4, (9*frameHeight)/19, (8*frameWidth/18), frameHeight/19);
+		quizName.setBounds(frameWidth / 4, (9 * frameHeight) / 19, (8 * frameWidth / 18), frameHeight / 19);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
-		
-	}	
+	}
 }

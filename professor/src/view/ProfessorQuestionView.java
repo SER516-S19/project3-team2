@@ -12,12 +12,22 @@ import javax.swing.border.BevelBorder;
 import src.controller.ProfessorController;
 import src.*;
 
+/**
+ * ProfessorQuestionView displays the components of the question view of the
+ * application.It captures the question title,options and correct answer entered
+ * by the professor and passes the control to ProfessorController for further
+ * action.
+ * 
+ * @author Palak Chugh,Yuti Desai
+ * @version (1.0)
+ * @param (Question)
+ */
 @SuppressWarnings("serial")
-public class AddQuestionView extends JFrame {
+public class ProfessorQuestionView extends JFrame {
 
-	public AddQuestionView(String quizName) throws HeadlessException {
+	public ProfessorQuestionView(String quizName) throws HeadlessException {
 		this();
-		AddQuestionView.quizName = quizName;
+		ProfessorQuestionView.quizName = quizName;
 	}
 
 	protected static final String MouseEvent = null;
@@ -28,45 +38,19 @@ public class AddQuestionView extends JFrame {
 	private static String quizName;
 	private String quesTitle;
 	int screenHeight, screenWidth;
-	private int x1, y1;
+	private int positionX, positionY;
 	int frameHeight, frameWidth;
-	// This is the list which has questions..
 	private static ArrayList<Question> questionsList = new ArrayList<Question>();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddQuestionView frame = new AddQuestionView();
-					frame.setVisible(true);
-					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-					int screenHeight = screenSize.height;
-					int screenWidth = screenSize.width;
-					frame.setSize((7*screenWidth)/15, (8*screenHeight)/9);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public AddQuestionView() {
+	public ProfessorQuestionView() {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		screenHeight = screenSize.height;
 		screenWidth = screenSize.width;
-		//System.out.println(screenHeight +","+screenWidth);
-		frameHeight = (7 * screenWidth) / 15;		
+		frameHeight = (7 * screenWidth) / 15;
 		frameWidth = (8 * screenHeight) / 9;
-		setSize(frameHeight,frameWidth);
-		//System.out.println(frameHeight +","+frameWidth);
+		setSize(frameHeight, frameWidth);
 		getContentPane().setLayout(null);
 		setResizable(false);
 		setVisible(true);
@@ -77,86 +61,91 @@ public class AddQuestionView extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblAddQuestionDetails = new JLabel("Add Question Details");
-		lblAddQuestionDetails.setBounds(frameWidth/5, frameHeight/7, frameWidth/2, frameHeight/30);
-		lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, frameWidth/24));
+		lblAddQuestionDetails.setBounds(frameWidth / 5, frameHeight / 7, frameWidth / 2, frameHeight / 30);
+		lblAddQuestionDetails.setFont(new Font("Courier", Font.BOLD, frameWidth / 24));
 		lblAddQuestionDetails.setForeground(new Color(255, 255, 255));
 		contentPane.add(lblAddQuestionDetails);
 
 		questionField = new JTextField();
-		questionField.setFont(new Font("Monospaced", Font.PLAIN, frameWidth/40));
-		questionField.setBounds((2*frameWidth/5), (10*frameHeight)/41, (11*frameWidth)/28, frameHeight/22);
+		questionField.setFont(new Font("Monospaced", Font.PLAIN, frameWidth / 40));
+		questionField.setBounds((2 * frameWidth / 5), (10 * frameHeight) / 41, (11 * frameWidth) / 28,
+				frameHeight / 22);
 		contentPane.add(questionField);
 		questionField.setColumns(10);
 
 		optionField = new JTextField[4];
-
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JTextField();
-			optionField[i].setBounds((2*frameWidth/5),(frameHeight)/3 + (i * 81), (11*frameWidth)/28, frameHeight/22);
-			optionField[i].setFont(new Font("Monospaced", Font.PLAIN, frameWidth/40));
+			optionField[i].setBounds((2 * frameWidth / 5), (frameHeight) / 3 + (i * 81), (11 * frameWidth) / 28,
+					frameHeight / 22);
+			optionField[i].setFont(new Font("Monospaced", Font.PLAIN, frameWidth / 40));
 			contentPane.add(optionField[i]);
 			optionField[i].setColumns(10);
 		}
 
 		answerField = new JTextField();
-		answerField.setBounds((2*frameWidth/5), (13*frameWidth)/20, (11*frameWidth)/28, frameHeight/22);
-		answerField.setFont(new Font("Monospaced", Font.PLAIN, frameWidth/40));
+		answerField.setBounds((2 * frameWidth / 5), (13 * frameWidth) / 20, (11 * frameWidth) / 28, frameHeight / 22);
+		answerField.setFont(new Font("Monospaced", Font.PLAIN, frameWidth / 40));
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 
 		JButton btnAddMoreQuestions = new JButton("Add Details");
-		btnAddMoreQuestions.setBounds((2*frameWidth/14), (10*frameHeight)/12,(10*frameWidth)/31, frameHeight/17);
+		btnAddMoreQuestions.setBounds((2 * frameWidth / 14), (10 * frameHeight) / 12, (10 * frameWidth) / 31,
+				frameHeight / 17);
 		btnAddMoreQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnAddMoreQuestions.setFont(new Font("Monospaced", Font.BOLD, frameWidth/38));
+		btnAddMoreQuestions.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnAddMoreQuestions.setForeground(new Color(255, 255, 255));
 		btnAddMoreQuestions.setBackground(new Color(0, 181, 204));
-		
-		// this will fetch the question details and check for validations
+
 		Question newQuestion = fetchQuestionDetails();
-		
-		btnAddMoreQuestions.addActionListener(new ProfessorController(this, newQuestion , ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION, questionsList));
-	
+		btnAddMoreQuestions.addActionListener(new ProfessorController(this, newQuestion,
+				ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION, questionsList));
 		contentPane.add(btnAddMoreQuestions);
 
 		JButton btnDeleteQuestions = new JButton("Delete Details");
-		btnDeleteQuestions.setBounds((8*frameWidth/17),(10*frameHeight)/12,(10*frameWidth)/31, frameHeight/17);
+		btnDeleteQuestions.setBounds((8 * frameWidth / 17), (10 * frameHeight) / 12, (10 * frameWidth) / 31,
+				frameHeight / 17);
 		btnDeleteQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnDeleteQuestions.setFont(new Font("Monospaced", Font.BOLD, frameWidth/38));
+		btnDeleteQuestions.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnDeleteQuestions.setBackground(new Color(0, 181, 204));
 		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
-
-		btnDeleteQuestions.addActionListener(new ProfessorController(this, newQuestion, ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
+		btnDeleteQuestions.addActionListener(new ProfessorController(this, newQuestion,
+				ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
 		contentPane.add(btnDeleteQuestions);
 
 		JLabel lblQuestion = new JLabel("Question");
-		lblQuestion.setBounds((2*frameWidth/14), (10*frameHeight)/41, (11*frameWidth)/28, frameHeight/22);
+		lblQuestion.setBounds((2 * frameWidth / 14), (10 * frameHeight) / 41, (11 * frameWidth) / 28, frameHeight / 22);
 		lblQuestion.setForeground(new Color(255, 255, 255));
-		lblQuestion.setFont(new Font("Monospaced", Font.BOLD, frameWidth/35));
+		lblQuestion.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 35));
 		contentPane.add(lblQuestion);
 
 		JLabel label = new JLabel("");
 		label.setBounds(509, 704, 46, 14);
 		contentPane.add(label);
 		JLabel[] answerChoice = new JLabel[4];
-		for(int i=0; i<4;i++) {
-			answerChoice[i] = new JLabel("Option"+(i+1));
-			answerChoice[i].setBounds((2*frameWidth/14), (frameHeight)/3 + (i * 81), (11*frameWidth)/28, frameHeight/22);
+		for (int i = 0; i < 4; i++) {
+			answerChoice[i] = new JLabel("Option" + (i + 1));
+			answerChoice[i].setBounds((2 * frameWidth / 14), (frameHeight) / 3 + (i * 81), (11 * frameWidth) / 28,
+					frameHeight / 22);
 			answerChoice[i].setForeground(new Color(255, 255, 255));
-			answerChoice[i].setFont(new Font("Monospaced", Font.BOLD, frameWidth/35));
+			answerChoice[i].setFont(new Font("Monospaced", Font.BOLD, frameWidth / 35));
 			contentPane.add(answerChoice[i]);
 		}
-		
+
 		JLabel lblCorrectAnswer = new JLabel("Correct Answer");
-		lblCorrectAnswer.setBounds((2*frameWidth/14), (13*frameWidth)/20, (11*frameWidth)/28, frameHeight/22);
+		lblCorrectAnswer.setBounds((2 * frameWidth / 14), (13 * frameWidth) / 20, (11 * frameWidth) / 28,
+				frameHeight / 22);
 		lblCorrectAnswer.setForeground(new Color(255, 255, 255));
-		lblCorrectAnswer.setFont(new Font("Monospaced", Font.BOLD, frameWidth/35));
+		lblCorrectAnswer.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 35));
 		contentPane.add(lblCorrectAnswer);
 
 		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
-		btnCreateQuizAnd.setBounds((2*frameWidth/14), (20*frameHeight)/22,(15*frameWidth)/23, frameHeight/17);
-		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList,quizName, this));
+		btnCreateQuizAnd.setBounds((2 * frameWidth / 14), (20 * frameHeight) / 22, (15 * frameWidth) / 23,
+				frameHeight / 17);
+		btnCreateQuizAnd.addActionListener(
+				new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList, quizName, this));
 		btnCreateQuizAnd.setForeground(Color.WHITE);
-		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, frameWidth/38));
+		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnCreateQuizAnd.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnCreateQuizAnd.setBackground(new Color(0, 181, 204));
 		contentPane.add(btnCreateQuizAnd);
@@ -168,22 +157,21 @@ public class AddQuestionView extends JFrame {
 		panel2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				x1 = e.getX();
-				y1 = e.getY();
+				positionX = e.getX();
+				positionY = e.getY();
 			}
 		});
 
 		panel2.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				int xx1 = e.getXOnScreen();
-				int yy1 = e.getYOnScreen();
-				setLocation(xx1 - x1, yy1 - y1);
+				int dragPositionX = e.getXOnScreen();
+				int dragPositionY = e.getYOnScreen();
+				setLocation(dragPositionX - positionX, dragPositionY - positionY);
 			}
 		});
 		contentPane.add(panel2);
 		panel2.setLayout(null);
-
 		JLabel closeLabel = new JLabel("X");
 		closeLabel.setForeground(Color.WHITE);
 		closeLabel.addMouseListener(new MouseAdapter() {
@@ -192,36 +180,37 @@ public class AddQuestionView extends JFrame {
 				dispose();
 			}
 		});
-		
-		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth/24));
+
+		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth / 24));
 		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		closeLabel.setBounds(90*frameWidth/102, 0, 54, 43);
+		closeLabel.setBounds(90 * frameWidth / 102, 0, 54, 43);
 		panel2.add(closeLabel);
 
 		JLabel pquizTitleLabel = new JLabel("  Quiz Desktop Application - Professor Window");
-		pquizTitleLabel.setFont(new Font("Monospaced", Font.BOLD,frameWidth/50));
+		pquizTitleLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 50));
 		pquizTitleLabel.setForeground(Color.WHITE);
-		pquizTitleLabel.setBounds(0, 0, (8*frameWidth/7), frameHeight/20);
+		pquizTitleLabel.setBounds(0, 0, (8 * frameWidth / 7), frameHeight / 20);
 		panel2.add(pquizTitleLabel);
 	}
 
+	/*
+	 * This method is used to fetch the question details entered by the professor
+	 * and adds them to the Question list.
+	 */
 	public Question fetchQuestionDetails() {
-		// fetching the question details
-		String strQuestionField = questionField.getText();		
+		String strQuestionField = questionField.getText();
 		String strAnswerField = answerField.getText();
 		setQuesTitle(strQuestionField);
-		
+
 		List<String> optionsList = new ArrayList<String>();
-		
+
 		for (int i = 0; i < 4; i++) {
 			optionsList.add(optionField[i].getText());
 		}
-
 		Question newQues = new Question(strQuestionField, optionsList, strAnswerField);
 		return newQues;
-		
 	}
-	
+
 	public String getQuesTitle() {
 		return quesTitle;
 	}
@@ -229,6 +218,4 @@ public class AddQuestionView extends JFrame {
 	public void setQuesTitle(String quesTitle) {
 		this.quesTitle = quesTitle;
 	}
-
-	
 }
