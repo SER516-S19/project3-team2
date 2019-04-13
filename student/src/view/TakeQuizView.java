@@ -54,14 +54,14 @@ public class TakeQuizView extends JFrame {
 		contentPane.add(lblQuizName);
 
 		questionField.setFont(new Font("Courier", Font.BOLD, frameWidth/28));
-		questionField.setBounds(frameWidth/6, (10*frameHeight)/34, (3*frameWidth)/5, frameHeight/5);
+		questionField.setBounds(frameWidth/6, (10*frameHeight)/57, (3*frameWidth)/5, frameHeight/3);
 		questionField.setForeground(Color.WHITE);
 		contentPane.add(questionField);
 
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JRadioButton();
-			optionField[i].setBounds(frameWidth/6, (10*frameHeight)/18 + (i * 60), (3*frameWidth)/5, frameHeight/25);
-			optionField[i].setFont(new Font("Courier", Font.PLAIN, 24));
+			optionField[i].setBounds(frameWidth/6, (10*frameHeight)/18 + (i * (frameWidth / 15)), (3*frameWidth)/5, frameHeight/25);
+			optionField[i].setFont(new Font("Courier", Font.PLAIN, frameWidth / 38));
 			buttonGroup.add(optionField[i]);
 			contentPane.add(optionField[i]);
 		}
@@ -77,14 +77,14 @@ public class TakeQuizView extends JFrame {
 
 		btnGiveUp.setBounds(frameWidth/6, (9*frameHeight)/10, (10*frameWidth)/35,frameHeight/20);
 		btnGiveUp.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnGiveUp.setFont(new Font("Monospaced", Font.BOLD, 24));
+		btnGiveUp.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnGiveUp.setForeground(new Color(255, 255, 255));
 		btnGiveUp.setBackground(new Color(0, 181, 204));
 		contentPane.add(btnGiveUp);
 		questionField.setEnabled(false);
 		btnNext.setBounds((20*frameWidth)/41, (9*frameHeight)/10, (10*frameWidth)/35,frameHeight/20);
 		btnNext.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btnNext.setFont(new Font("Monospaced", Font.BOLD, 24));
+		btnNext.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnNext.setForeground(new Color(255, 255, 255));
 		btnNext.setBackground(new Color(0, 181, 204));
 		contentPane.add(btnNext);

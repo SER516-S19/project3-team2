@@ -49,7 +49,7 @@ public class StudentMainWindow extends JFrame {
 
 		quizList.setVisible(true);
 		contentPane.add(quizList);
-		quizList.setFont(new Font("Monospaced", Font.BOLD, 30));
+		quizList.setFont(new Font("Monospaced", Font.BOLD, frameWidth/28));
 		quizList.setBounds(frameWidth/5, (7*frameHeight)/12, (10*frameWidth)/19,frameHeight/14);
 		quizList.setForeground(new Color(255, 255, 255));
 		quizList.setBackground(new Color(0, 181, 204));
@@ -57,7 +57,7 @@ public class StudentMainWindow extends JFrame {
 				new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		okBtn.setEnabled(false);
 		contentPane.add(okBtn);
-		okBtn.setFont(new Font("Monospaced", Font.BOLD, 24));
+		okBtn.setFont(new Font("Monospaced", Font.BOLD, frameWidth/23));
 		okBtn.setBounds(frameWidth/5, (7*frameHeight)/10, (10*frameWidth)/19, frameHeight/14);
 		okBtn.setForeground(Color.WHITE);
 		okBtn.setBackground(new Color(0, 181, 204));
