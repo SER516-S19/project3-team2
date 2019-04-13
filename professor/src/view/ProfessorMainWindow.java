@@ -36,7 +36,7 @@ public class ProfessorMainWindow extends JFrame {
 	private JPanel contentPane;
 	int positionX, positionY;
 	int screenHeight, screenWidth;
-	int frameHeight, frameWidth;
+	int frameHeight, frameWidth;	
 	private JTextField quizName;
 
 	public ProfessorMainWindow() {
@@ -66,11 +66,10 @@ public class ProfessorMainWindow extends JFrame {
 				String quizNameText = quizName.getText();
 				if (!quizNameText.isEmpty()) {
 					new ProfessorQuestionView(quizNameText).setVisible(true);
-					dispose();			
-				}else {
-					JOptionPane.showMessageDialog(null,
-							"Please provide a Quiz Title",
-							"Validation", JOptionPane.ERROR_MESSAGE);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "Please provide a Quiz Title", "Validation",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -140,8 +139,5 @@ public class ProfessorMainWindow extends JFrame {
 		quizName.setBounds(frameWidth / 4, (9 * frameHeight) / 19, (8 * frameWidth / 18), frameHeight / 19);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
-
 	}
-
-
 }

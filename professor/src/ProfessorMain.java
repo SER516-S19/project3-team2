@@ -3,10 +3,15 @@ package src;
 import src.view.ProfessorMainWindow;
 import java.awt.*;
 
+/**
+ * ProfessorMain is used to launch the Professor Quiz application.
+ * 
+ * @author Yuti Desai
+ * @version (1.0)
+ * @param (Question)
+ */
 public class ProfessorMain {
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
