@@ -22,12 +22,20 @@ public class TakeQuizView extends JFrame {
 	private JRadioButton[] optionField = new JRadioButton[4];
 	JButton btnNext = new JButton("Next");
 	public ButtonGroup buttonGroup = new ButtonGroup();
+	int screenHeight, screenWidth;
+	int frameHeight, frameWidth;
 
 	public TakeQuizView() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		screenHeight = screenSize.height;
+		screenWidth = screenSize.width;
+		frameHeight = (7 * screenWidth) / 15;		
+		frameWidth = (8 * screenHeight) / 9;
+		setSize(frameHeight, frameWidth);
 		JPanel contentPane;
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(490, 50, 900, 950);
+		setBounds(500, 50, frameHeight, frameWidth);
 		setUndecorated(true);
 		setResizable(false);
 		setTitle("Student Window For Quiz Application");
@@ -42,18 +50,18 @@ public class TakeQuizView extends JFrame {
 		contentPane.add(layeredPane);
 
 		lblQuizName.setFont(new Font("Courier", Font.BOLD, 50));
-		lblQuizName.setBounds(325, 150, 600, 80);
+		lblQuizName.setBounds(frameWidth/3, frameHeight/5, 600, 80);
 		lblQuizName.setForeground(Color.WHITE);
 		contentPane.add(lblQuizName);
 
 		questionField.setFont(new Font("Courier", Font.BOLD, 30));
-		questionField.setBounds(250, 315, 300, 50);
+		questionField.setBounds(frameWidth/5, frameHeight/3, 700, 80);
 		questionField.setForeground(Color.WHITE);
 		contentPane.add(questionField);
 
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JRadioButton();
-			optionField[i].setBounds(275, 380 + i * 30, 146, 26);
+			optionField[i].setBounds(frameWidth/5, (2*frameHeight)/5 + i * 30, 146, 26);
 			buttonGroup.add(optionField[i]);
 			contentPane.add(optionField[i]);
 		}
@@ -67,14 +75,14 @@ public class TakeQuizView extends JFrame {
 			}
 		});
 
-		btnGiveUp.setBounds(225, 600, 200, 49);
+		btnGiveUp.setBounds(frameWidth/7, (9*frameHeight)/14, 250, 49);
 		btnGiveUp.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnGiveUp.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnGiveUp.setForeground(new Color(255, 255, 255));
 		btnGiveUp.setBackground(new Color(0, 181, 204));
 		contentPane.add(btnGiveUp);
 		questionField.setEnabled(false);
-		btnNext.setBounds(500, 600, 200, 49);
+		btnNext.setBounds(frameWidth/2, (9*frameHeight)/14, 250, 49);
 		btnNext.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnNext.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnNext.setForeground(new Color(255, 255, 255));
@@ -114,13 +122,13 @@ public class TakeQuizView extends JFrame {
 		});
 		closeBtn.setFont(new Font("Tahoma", Font.BOLD, 30));
 		closeBtn.setHorizontalAlignment(SwingConstants.CENTER);
-		closeBtn.setBounds(846, 0, 54, 43);
+		closeBtn.setBounds(8*frameWidth/9, 0, 54, 43);
 		panel2.add(closeBtn);
 
 		JLabel header = new JLabel("  Quiz Desktop Application - Student Window");
 		header.setFont(new Font("Monospaced", Font.BOLD, 16));
 		header.setForeground(Color.WHITE);
-		header.setBounds(0, 0, 525, 43);
+		header.setBounds(0, 0, (8*frameWidth/7), frameHeight/20);
 		panel2.add(header);
 	}
 
