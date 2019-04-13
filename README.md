@@ -4,7 +4,7 @@ Our Project have two separate Java Desktop Applications -
 1. Professor Application creates a new json file to creating a quiz.
 2. Student Application allows the student to select and re-attempt the quiz until he/she answers the quiz completely correct. 
 
-Team Members:
+## Team Members:
 1. Aneesh Dalvi
 2. Palak Chugh
 3. Yuti Desai
@@ -16,8 +16,8 @@ Team Members:
 9. Manikanta 
 10. Surya
 
-How to run our Project? :
-For Windows / Mac commands to run our project
+##How to run our Project? 
+###For Windows / Mac commands to run our project
 1. java -jar Student.jar
 2. java -jar Professor.jar
 
