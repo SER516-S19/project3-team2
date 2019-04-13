@@ -15,4 +15,7 @@ public class ConstantTable {
 	public static String BLANK = "BLANK";
     public static String  NOT_FOUND = "Not Found";
 	public static String ADDED = "Added";
+	public static String EMPTY = "Empty";
+	public static String DELETED = "Deleted";
+	public static String CREATED = "Created";
 }

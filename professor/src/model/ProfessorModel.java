@@ -5,14 +5,23 @@
  */
 package src.model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import src.ConstantTable;
+import src.JsonUtils;
 import src.Question;
 
 public class ProfessorModel {
-	public void createQuiz() {
 
+	public String createQuiz(ArrayList<Question> questionList, String absolutePath) {
+		if (questionList != null && questionList.size() > 0) {
+			String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
+			JsonUtils.writeStringToFile(absolutePath, questionListString);
+			return ConstantTable.CREATED;
+		}
+		return ConstantTable.BLANK;
 	}
 
 	public String addQuestion(Question question) {
@@ -38,18 +47,26 @@ public class ProfessorModel {
 		return ConstantTable.ADDED;
 	}
 
-	public void deleteQuestion() {
-//		boolean deleteElementFound = false;
-//		addView.fetchQuestionDetails();
-//		if (questionList != null && questionList.size()>0) {
-//			Iterator<Question> iter = questionList.iterator();
-//
-//			while (iter.hasNext()) {
-//				Question question = iter.next();
-//				if (question.getTitle().equalsIgnoreCase(addView.getQuesTitle())) {
-//					iter.remove();
-//					deleteElementFound = true;
-//				}
-//			}
+	public String deleteQuestion(List<Question> questionList, String questionTitle) {
+		if (questionList != null && questionList.size() > 0) {
+			Iterator<Question> iter = questionList.iterator();
+			boolean deleteElementFound = false;
+			while (iter.hasNext()) {
+				Question question = iter.next();
+				if (question.getTitle().equalsIgnoreCase(questionTitle)) {
+					iter.remove();
+					deleteElementFound = true;
+					break;
+				}
+			}
+
+			if (!deleteElementFound) {
+				return ConstantTable.NOT_FOUND;
+			}
+
+		} else {
+			return ConstantTable.EMPTY;
+		}
+		return ConstantTable.DELETED;
 	}
 }
