@@ -1,9 +1,7 @@
-package src;
-
-import src.*;
-import src.view.*;
-import src.model.*;
-import src.controller.*;
+import utils.*;
+import student.view.*;
+import student.model.*;
+import student.controller.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;

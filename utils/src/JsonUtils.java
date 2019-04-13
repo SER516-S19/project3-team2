@@ -1,4 +1,4 @@
-package src;
+package utils;
 
 /**
  * This file contains 4 static function which facilitates quiz/questions creating process.

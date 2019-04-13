@@ -1,4 +1,4 @@
-package src.view;
+package student.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

@@ -1,6 +1,6 @@
-package src.view;
+package student.view;
 
-import src.model.*;
+import student.model.*;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;

@@ -1,6 +1,4 @@
-package src;
-
-import src.view.ProfessorMainWindow;
+import professor.view.ProfessorMainWindow;
 import java.awt.*;
 
 /**

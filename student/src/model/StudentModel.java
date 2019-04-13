@@ -1,6 +1,6 @@
-package src.model;
+package student.model;
 
-import src.*;
+import utils.*;
 import java.util.ArrayList;
 import java.io.*;
 

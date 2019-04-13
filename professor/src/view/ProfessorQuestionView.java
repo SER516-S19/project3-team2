@@ -1,4 +1,4 @@
-package src.view;
+package professor.view;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import javax.swing.border.BevelBorder;
 
-import src.controller.ProfessorController;
-import src.*;
+import professor.controller.ProfessorController;
+import utils.*;
 
 /**
  * ProfessorQuestionView displays the components of the question view of the
