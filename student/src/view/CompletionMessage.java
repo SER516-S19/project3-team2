@@ -23,7 +23,7 @@ public class CompletionMessage extends JFrame {
 	 */
 	public CompletionMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(25, 25, 1025, 500);
+		setBounds(250, 150, 400, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -32,11 +32,11 @@ public class CompletionMessage extends JFrame {
 	public void MessageDisplay(JButton completionButton) {
 		System.out.println("yo2");
 		contentPane.setVisible(true);
-		JLabel messageLabel = new JLabel("Congratulations your Quiz is completed");
-		messageLabel.setBounds(149, 86, 207, 52);
+		JLabel messageLabel = new JLabel("<html>Congratulations!!<br/> your quiz is completed</html>");
+		messageLabel.setBounds(149, 20, 207, 52);
 		contentPane.add(messageLabel);
 		
-		completionButton.setBounds(165, 176, 121, 23);
+		completionButton.setBounds(150, 100, 83, 23);
 		contentPane.add(completionButton);
 	}
 

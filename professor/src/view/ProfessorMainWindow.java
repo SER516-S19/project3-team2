@@ -40,7 +40,7 @@ public class ProfessorMainWindow extends JFrame {
 		System.out.println(screenHeight +","+screenWidth);
 		frameHeight = (7 * screenWidth) / 15;		
 		frameWidth = (8 * screenHeight) / 9;
-		setSize(1000, 1000);
+		setSize(frameHeight, frameWidth);
 		System.out.println(frameHeight +","+frameWidth);
 		setResizable(true);
 		contentPane = new JPanel();
@@ -54,7 +54,7 @@ public class ProfessorMainWindow extends JFrame {
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null), new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
-		createQuiz.setBounds(frameWidth/4, 510, 434, 216);
+		createQuiz.setBounds(frameWidth/4, (8*frameHeight)/14, (8*frameWidth/18), frameHeight/4);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddQuestionView(quizName.getText()).setVisible(true);
@@ -68,8 +68,8 @@ public class ProfessorMainWindow extends JFrame {
 		contentPane.add(createQuiz);
 		
 		JLabel welcomeLabel = new JLabel("Hello Professor!");
-		welcomeLabel.setBounds(frameWidth/8, 212, 672, 80);
-		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
+		welcomeLabel.setBounds(frameWidth/8, frameHeight/5, 672, 80);
+		welcomeLabel.setFont(new Font("Courier", Font.BOLD, frameWidth/14));
 	    welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
 		
@@ -108,26 +108,26 @@ public class ProfessorMainWindow extends JFrame {
 		});
 		
 		
-		closeLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth/24));
 		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		closeLabel.setBounds(846, 0, 54, 43);
+		closeLabel.setBounds(8*frameWidth/9, 0, 54, 43);
 		panel.add(closeLabel);
 		
 		JLabel windowLabel = new JLabel("  Quiz Desktop Application - Professor Window");
-		windowLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+		windowLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth/50));
 		windowLabel.setForeground(Color.WHITE);
-		windowLabel.setBounds(0, 0, 525, 43);
+		windowLabel.setBounds(0, 0, (8*frameWidth/7), frameHeight/20);
 		panel.add(windowLabel);
 		
 		JLabel quizNameLabel = new JLabel("To Create Quiz Enter Quiz Title");
-		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
+		quizNameLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth/31));
 		quizNameLabel.setForeground(Color.WHITE);
-		quizNameLabel.setBounds(frameWidth/6, 355, 563, 36);
+		quizNameLabel.setBounds(frameWidth/6, (11*frameHeight)/27, 563, 36);
 		contentPane.add(quizNameLabel);
 		
 		quizName = new JTextField();
 		quizName.setFont(new Font("Monospaced", Font.PLAIN, 24));
-		quizName.setBounds(frameWidth/4, 420, 434, 43);
+		quizName.setBounds(frameWidth/4, (9*frameHeight)/19, (8*frameWidth/18), frameHeight/19);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
 		
