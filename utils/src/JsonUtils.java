@@ -1,27 +1,10 @@
 package src;
 
-/*
- * PLEASE DO NOT MODIFY THIS FILE UNLESS YOU ASK MENG-ZE FIRST !!!!!!!!!!
- *
- * @author: Meng-Ze Chen
- * @description: 
+/**
  * This file contains 4 static function which facilitates quiz/questions creating process.
- * 
- * getStrFromFile(String absoluteFilepath):             READ String from file.
- * getQuestionsFromJsonString(String jsonString):       TRANSFER String into usable datastructure.
- * getQuestionsJsonString(ArrayList<Question> questions):    TRANSFER datastructure into Json formatted String.
- * writeStringToFile(String absoluteFilepath, String content): SAVE string to file.
- * 
- * 
- *  Sample Run: Replace the string in the first and second variable
+ *	@author: Meng-Ze Chen
+ *	@version: 1.0 
  *
- *  String readFilepath = "";
- *  String writeFilepath = "";
- *
- *  String jsonString = JsonUtils.getStringFromFile(readFilepath);
- *  ArrayList<Question> questions = JsonUtils.getQuestionsFromJsonString(jsonString);
- *  String jsonStringResult = JsonUtils.getJsonStringFromQuestions(questions);
- *  JsonUtils.writeStringToFile(writeFilepath, jsonStringResult);
 */
 
 import java.util.ArrayList;
@@ -41,6 +24,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
 
 public class JsonUtils {
+	
+	/**
+	 * TRANSFER String into usable datastructure.
+	 * @param absoluteFilepath
+	 * @return
+	 */
     public static String getStringFromFile(String absoluteFilepath) {
         String content = "";
 
@@ -53,7 +42,12 @@ public class JsonUtils {
 
         return content;
     }
-
+    
+    /**
+     * TRANSFER String into usable datastructure.
+     * @param jsonString
+     * @return ArrayList<Question>
+     */
     public static ArrayList<Question> getQuestionsFromJsonString(String jsonString) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonContentObject = new JsonObject();
@@ -91,6 +85,11 @@ public class JsonUtils {
         return null;
     }
 
+    /**
+     *  TRANSFER datastructure into Json formatted String.
+     * @param questions
+     * @return
+     */
     public static String getJsonStringFromQuestions(ArrayList<Question> questions) {
         JsonObject quizJsonObject = new JsonObject();
         JsonArray allQuestions = new JsonArray();
@@ -114,6 +113,11 @@ public class JsonUtils {
         return jsonString;
     }
 
+    /**
+     * SAVE string to file.
+     * @param absoluteFilepath
+     * @param content
+     */
     public static void writeStringToFile(String absoluteFilepath, String content) {
         FileWriter fileWriter;
         try {

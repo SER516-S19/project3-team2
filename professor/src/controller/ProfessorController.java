@@ -39,7 +39,6 @@ public class ProfessorController implements ActionListener {
 		ProfessorController.quizName = quizName;
 	}
 
-
 	public ProfessorController(ProfessorQuestionView addView, Question toBeAdded, String actionType,
 			ArrayList<Question> questionList) {
 		super();
@@ -49,6 +48,12 @@ public class ProfessorController implements ActionListener {
 		this.addView = addView;
 	}
 
+	/**
+	 * This method listens to the action performed by the components on UI. like
+	 * create quiz, add and delete questions
+	 * 
+	 * @param event 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		ProfessorModel model = new ProfessorModel();

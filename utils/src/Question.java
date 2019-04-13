@@ -5,9 +5,9 @@ import java.util.List;
  * 
  * Bean class for Question
  * @author leharbhatt
+ * @version 1.0
  *
  */
-
 public class Question {
 	private String title;
 	private List<String> options;

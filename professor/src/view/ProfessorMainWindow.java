@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
@@ -57,8 +58,15 @@ public class ProfessorMainWindow extends JFrame {
 		createQuiz.setBounds(frameWidth/4, (8*frameHeight)/14, (8*frameWidth/18), frameHeight/4);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ProfessorQuestionView(quizName.getText()).setVisible(true);
-				dispose();			
+				String quizNameText = quizName.getText();
+				if (!quizNameText.isEmpty()) {
+					new ProfessorQuestionView(quizNameText).setVisible(true);
+					dispose();			
+				}else {
+					JOptionPane.showMessageDialog(null,
+							"Please provide a Quiz Title",
+							"Validation", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		contentPane.setLayout(null);
@@ -130,6 +138,7 @@ public class ProfessorMainWindow extends JFrame {
 		quizName.setBounds(frameWidth/4, (9*frameHeight)/19, (8*frameWidth/18), frameHeight/19);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
+		
 		
 	}	
 }
