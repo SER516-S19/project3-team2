@@ -6,12 +6,12 @@ Our Project has two separate Java Desktop Applications -
 
 ## Team Members:
 1. Aneesh Dalvi
-2. Palak Chugh
+2. Palak Chugh (Product Owner)
 3. Yuti Desai
 4. Vaibhav Bhasin
 5. Sakshi Chaudhary 
 6. Meng-Ze Chen
-7. Leher Bhatt
+7. Leher Bhatt (Scrum Master)
 8. Subhradeep Biswas
 9. Manikanta 
 10. Surya
