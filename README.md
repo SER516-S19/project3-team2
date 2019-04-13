@@ -17,7 +17,9 @@ Our Project have two separate Java Desktop Applications -
 10. Surya
 
 ##How to run our Project? 
-###For Windows / Mac commands to run our project
+
+##For Windows / Mac commands to run our project
+
 1. java -jar Student.jar
 2. java -jar Professor.jar
 
