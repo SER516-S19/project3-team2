@@ -90,8 +90,14 @@ public class ProfessorController implements ActionListener {
 						iter.remove();
 						deleteElementFound = true;
 					}
-				}	
-				if(!deleteElementFound) {
+				}
+				
+				if(addView.getQuesTitle().isEmpty()){
+					JOptionPane.showMessageDialog(null, "The question title cannot be blank",
+							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+				if(!deleteElementFound && !addView.getQuesTitle().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You are deleting a question which does not exist",
 							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 				}
