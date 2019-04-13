@@ -27,10 +27,11 @@ public class ProfessorController implements ActionListener {
 	private AddQuestionView addView;
 	private Question newQues;
 	
-	public ProfessorController(String actionType, ArrayList<Question> questionList, String quizName){
+	public ProfessorController(String actionType, ArrayList<Question> questionList, String quizName,AddQuestionView addView ){
 		super();
 		this.actionType = actionType;
 		this.questionList = questionList;
+		this.addView = addView;
 		ProfessorController.quizName = quizName;
 	}
 	
@@ -68,6 +69,7 @@ public class ProfessorController implements ActionListener {
 				JsonUtils.writeStringToFile(absolutePath, questionListString);
 				JOptionPane.showMessageDialog(null, "Quiz successfully created at " + absolutePath,
 						"Validation", JOptionPane.INFORMATION_MESSAGE);
+				addView.dispose();
 			}else {
 				JOptionPane.showMessageDialog(null, "There is no questions added to quiz. Please add some question before creating a quiz",
 						"Validation", JOptionPane.ERROR_MESSAGE);

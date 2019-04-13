@@ -157,7 +157,7 @@ public class AddQuestionView extends JFrame {
 		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
 		btnCreateQuizAnd.setBounds((2*frameWidth/14), 807, 620, 49);
 
-		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList,quizName));
+		btnCreateQuizAnd.addActionListener(new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList,quizName, this));
 		btnCreateQuizAnd.setForeground(Color.WHITE);
 		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, 24));
 		btnCreateQuizAnd.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
