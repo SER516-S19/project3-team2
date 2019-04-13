@@ -57,7 +57,7 @@ public class ProfessorMainWindow extends JFrame {
 		createQuiz.setBounds(frameWidth/4, (8*frameHeight)/14, (8*frameWidth/18), frameHeight/4);
 		createQuiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddQuestionView(quizName.getText()).setVisible(true);
+				new ProfessorQuestionView(quizName.getText()).setVisible(true);
 				dispose();			
 			}
 		});

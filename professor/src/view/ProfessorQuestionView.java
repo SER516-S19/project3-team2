@@ -13,11 +13,11 @@ import src.controller.ProfessorController;
 import src.*;
 
 @SuppressWarnings("serial")
-public class AddQuestionView extends JFrame {
+public class ProfessorQuestionView extends JFrame {
 
-	public AddQuestionView(String quizName) throws HeadlessException {
+	public ProfessorQuestionView(String quizName) throws HeadlessException {
 		this();
-		AddQuestionView.quizName = quizName;
+		ProfessorQuestionView.quizName = quizName;
 	}
 
 	protected static final String MouseEvent = null;
@@ -42,7 +42,7 @@ public class AddQuestionView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddQuestionView frame = new AddQuestionView();
+					ProfessorQuestionView frame = new ProfessorQuestionView();
 					frame.setVisible(true);
 					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 					int screenHeight = screenSize.height;
@@ -58,7 +58,7 @@ public class AddQuestionView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddQuestionView() {
+	public ProfessorQuestionView() {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
