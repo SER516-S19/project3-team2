@@ -1,4 +1,4 @@
-# Project3-team2
+# Project3-Team2
 
 Our Project has two separate Java Desktop Applications -
 1. Professor Application creates a new json file to creating a quiz.
@@ -18,9 +18,9 @@ Our Project has two separate Java Desktop Applications -
 
 ## How to run our Project?
 
-##Points to Note :
+### Points to Note :
 
-###Professor Application
+### Professor Application
  
 1. If you create an already existing quiz it will rewrite the contents of the file.
  
