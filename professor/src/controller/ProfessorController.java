@@ -36,15 +36,6 @@ public class ProfessorController implements ActionListener {
 		ProfessorController.quizName = quizName;
 	}
 
-	public ProfessorController(AddQuestionView addView, String toBeDeleted, String actionType,
-			ArrayList<Question> questionList) {
-		super();
-		this.actionType = actionType;
-		this.questionList = questionList;
-		this.quesTitle = toBeDeleted;
-		this.addView = addView;
-	}
-
 	public ProfessorController(AddQuestionView addView, Question toBeAdded, String actionType,
 			ArrayList<Question> questionList) {
 		super();
@@ -79,7 +70,6 @@ public class ProfessorController implements ActionListener {
 						"Validation", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)) {
-
 			addView.fetchQuestionDetails();
 			String deleteStatus = model.deleteQuestion(questionList, addView.getQuesTitle());
 			if (ConstantTable.NOT_FOUND.equals(deleteStatus)) {
