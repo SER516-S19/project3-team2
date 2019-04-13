@@ -8,8 +8,8 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import jdk.internal.org.objectweb.asm.commons.AdviceAdapter;
 import src.*;
+import src.model.ProfessorModel;
 import src.view.AddQuestionView;
 
 /**
@@ -23,7 +23,7 @@ public class ProfessorController implements ActionListener {
 	private ArrayList<Question> questionList;
 	private static final String quizPath = System.getProperty("user.home")+"/quiz/";
 	private static String quizName;
-	private static String quesTitle;
+	private String quesTitle;
 	private AddQuestionView addView;
 	private Question newQues;
 	
@@ -53,6 +53,7 @@ public class ProfessorController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		ProfessorModel model = new ProfessorModel();
 		File directory = new File(quizPath);
 	    boolean exists = directory.exists();
 	    String absolutePath;
@@ -73,10 +74,7 @@ public class ProfessorController implements ActionListener {
 			}else {
 				JOptionPane.showMessageDialog(null, "There is no questions added to quiz. Please add some question before creating a quiz",
 						"Validation", JOptionPane.ERROR_MESSAGE);
-			}
-			
-			
-			
+			}	
 		}else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)){
 			
 			boolean deleteElementFound = false;
@@ -90,14 +88,8 @@ public class ProfessorController implements ActionListener {
 						iter.remove();
 						deleteElementFound = true;
 					}
-				}
-				
-				if(addView.getQuesTitle().isEmpty()){
-					JOptionPane.showMessageDialog(null, "The question title cannot be blank",
-							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-					
-				}
-				if(!deleteElementFound && !addView.getQuesTitle().isEmpty()) {
+				}	
+				if(!deleteElementFound) {
 					JOptionPane.showMessageDialog(null, "You are deleting a question which does not exist",
 							"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -107,83 +99,33 @@ public class ProfessorController implements ActionListener {
 						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-			// for testing
-			for(Question q : questionList) {
-				System.out.println(q.getTitle());
-			}
-			
 			addView.dispose();
 			new AddQuestionView().setVisible(true);
 			
 			if(deleteElementFound) {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!",
 						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
-	
 			}
 			
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
 			
 			newQues = addView.fetchQuestionDetails();
-			
-			// need to check validation here..
-			boolean emptyTitleFound = false;
-			boolean emptyAnswerFound = false;
-			boolean allDetailsFound = true;
-			
-			
-			if (newQues.getTitle().isEmpty()) {
-	            emptyTitleFound = true;
-	            allDetailsFound = false;
-	        }else if (newQues.getCorrectAnswer().isEmpty()) {
-	        	emptyAnswerFound = true;
-	        	allDetailsFound = false;
-	        }
-			
-			boolean emptyOptionFound = false; 
-			for (String option : newQues.getOptions()) {
-				if (option.isEmpty()) {
-	                emptyOptionFound = true;
-	                allDetailsFound = false;
-	            }
+			String addStatus = model.addQuestion(newQues);	
+			if (ConstantTable.BLANK.equals(addStatus)) {
+				JOptionPane.showMessageDialog(null, "Please fill all the details to add a question.",
+                        "Validation", JOptionPane.ERROR_MESSAGE);
 			}
-			
-			boolean correctAnsMatched = false;
-			for(String option : newQues.getOptions()) {
-				if (newQues.getCorrectAnswer().equalsIgnoreCase(option)) {
-					correctAnsMatched = true;
-				}
-			}
-			
-			
-			if (emptyOptionFound) {
-				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
-                        "Validation", JOptionPane.ERROR_MESSAGE);
-			}else if (emptyTitleFound) {
-				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
-                        "Validation", JOptionPane.ERROR_MESSAGE);
-			}else if (emptyAnswerFound) {
-				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
-                        "Validation", JOptionPane.ERROR_MESSAGE);
-			}else if (!correctAnsMatched) {
+			else if (ConstantTable.NOT_FOUND.equals(addStatus)) {
 				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options",
                         "Validation", JOptionPane.ERROR_MESSAGE);
-			}
-			
-			
-			if (allDetailsFound && correctAnsMatched) {
+			}else {
 				questionList.add(newQues);
 				addView.dispose();
 				new AddQuestionView().setVisible(true);
 				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
 						JOptionPane.INFORMATION_MESSAGE);
 		
-			}
-
-			
+			}	
 		}
 	}
-	
-
-	
-	
 }
