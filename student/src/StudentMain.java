@@ -19,7 +19,6 @@ public class StudentMain {
                 try {
                     StudentMainWindow mainWindow = new StudentMainWindow();
                     mainWindow.setVisible(true);
-                    mainWindow.getContentPane().setBackground(new Color(255, 255, 204));
                     TakeQuizView theView = new TakeQuizView();
                     StudentModel theModel = new StudentModel();
             		CompletionMessage theMessage = new CompletionMessage();
