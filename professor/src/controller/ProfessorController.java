@@ -88,7 +88,11 @@ public class ProfessorController implements ActionListener {
 			} else if (ConstantTable.EMPTY.equals(deleteStatus)) {
 				JOptionPane.showMessageDialog(null, "There are no questions to delete.", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
-			} else {
+			}else if(ConstantTable.BLANK.equals(deleteStatus)) {
+				JOptionPane.showMessageDialog(null, "The question title cannot be blank",
+						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
+			} 
+			else {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}

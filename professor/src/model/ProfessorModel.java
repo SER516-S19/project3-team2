@@ -48,6 +48,8 @@ public class ProfessorModel {
 	}
 
 	public String deleteQuestion(List<Question> questionList, String questionTitle) {
+		if(questionTitle.isEmpty())
+			return ConstantTable.BLANK;
 		if (questionList != null && questionList.size() > 0) {
 			Iterator<Question> iter = questionList.iterator();
 			boolean deleteElementFound = false;
@@ -59,7 +61,6 @@ public class ProfessorModel {
 					break;
 				}
 			}
-
 			if (!deleteElementFound) {
 				return ConstantTable.NOT_FOUND;
 			}
