@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * application.It captures the quiz title entered by the professor and passes
  * the control to ProfessorController for further action.
  * 
- * @author Palak Chugh,Yuti Desai
+ * @author Yuti Desai, Palak Chugh
  * @version (1.0)
  * @param (Question)
  */

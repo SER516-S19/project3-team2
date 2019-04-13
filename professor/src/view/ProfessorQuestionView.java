@@ -18,7 +18,7 @@ import src.*;
  * by the professor and passes the control to ProfessorController for further
  * action.
  * 
- * @author Palak Chugh,Yuti Desai
+ * @author Yuti Desai, Palak Chugh
  * @version (1.0)
  * @param (Question)
  */
@@ -76,7 +76,7 @@ public class ProfessorQuestionView extends JFrame {
 		optionField = new JTextField[4];
 		for (int i = 0; i < 4; i++) {
 			optionField[i] = new JTextField();
-			optionField[i].setBounds((2 * frameWidth / 5), (frameHeight) / 3 + (i * 81), (11 * frameWidth) / 28,
+			optionField[i].setBounds((2 * frameWidth / 5), (frameHeight) / 3 + (i * frameHeight/11), (11 * frameWidth) / 28,
 					frameHeight / 22);
 			optionField[i].setFont(new Font("Monospaced", Font.PLAIN, frameWidth / 40));
 			contentPane.add(optionField[i]);
@@ -125,7 +125,7 @@ public class ProfessorQuestionView extends JFrame {
 		JLabel[] answerChoice = new JLabel[4];
 		for (int i = 0; i < 4; i++) {
 			answerChoice[i] = new JLabel("Option" + (i + 1));
-			answerChoice[i].setBounds((2 * frameWidth / 14), (frameHeight) / 3 + (i * 81), (11 * frameWidth) / 28,
+			answerChoice[i].setBounds((2 * frameWidth / 14), (frameHeight) / 3 + (i * frameHeight/11), (11 * frameWidth) / 28,
 					frameHeight / 22);
 			answerChoice[i].setForeground(new Color(255, 255, 255));
 			answerChoice[i].setFont(new Font("Monospaced", Font.BOLD, frameWidth / 35));
