@@ -53,8 +53,8 @@ public class TakeQuizView extends JFrame {
 		lblQuizName.setForeground(Color.WHITE);
 		contentPane.add(lblQuizName);
 
-		questionField.setFont(new Font("Courier", Font.BOLD, frameWidth/28));
-		questionField.setBounds(frameWidth/6, (10*frameHeight)/57, (3*frameWidth)/5, frameHeight/3);
+		questionField.setFont(new Font("Courier", Font.BOLD, frameWidth/30));
+		questionField.setBounds(frameWidth/6, (10*frameHeight)/57, (3*frameWidth)/4, frameHeight/2);
 		questionField.setForeground(Color.WHITE);
 		contentPane.add(questionField);
 

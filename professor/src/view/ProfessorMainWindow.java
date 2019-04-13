@@ -46,7 +46,7 @@ public class ProfessorMainWindow extends JFrame {
 		screenWidth = screenSize.width;
 		frameHeight = (7 * screenWidth) / 15;
 		frameWidth = (8 * screenHeight) / 9;
-		setSize(frameHeight, frameWidth);
+		setBounds(450,20,frameHeight, frameWidth);
 		setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setEnabled(false);

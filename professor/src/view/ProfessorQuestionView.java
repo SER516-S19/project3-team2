@@ -50,7 +50,7 @@ public class ProfessorQuestionView extends JFrame {
 		screenWidth = screenSize.width;
 		frameHeight = (7 * screenWidth) / 15;
 		frameWidth = (8 * screenHeight) / 9;
-		setSize(frameHeight, frameWidth);
+		setBounds(450,20,frameHeight, frameWidth);
 		getContentPane().setLayout(null);
 		setResizable(false);
 		setVisible(true);

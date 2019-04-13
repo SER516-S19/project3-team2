@@ -21,7 +21,7 @@ public class CompletionMessage extends JFrame {
 
 	public CompletionMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 150, 400, 200);
+		setBounds(550, 450, 400, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
