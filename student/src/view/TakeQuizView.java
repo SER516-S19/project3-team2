@@ -40,7 +40,6 @@ public class TakeQuizView extends JFrame {
         setUndecorated(true);
         setResizable(false);
         setTitle("Student Window For Quiz Application");
-        setVisible(true);
 
         contentPane = new JPanel();
         contentPane.setBackground(new Color(70, 130, 180));
