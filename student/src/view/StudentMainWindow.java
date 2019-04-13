@@ -24,12 +24,20 @@ public class StudentMainWindow extends JFrame {
 	private JComboBox<String> quizList = new JComboBox<String>();
 	private JButton okBtn = new JButton("OK");
 	int x, y;
+	int screenHeight, screenWidth;
+	int frameHeight, frameWidth;
 
 	public StudentMainWindow() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		screenHeight = screenSize.height;
+		screenWidth = screenSize.width;
+		frameHeight = (7 * screenWidth) / 15;		
+		frameWidth = (8 * screenHeight) / 9;
+		setSize(frameHeight, frameWidth);
 		JPanel contentPane = new JPanel();
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(490, 50, 900, 950);
+		setBounds(500, 50, frameHeight, frameWidth);
 		setTitle("Student Window For Quiz Application");
 		setResizable(false);
 		contentPane.setEnabled(false);
@@ -42,7 +50,7 @@ public class StudentMainWindow extends JFrame {
 		quizList.setVisible(true);
 		contentPane.add(quizList);
 		quizList.setFont(new Font("Monospaced", Font.BOLD, 30));
-		quizList.setBounds(238, 436, 305, 49);
+		quizList.setBounds(frameWidth/4, (7*frameHeight)/14, 305, 49);
 		quizList.setForeground(new Color(255, 255, 255));
 		quizList.setBackground(new Color(0, 181, 204));
 		quizList.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
@@ -50,7 +58,7 @@ public class StudentMainWindow extends JFrame {
 		okBtn.setEnabled(false);
 		contentPane.add(okBtn);
 		okBtn.setFont(new Font("Monospaced", Font.BOLD, 24));
-		okBtn.setBounds(238, 550, 305, 49);
+		okBtn.setBounds(frameWidth/4, (9*frameHeight)/14, 305, 49);
 		okBtn.setForeground(Color.WHITE);
 		okBtn.setBackground(new Color(0, 181, 204));
 		okBtn.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
@@ -59,8 +67,8 @@ public class StudentMainWindow extends JFrame {
 		contentPane.add(quizList);
 
 		JLabel welcomeLabel = new JLabel("Hello Student!");
-		welcomeLabel.setBounds(150, 239, 672, 80);
-		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 70));
+		welcomeLabel.setBounds(frameWidth/5, (4*frameHeight)/14, 700, 49);
+		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 50));
 		welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
 		JPanel panel = new JPanel();
@@ -98,13 +106,13 @@ public class StudentMainWindow extends JFrame {
 		});
 		closeBtn.setFont(new Font("Tahoma", Font.BOLD, 30));
 		closeBtn.setHorizontalAlignment(SwingConstants.CENTER);
-		closeBtn.setBounds(846, 0, 54, 43);
+		closeBtn.setBounds(8*frameWidth/9, 0, 54, 43);
 		panel.add(closeBtn);
 
 		JLabel header = new JLabel("  Quiz Desktop Application - Student Window");
 		header.setFont(new Font("Monospaced", Font.BOLD, 16));
 		header.setForeground(Color.WHITE);
-		header.setBounds(0, 0, 525, 43);
+		header.setBounds(0, 0, (8*frameWidth/7), frameHeight/20);
 		panel.add(header);
 	}
 

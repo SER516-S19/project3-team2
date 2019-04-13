@@ -110,13 +110,13 @@ public class ProfessorMainWindow extends JFrame {
 		
 		closeLabel.setFont(new Font("Tahoma", Font.BOLD, frameWidth/24));
 		closeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		closeLabel.setBounds(8*frameWidth/9, 0, 54, 43);
+		closeLabel.setBounds(90*frameWidth/102, 0, 54, 43);
 		panel.add(closeLabel);
 		
 		JLabel windowLabel = new JLabel("  Quiz Desktop Application - Professor Window");
 		windowLabel.setFont(new Font("Monospaced", Font.BOLD, frameWidth/50));
 		windowLabel.setForeground(Color.WHITE);
-		windowLabel.setBounds(0, 0, (8*frameWidth/7), frameHeight/20);
+		windowLabel.setBounds(0, 0,(2*frameWidth)/3, frameHeight/20);
 		panel.add(windowLabel);
 		
 		JLabel quizNameLabel = new JLabel("To Create Quiz Enter Quiz Title");
