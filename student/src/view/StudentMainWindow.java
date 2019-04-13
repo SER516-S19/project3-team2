@@ -23,6 +23,7 @@ public class StudentMainWindow extends JFrame {
 	private String[] choices = new String[100];
 	private JComboBox<String> quizList = new JComboBox<String>();
 	private JButton okBtn = new JButton("OK");
+	private JLabel arrow = new JLabel("kjghkug");
 	int x, y;
 	int screenHeight, screenWidth;
 	int frameHeight, frameWidth;
