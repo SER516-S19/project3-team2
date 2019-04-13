@@ -162,7 +162,7 @@ public class ProfessorController implements ActionListener {
 			}
 			
 			
-			if (allDetailsFound) {
+			if (allDetailsFound && correctAnsMatched) {
 				questionList.add(newQues);
 				addView.dispose();
 				new AddQuestionView().setVisible(true);
