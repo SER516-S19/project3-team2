@@ -36,15 +36,6 @@ public class ProfessorController implements ActionListener {
 		ProfessorController.quizName = quizName;
 	}
 
-	public ProfessorController(AddQuestionView addView, String toBeDeleted, String actionType,
-			ArrayList<Question> questionList) {
-		super();
-		this.actionType = actionType;
-		this.questionList = questionList;
-		this.quesTitle = toBeDeleted;
-		this.addView = addView;
-	}
-
 	public ProfessorController(AddQuestionView addView, Question toBeAdded, String actionType,
 			ArrayList<Question> questionList) {
 		super();
@@ -79,7 +70,6 @@ public class ProfessorController implements ActionListener {
 						"Validation", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)) {
-
 			addView.fetchQuestionDetails();
 			String deleteStatus = model.deleteQuestion(questionList, addView.getQuesTitle());
 			if (ConstantTable.NOT_FOUND.equals(deleteStatus)) {
@@ -88,7 +78,11 @@ public class ProfessorController implements ActionListener {
 			} else if (ConstantTable.EMPTY.equals(deleteStatus)) {
 				JOptionPane.showMessageDialog(null, "There are no questions to delete.", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
-			} else {
+			}else if(ConstantTable.BLANK.equals(deleteStatus)) {
+				JOptionPane.showMessageDialog(null, "The question title cannot be blank",
+						"Delete Message", JOptionPane.INFORMATION_MESSAGE);
+			} 
+			else {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
