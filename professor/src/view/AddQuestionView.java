@@ -125,7 +125,7 @@ public class AddQuestionView extends JFrame {
 		btnDeleteQuestions.setBackground(new Color(0, 181, 204));
 		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
 
-		btnDeleteQuestions.addActionListener(new ProfessorController(this, getQuesTitle(), ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
+		btnDeleteQuestions.addActionListener(new ProfessorController(this, newQuestion, ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
 		contentPane.add(btnDeleteQuestions);
 
 		JLabel lblQuestion = new JLabel("Question");

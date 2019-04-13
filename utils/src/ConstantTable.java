@@ -1,7 +1,7 @@
 package src;
 
 public class ConstantTable {
-    public static String QUIZ_IDENTIFIER = "questions";
+	public static String QUIZ_IDENTIFIER = "questions";
     public static String QUESTION_TITLE = "title";
     public static String QUESTION_OPTIONS = "options";
     public static String QUESTION_CORRECT_ANSWER = "correctAnswer";
@@ -11,4 +11,11 @@ public class ConstantTable {
 	public static String CONTROLER_IDENTIFIER_ADD_QUESTION = "Add";
 	
 	public static String JSON_EXTENSION = ".json";
+	
+	public static String BLANK = "BLANK";
+    public static String  NOT_FOUND = "Not Found";
+	public static String ADDED = "Added";
+	public static String EMPTY = "Empty";
+	public static String DELETED = "Deleted";
+	public static String CREATED = "Created";
 }

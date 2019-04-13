@@ -2,7 +2,6 @@ package src.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,16 +10,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CompletionMessage extends JFrame {
+/**
+ * Create the Message frame.
+ * 
+ * @return
+ */
 
+public class CompletionMessage extends JFrame {
 	private JPanel contentPane;
 
-
-
-	/**
-	 * Create the Message frame.
-	 * @return 
-	 */
 	public CompletionMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(250, 150, 400, 200);
@@ -29,15 +27,13 @@ public class CompletionMessage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	}
+
 	public void MessageDisplay(JButton completionButton) {
-		System.out.println("yo2");
 		contentPane.setVisible(true);
 		JLabel messageLabel = new JLabel("<html>Congratulations!!<br/> your quiz is completed</html>");
 		messageLabel.setBounds(149, 20, 207, 52);
 		contentPane.add(messageLabel);
-		
 		completionButton.setBounds(150, 100, 83, 23);
 		contentPane.add(completionButton);
 	}
-
 }
