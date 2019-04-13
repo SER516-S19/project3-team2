@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
+import jdk.internal.org.objectweb.asm.commons.AdviceAdapter;
 import src.*;
 import src.view.AddQuestionView;
 
@@ -65,6 +66,8 @@ public class ProfessorController implements ActionListener {
 			if (questionList != null && questionList.size() > 0) {
 				String questionListString = JsonUtils.getJsonStringFromQuestions(questionList);
 				JsonUtils.writeStringToFile(absolutePath, questionListString);
+				JOptionPane.showMessageDialog(null, "Quiz successfully created at " + absolutePath,
+						"Validation", JOptionPane.INFORMATION_MESSAGE);
 			}else {
 				JOptionPane.showMessageDialog(null, "There is no questions added to quiz. Please add some question before creating a quiz",
 						"Validation", JOptionPane.ERROR_MESSAGE);
@@ -75,7 +78,7 @@ public class ProfessorController implements ActionListener {
 		}else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)){
 			
 			boolean deleteElementFound = false;
-			
+			addView.fetchQuestionDetails();
 			if (questionList != null && questionList.size()>0) {
 				Iterator<Question> iter = questionList.iterator();
 
@@ -147,23 +150,15 @@ public class ProfessorController implements ActionListener {
 			if (emptyOptionFound) {
 				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
                         "Validation", JOptionPane.ERROR_MESSAGE);
-                addView.dispose();
-                new AddQuestionView();
 			}else if (emptyTitleFound) {
 				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
                         "Validation", JOptionPane.ERROR_MESSAGE);
-                addView.dispose();
-                new AddQuestionView();
 			}else if (emptyAnswerFound) {
 				JOptionPane.showMessageDialog(null, "You need to fill out all the details to add a question",
                         "Validation", JOptionPane.ERROR_MESSAGE);
-                addView.dispose();
-                new AddQuestionView();
 			}else if (!correctAnsMatched) {
 				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options",
                         "Validation", JOptionPane.ERROR_MESSAGE);
-                addView.dispose();
-                new AddQuestionView();
 			}
 			
 			
