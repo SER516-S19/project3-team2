@@ -32,12 +32,13 @@ import javax.swing.JTextField;
  * @param (Question)
  */
 public class ProfessorMainWindow extends JFrame {
-	private Image image;
 	private JPanel contentPane;
-	int positionX, positionY;
-	int screenHeight, screenWidth;
-	int frameHeight, frameWidth;	
+	private int positionX, positionY;
+	private int screenHeight, screenWidth;
+	private int frameHeight, frameWidth;	
 	private JTextField quizName;
+
+	private static final JButton createQuiz = new JButton(" Create Quiz");
 
 	public ProfessorMainWindow() {
 		getContentPane().setLayout(null);
@@ -55,24 +56,11 @@ public class ProfessorMainWindow extends JFrame {
 		setContentPane(contentPane);
 		setUndecorated(true);
 
-		JButton createQuiz = new JButton(" Create Quiz");
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
 				new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
 		createQuiz.setBounds(frameWidth / 4, (8 * frameHeight) / 14, (8 * frameWidth / 18), frameHeight / 4);
-		createQuiz.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String quizNameText = quizName.getText();
-				if (!quizNameText.isEmpty()) {
-					new ProfessorQuestionView(quizNameText).setVisible(true);
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Please provide a Quiz Title", "Validation",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		contentPane.setLayout(null);
 		createQuiz.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 30));
 		createQuiz.setForeground(new Color(255, 255, 255));
@@ -139,5 +127,18 @@ public class ProfessorMainWindow extends JFrame {
 		quizName.setBounds(frameWidth / 4, (9 * frameHeight) / 19, (8 * frameWidth / 18), frameHeight / 19);
 		contentPane.add(quizName);
 		quizName.setColumns(10);
+		setQuizName(quizName);
+	}
+
+	public JTextField getQuizName() {
+		return quizName;
+	}
+
+	public void setQuizName(JTextField quizName) {
+		this.quizName = quizName;
+	}
+
+	public static JButton getCreatequiz() {
+		return createQuiz;
 	}
 }

@@ -25,11 +25,10 @@ import src.*;
 @SuppressWarnings("serial")
 public class ProfessorQuestionView extends JFrame {
 
-	public ProfessorQuestionView(String quizName) throws HeadlessException {
-		this();
-		ProfessorQuestionView.quizName = quizName;
-	}
-
+	private static final JButton btnAddMoreQuestions = new JButton("Add Details");
+	private static final JButton btnDeleteQuestions = new JButton("Delete Details");
+	private static final JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
+	
 	protected static final String MouseEvent = null;
 	private JPanel contentPane;
 	private JTextField questionField;
@@ -40,8 +39,17 @@ public class ProfessorQuestionView extends JFrame {
 	int screenHeight, screenWidth;
 	private int positionX, positionY;
 	int frameHeight, frameWidth;
-	private static ArrayList<Question> questionsList = new ArrayList<Question>();
+	private Question question;
+	
+	private ArrayList<Question> questionsList = new ArrayList<Question>();
 
+
+	public ProfessorQuestionView(String quizName) throws HeadlessException {
+		this();
+		ProfessorQuestionView.quizName = quizName;
+	}
+
+	
 	public ProfessorQuestionView() {
 		getContentPane().setLayout(null);
 		setUndecorated(true);
@@ -89,7 +97,6 @@ public class ProfessorQuestionView extends JFrame {
 		contentPane.add(answerField);
 		answerField.setColumns(10);
 
-		JButton btnAddMoreQuestions = new JButton("Add Details");
 		btnAddMoreQuestions.setBounds((2 * frameWidth / 14), (10 * frameHeight) / 12, (10 * frameWidth) / 31,
 				frameHeight / 17);
 		btnAddMoreQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -97,20 +104,15 @@ public class ProfessorQuestionView extends JFrame {
 		btnAddMoreQuestions.setForeground(new Color(255, 255, 255));
 		btnAddMoreQuestions.setBackground(new Color(0, 181, 204));
 
-		Question newQuestion = fetchQuestionDetails();
-		btnAddMoreQuestions.addActionListener(new ProfessorController(this, newQuestion,
-				ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION, questionsList));
+		setQuestion(fetchQuestionDetails());
 		contentPane.add(btnAddMoreQuestions);
 
-		JButton btnDeleteQuestions = new JButton("Delete Details");
 		btnDeleteQuestions.setBounds((8 * frameWidth / 17), (10 * frameHeight) / 12, (10 * frameWidth) / 31,
 				frameHeight / 17);
 		btnDeleteQuestions.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnDeleteQuestions.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnDeleteQuestions.setBackground(new Color(0, 181, 204));
 		btnDeleteQuestions.setForeground(new Color(255, 255, 255));
-		btnDeleteQuestions.addActionListener(new ProfessorController(this, newQuestion,
-				ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION, questionsList));
 		contentPane.add(btnDeleteQuestions);
 
 		JLabel lblQuestion = new JLabel("Question");
@@ -138,12 +140,8 @@ public class ProfessorQuestionView extends JFrame {
 		lblCorrectAnswer.setForeground(new Color(255, 255, 255));
 		lblCorrectAnswer.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 35));
 		contentPane.add(lblCorrectAnswer);
-
-		JButton btnCreateQuizAnd = new JButton("Create Quiz And Exit");
 		btnCreateQuizAnd.setBounds((2 * frameWidth / 14), (20 * frameHeight) / 22, (15 * frameWidth) / 23,
 				frameHeight / 17);
-		btnCreateQuizAnd.addActionListener(
-				new ProfessorController(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ, questionsList, quizName, this));
 		btnCreateQuizAnd.setForeground(Color.WHITE);
 		btnCreateQuizAnd.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 38));
 		btnCreateQuizAnd.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -217,5 +215,39 @@ public class ProfessorQuestionView extends JFrame {
 
 	public void setQuesTitle(String quesTitle) {
 		this.quesTitle = quesTitle;
+	}
+
+	public ArrayList<Question> getQuestionsList() {
+		return questionsList;
+	}
+
+
+	public void setQuestionsList(ArrayList<Question> questionsList) {
+		this.questionsList = questionsList;
+	}
+
+
+	public static JButton getBtnaddmorequestions() {
+		return btnAddMoreQuestions;
+	}
+
+
+	public static JButton getBtndeletequestions() {
+		return btnDeleteQuestions;
+	}
+
+
+	public static JButton getBtncreatequizand() {
+		return btnCreateQuizAnd;
+	}
+
+
+	public Question getQuestion() {
+		return question;
+	}
+
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 }
