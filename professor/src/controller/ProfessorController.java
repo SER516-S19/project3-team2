@@ -21,64 +21,59 @@ import src.view.ProfessorQuestionView;
  * @version (1.0)
  * @param (Question)
  */
-public class ProfessorController implements ActionListener {
-	private String actionType;
+public class ProfessorController {
 	private ArrayList<Question> questionList;
 	private static final String quizPath = System.getProperty("user.home") + "/quiz/";
 	private static String quizName;
 	private String quesTitle;
 	private ProfessorQuestionView addView;
 	private Question ques;
+	ProfessorModel model = new ProfessorModel();
 
-	public ProfessorController(String actionType, ArrayList<Question> questionList, String quizName,
-			ProfessorQuestionView addView) {
+	public ProfessorController(String quizName, ProfessorQuestionView addView) {
 		super();
-		this.actionType = actionType;
-		this.questionList = questionList;
 		this.addView = addView;
 		ProfessorController.quizName = quizName;
+		questionList = new ArrayList<Question>();
+		this.addView.btnCreateQuizAnd.addActionListener(new CreateActionListener());
+		this.addView.btnAddMoreQuestions.addActionListener(new AddQuestionListener());
+		this.addView.btnDeleteQuestions.addActionListener(new DeleteQuestionListener());
 	}
-
-	public ProfessorController(ProfessorQuestionView addView, Question toBeAdded, String actionType,
-			ArrayList<Question> questionList) {
-		super();
-		this.actionType = actionType;
-		this.questionList = questionList;
-		this.ques = toBeAdded;
-		this.addView = addView;
-	}
-
 	/**
 	 * This method listens to the action performed by the components on UI. like
 	 * create quiz, add and delete questions
 	 * 
 	 * @param event 
 	 */
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		ProfessorModel model = new ProfessorModel();
-		File directory = new File(quizPath);
-		boolean exists = directory.exists();
-		String absolutePath;
-		if (!exists) {
-			boolean file = new File(quizPath).mkdir();
-		}
-
-		absolutePath = quizPath + quizName + ConstantTable.JSON_EXTENSION;
-
-		if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_CREATE_QUIZ)) {
-
-			String createStatus = model.createQuiz(questionList, absolutePath);
-			if (ConstantTable.CREATED.equals(createStatus)) {
-				JOptionPane.showMessageDialog(null, "Quiz successfully created at " + absolutePath, "Validation",
-						JOptionPane.INFORMATION_MESSAGE);
-				addView.dispose();
+	class AddQuestionListener implements ActionListener {	
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			ques = addView.fetchQuestionDetails();
+			String addStatus = model.addQuestion(ques);
+			if (ConstantTable.BLANK.equals(addStatus)) {
+				JOptionPane.showMessageDialog(null, "Please fill all the details to add a question.", "Validation",
+						JOptionPane.ERROR_MESSAGE);
+			} else if (ConstantTable.NOT_FOUND.equals(addStatus)) {
+				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options", "Validation",
+						JOptionPane.ERROR_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null,
-						"There is no questions added to quiz. Please add some question before creating a quiz",
-						"Validation", JOptionPane.ERROR_MESSAGE);
+				questionList.add(ques);
+				addView.questionField.setText("");
+				addView.answerField.setText("");
+				for(int i=0;i<4;i++) {
+					addView.optionField[i].setText("");
+				}
+				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
-		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_DELETE_QUESTION)) {
+			
+		}
+	}
+	
+	class DeleteQuestionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			addView.fetchQuestionDetails();
 			String deleteStatus = model.deleteQuestion(questionList, addView.getQuesTitle());
 			if (ConstantTable.NOT_FOUND.equals(deleteStatus)) {
@@ -95,26 +90,43 @@ public class ProfessorController implements ActionListener {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
-			addView.dispose();
-			new ProfessorQuestionView().setVisible(true);
+			questionList.add(ques);
+			addView.questionField.setText("");
+			addView.answerField.setText("");
+			for(int i=0;i<4;i++) {
+				addView.optionField[i].setText("");
+			}
+			
+		}
+		
+	}
+	
+	
+	class CreateActionListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.print("I am here");
+			File directory = new File(quizPath);
+			boolean exists = directory.exists();
+			String absolutePath;
+			if (!exists) {
+				boolean file = new File(quizPath).mkdir();
+			}
 
-		} else if (this.actionType.equals(ConstantTable.CONTROLER_IDENTIFIER_ADD_QUESTION)) {
-
-			ques = addView.fetchQuestionDetails();
-			String addStatus = model.addQuestion(ques);
-			if (ConstantTable.BLANK.equals(addStatus)) {
-				JOptionPane.showMessageDialog(null, "Please fill all the details to add a question.", "Validation",
-						JOptionPane.ERROR_MESSAGE);
-			} else if (ConstantTable.NOT_FOUND.equals(addStatus)) {
-				JOptionPane.showMessageDialog(null, "Your correct ans is not matching with any options", "Validation",
-						JOptionPane.ERROR_MESSAGE);
-			} else {
-				questionList.add(ques);
-				addView.dispose();
-				new ProfessorQuestionView().setVisible(true);
-				JOptionPane.showMessageDialog(null, "Question has been successfully Added!", " Add Message",
+			absolutePath = quizPath + quizName + ConstantTable.JSON_EXTENSION;
+			String createStatus = model.createQuiz(questionList, absolutePath);
+			if (ConstantTable.CREATED.equals(createStatus)) {
+				JOptionPane.showMessageDialog(null, "Quiz successfully created at " + absolutePath, "Validation",
 						JOptionPane.INFORMATION_MESSAGE);
+				addView.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"There is no questions added to quiz. Please add some question before creating a quiz",
+						"Validation", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-	}
+		}
+	
+
+	
 }
