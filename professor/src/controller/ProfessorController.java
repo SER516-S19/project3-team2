@@ -89,8 +89,6 @@ public class ProfessorController {
 				JOptionPane.showMessageDialog(null, "Question has been sucessfully deleted!", "Delete Message",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
-
-			questionList.add(ques);
 			addView.questionField.setText("");
 			addView.answerField.setText("");
 			for(int i=0;i<4;i++) {
