@@ -1,14 +1,10 @@
 package student.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * Create the Message frame.
@@ -21,7 +17,7 @@ public class CompletionMessage extends JFrame {
 
 	public CompletionMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(250, 150, 400, 200);
+		setBounds(550, 450, 400, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * application.It captures the quiz title entered by the professor and passes
  * the control to ProfessorController for further action.
  * 
- * @author Palak Chugh,Yuti Desai
+ * @author Yuti Desai, Palak Chugh
  * @version (1.0)
  * @param (Question)
  */
@@ -38,6 +38,14 @@ public class ProfessorMainWindow extends JFrame {
 	int screenHeight, screenWidth;
 	int frameHeight, frameWidth;	
 	private JTextField quizName;
+	private JButton createQuiz = new JButton(" Create Quiz");
+	public JButton getCreateQuiz() {
+		return createQuiz;
+	}
+	
+	public JTextField getQuizName() {
+		return quizName;
+	}
 
 	public ProfessorMainWindow() {
 		getContentPane().setLayout(null);
@@ -46,7 +54,7 @@ public class ProfessorMainWindow extends JFrame {
 		screenWidth = screenSize.width;
 		frameHeight = (7 * screenWidth) / 15;
 		frameWidth = (8 * screenHeight) / 9;
-		setSize(frameHeight, frameWidth);
+		setBounds(450,20,frameHeight, frameWidth);
 		setResizable(true);
 		contentPane = new JPanel();
 		contentPane.setEnabled(false);
@@ -55,24 +63,13 @@ public class ProfessorMainWindow extends JFrame {
 		setContentPane(contentPane);
 		setUndecorated(true);
 
-		JButton createQuiz = new JButton(" Create Quiz");
+		
 		createQuiz.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
 				new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		createQuiz.setToolTipText("Click Me");
 		createQuiz.setIcon(new ImageIcon("image\\teacher.gif"));
 		createQuiz.setBounds(frameWidth / 4, (8 * frameHeight) / 14, (8 * frameWidth / 18), frameHeight / 4);
-		createQuiz.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String quizNameText = quizName.getText();
-				if (!quizNameText.isEmpty()) {
-					new ProfessorQuestionView(quizNameText).setVisible(true);
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Please provide a Quiz Title", "Validation",
-							JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		
 		contentPane.setLayout(null);
 		createQuiz.setFont(new Font("Monospaced", Font.BOLD, frameWidth / 30));
 		createQuiz.setForeground(new Color(255, 255, 255));

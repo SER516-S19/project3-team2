@@ -39,7 +39,6 @@ public class StudentMainWindow extends JFrame {
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 50, frameHeight, frameWidth);
-		setTitle("Student Window For Quiz Application");
 		setResizable(false);
 		contentPane.setEnabled(false);
 		contentPane.setBackground(new Color(70, 130, 180));
@@ -50,16 +49,16 @@ public class StudentMainWindow extends JFrame {
 
 		quizList.setVisible(true);
 		contentPane.add(quizList);
-		quizList.setFont(new Font("Monospaced", Font.BOLD, 30));
-		quizList.setBounds(frameWidth/4, (7*frameHeight)/14, 305, 49);
+		quizList.setFont(new Font("Monospaced", Font.BOLD, frameWidth/28));
+		quizList.setBounds(frameWidth/5, (7*frameHeight)/12, (10*frameWidth)/19,frameHeight/14);
 		quizList.setForeground(new Color(255, 255, 255));
 		quizList.setBackground(new Color(0, 181, 204));
 		quizList.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
 				new BevelBorder(BevelBorder.RAISED, null, null, null, null)));
 		okBtn.setEnabled(false);
 		contentPane.add(okBtn);
-		okBtn.setFont(new Font("Monospaced", Font.BOLD, 24));
-		okBtn.setBounds(frameWidth/4, (9*frameHeight)/14, 305, 49);
+		okBtn.setFont(new Font("Monospaced", Font.BOLD, frameWidth/23));
+		okBtn.setBounds(frameWidth/5, (7*frameHeight)/10, (10*frameWidth)/19, frameHeight/14);
 		okBtn.setForeground(Color.WHITE);
 		okBtn.setBackground(new Color(0, 181, 204));
 		okBtn.setBorder(new CompoundBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null),
@@ -68,10 +67,17 @@ public class StudentMainWindow extends JFrame {
 		contentPane.add(quizList);
 
 		JLabel welcomeLabel = new JLabel("Hello Student!");
-		welcomeLabel.setBounds(frameWidth/5, (4*frameHeight)/14, 700, 49);
-		welcomeLabel.setFont(new Font("Courier", Font.BOLD, 50));
+		welcomeLabel.setBounds(frameWidth/6, (4*frameHeight)/14, (2*frameWidth)/3, frameHeight/15);
+		welcomeLabel.setFont(new Font("Courier", Font.BOLD, frameWidth/13));
 		welcomeLabel.setForeground(new Color(240, 248, 255));
 		contentPane.add(welcomeLabel);
+		
+		JLabel quizlistLabel = new JLabel("Click Below To Select Quiz");
+		quizlistLabel.setBounds(frameWidth/5, (4*frameHeight)/9, (2*frameWidth)/3, frameHeight/30);
+		quizlistLabel.setFont(new Font("Courier", Font.BOLD, frameWidth/30));
+		quizlistLabel.setForeground(new Color(240, 248, 255));
+		contentPane.add(quizlistLabel);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		panel.setBackground(new Color(37, 116, 169));

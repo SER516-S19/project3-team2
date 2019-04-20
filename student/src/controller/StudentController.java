@@ -47,7 +47,7 @@ public class StudentController {
 				quizName = studentMainWin.getQuizName();
 				questionList = studentModel.getQuestionList(quizName);
 				takeQuiz.setQuizLabel(studentMainWin.getQuizName());
-				takeQuiz.setQuestionField(questionList.get(0).getTitle());
+				takeQuiz.setQuestionField("<html>"+questionList.get(0).getTitle()+"</html>");
 				for (int i = 0; i < 4; i++) {
 					takeQuiz.setRadioOption(questionList.get(0).getOptions().get(i), i);
 				}
@@ -72,7 +72,7 @@ public class StudentController {
 				checkQuiz(ans, questionList.get(0).getCorrectAnswer());
 				if (!questionList.isEmpty()) {
 					takeQuiz.setQuizLabel(studentMainWin.getQuizName());
-					takeQuiz.setQuestionField(questionList.get(0).getTitle());
+					takeQuiz.setQuestionField("<html>"+questionList.get(0).getTitle()+"</html>");
 					for (int i = 0; i < 4; i++) {
 						takeQuiz.setRadioOption(questionList.get(0).getOptions().get(i), i);
 					}
