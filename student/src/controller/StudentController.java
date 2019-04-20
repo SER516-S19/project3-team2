@@ -1,10 +1,10 @@
-package src.controller;
+package student.controller;
 
-import src.model.StudentModel;
-import src.view.CompletionMessage;
-import src.view.StudentMainWindow;
-import src.view.TakeQuizView;
-import src.*;
+import student.model.StudentModel;
+import student.view.CompletionMessage;
+import student.view.StudentMainWindow;
+import student.view.TakeQuizView;
+import utils.*;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package src.controller;
+package professor.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +8,9 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import src.*;
-import src.model.ProfessorModel;
-import src.view.ProfessorQuestionView;
+import utils.*;
+import professor.model.ProfessorModel;
+import professor.view.ProfessorQuestionView;
 
 /**
  * Professor Controller listens to the actions performed by the user at

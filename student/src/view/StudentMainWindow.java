@@ -1,4 +1,4 @@
-package src.view;
+package student.view;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -7,9 +7,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.*;
-import src.model.StudentModel;
-import src.view.TakeQuizView;
-import src.controller.StudentController;
+import student.model.StudentModel;
+import student.view.TakeQuizView;
+import student.controller.StudentController;
 
 /**
  * Student's quiz selection view

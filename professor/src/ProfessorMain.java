@@ -1,8 +1,6 @@
-package src;
-
-import src.controller.ProfessorController;
-import src.view.ProfessorMainWindow;
-import src.view.ProfessorQuestionView;
+import professor.controller.ProfessorController;
+import professor.view.ProfessorMainWindow;
+import professor.view.ProfessorQuestionView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

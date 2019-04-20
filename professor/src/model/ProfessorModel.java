@@ -1,12 +1,10 @@
-package src.model;
+package professor.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import src.ConstantTable;
-import src.JsonUtils;
-import src.Question;
+import utils.*;
 
 /**
  * ProfessorModel performs the action delegated by the ProfessorController.
