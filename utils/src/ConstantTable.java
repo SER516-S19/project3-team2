@@ -1,6 +1,4 @@
 package utils;
-
-
 /**
  * 
  * @description: This class stores and uses all static strings which are common throughout 

@@ -1,7 +1,6 @@
 import professor.controller.ProfessorController;
 import professor.view.ProfessorMainWindow;
 import professor.view.ProfessorQuestionView;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

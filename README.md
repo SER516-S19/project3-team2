@@ -6,12 +6,12 @@ Our Project has two separate Java Desktop Applications -
 
 ## Team Members:
 1. Aneesh Dalvi
-2. Palak Chugh
+2. Palak Chugh (Product Owner)
 3. Yuti Desai
 4. Vaibhav Bhasin
 5. Sakshi Chaudhary 
 6. Meng-Ze Chen
-7. Leher Bhatt
+7. Leher Bhatt (Scrum Master)
 8. Subhradeep Biswas
 9. Manikanta 
 10. Surya
@@ -26,11 +26,19 @@ Our Project has two separate Java Desktop Applications -
  
 2. The Quiz files created are store in the home directory of your system. There will be one "quiz" folder created inside the homedirectory. All the Quiz files will be stored here. 
 
-### For Windows / Mac commands to run our project
+3. To execute the Java project preferably use command line.
 
-1. java -jar Student.jar
-2. java -jar Professor.jar
+### Student Application
+ 
+1. On the Home window, the student can select a quiz from the quiz name drop down. The "OK" button will take him/het to the next page where questions of the quiz will ge populated.
+ 
+2. The student, then, can answer the questions one by one by selecting the correct answer option radio button. "Next" button will take the student to the next question. 
+
+3. If the student wans to give up any time in the middle of a quiz, s/he should press the "Giveup" button that will close the question window.
 
 
+### For Windows / Mac commands to run our applications
 
-
+1. Go to application-jars folder and execute:
+2. java -jar Student.jar
+3. java -jar Professor.jar
